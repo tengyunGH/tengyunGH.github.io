@@ -317,7 +317,7 @@ body {
 #header-title {
   text-align: center;
   height: 40px;
-  margin-top: 20px;
+  margin: 20px;
 }
 #logo {
   text-decoration: none;
@@ -330,8 +330,12 @@ body {
   line-height: 40px;
   letter-spacing: 2px;
 }
-#photo {
+#myMessage {
+  color: #fff;
   display: inline-block;
+  margin: 10px;
+}
+#photo {
   width: 70px;
   height: 70px;
   border-radius: 50%;
@@ -341,6 +345,8 @@ body {
   background-size: 100% 100%;
 }
 .main-nav-link {
+  position: absolute;
+  right: 50px;
   display: inline-block;
   height: 30px;
   color: #fff;
@@ -349,7 +355,6 @@ body {
   letter-spacing: 1px;
   opacity: 0.6;
   text-decoration: none;
-  float: right;
   padding: 5px;
   border-radius: 5px;
   margin: 5px;
