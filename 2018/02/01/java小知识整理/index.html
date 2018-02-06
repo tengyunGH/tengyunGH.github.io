@@ -7,18 +7,18 @@
   
   <title>The Marvellous World!</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="java有些知识点不容易理解，还有些容易忘记，写篇博客，以后常来逛逛 访问控制1、对类来说，有两种，一种是public，一种是缺省（default）。Public是所有类均可访问。缺省的话，只有当前类所在的包中的类可访问 2、对类中成员来说，有四种 public &amp;gt; protected &amp;gt; friendly &amp;gt; private。 3、Private只能在当前类中被成员方法访问，f">
+  <meta name="description" content="java有些知识点不容易理解，还有些容易忘记，写篇博客，以后常来逛逛 访问控制1、对类来说，有两种，一种是public，一种是缺省（friendly）。Public是所有类均可访问。缺省的话，只有当前类所在的包中的类可访问 2、对类中成员来说，有四种 public &amp;gt; protected &amp;gt; friendly &amp;gt; private。 3、Private只能在当前类中被成员方法访问，">
 <meta name="keywords" content="java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java知识积累">
 <meta property="og:url" content="http://yoursite.com/2018/02/01/java小知识整理/index.html">
 <meta property="og:site_name" content="The Marvellous World!">
-<meta property="og:description" content="java有些知识点不容易理解，还有些容易忘记，写篇博客，以后常来逛逛 访问控制1、对类来说，有两种，一种是public，一种是缺省（default）。Public是所有类均可访问。缺省的话，只有当前类所在的包中的类可访问 2、对类中成员来说，有四种 public &amp;gt; protected &amp;gt; friendly &amp;gt; private。 3、Private只能在当前类中被成员方法访问，f">
+<meta property="og:description" content="java有些知识点不容易理解，还有些容易忘记，写篇博客，以后常来逛逛 访问控制1、对类来说，有两种，一种是public，一种是缺省（friendly）。Public是所有类均可访问。缺省的话，只有当前类所在的包中的类可访问 2、对类中成员来说，有四种 public &amp;gt; protected &amp;gt; friendly &amp;gt; private。 3、Private只能在当前类中被成员方法访问，">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-02-06T11:29:39.332Z">
+<meta property="og:updated_time" content="2018-02-06T12:04:28.591Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java知识积累">
-<meta name="twitter:description" content="java有些知识点不容易理解，还有些容易忘记，写篇博客，以后常来逛逛 访问控制1、对类来说，有两种，一种是public，一种是缺省（default）。Public是所有类均可访问。缺省的话，只有当前类所在的包中的类可访问 2、对类中成员来说，有四种 public &amp;gt; protected &amp;gt; friendly &amp;gt; private。 3、Private只能在当前类中被成员方法访问，f">
+<meta name="twitter:description" content="java有些知识点不容易理解，还有些容易忘记，写篇博客，以后常来逛逛 访问控制1、对类来说，有两种，一种是public，一种是缺省（friendly）。Public是所有类均可访问。缺省的话，只有当前类所在的包中的类可访问 2、对类中成员来说，有四种 public &amp;gt; protected &amp;gt; friendly &amp;gt; private。 3、Private只能在当前类中被成员方法访问，">
   
     <link rel="alternate" href="/atom.xml" title="The Marvellous World!" type="application/atom+xml">
   
@@ -93,7 +93,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>java有些知识点不容易理解，还有些容易忘记，写篇博客，以后常来逛逛</p>
-<h3 id="访问控制"><a href="#访问控制" class="headerlink" title="访问控制"></a>访问控制</h3><p>1、对类来说，有两种，一种是public，一种是缺省（default）。Public是所有类均可访问。缺省的话，只有当前类所在的包中的类可访问</p>
+<h3 id="访问控制"><a href="#访问控制" class="headerlink" title="访问控制"></a>访问控制</h3><p>1、对类来说，有两种，一种是public，一种是缺省（friendly）。Public是所有类均可访问。缺省的话，只有当前类所在的包中的类可访问</p>
 <p>2、对类中成员来说，有四种 public &gt; protected &gt; friendly &gt; private。</p>
 <p>3、Private只能在当前类中被成员方法访问，friendly(缺省)声明的，只能是当前包中的所有类都可访问。Protected不仅当前包中所有类，其他包中的子类也都可以访问，public是谁都可以访问。<br>注意访问范围：protected要比friendly的范围大</p>
 <h3 id="成员"><a href="#成员" class="headerlink" title="成员"></a>成员</h3><p>包括 成员方法和成员变量</p>
@@ -101,7 +101,7 @@
 <h3 id="封装意义"><a href="#封装意义" class="headerlink" title="封装意义"></a>封装意义</h3><p>将数据和对数据的操作组合起来；<br>提供与外部的联系的方法时又尽可能的隐藏内部的实现细节；<br>使得设计和使用分离，使用者知道做什么，设计者知道怎样做。</p>
 <h3 id="继承原则"><a href="#继承原则" class="headerlink" title="继承原则"></a>继承原则</h3><p>子类继承父类所有的成员变量（但子类成员方法不一定能访问），<br>子类继承父类所有除掉构造方法的成员方法，<br>子类可以增加、重写父类的成员，但是不能删除。<br>只有一个父亲，但是父亲却可以有多个后代。（单继承）</p>
 <h3 id="多态性（好复杂）"><a href="#多态性（好复杂）" class="headerlink" title="多态性（好复杂）"></a>多态性（好复杂）</h3><p>子类重定义<br>1）重定义父类成员变量，就隐藏了父类的成员变量；<br>2）重定义父类成员方法又包含两种：覆盖和重载；<br>    <1>覆盖（重写）是说，参数列表（函数签名）相同，子类重新写父类（很多情况下是接口这种抽象的）中的那个方法。<br>    <2>重载就是，一个类中，方法名相同，参数列表不同。由于子类继承了所有父类的方法，所以，如果子类的方法的参数列表不同，这就是重载，因为继承了，那个也是子类的方法，两者参数列表不同。</2></1></p>
-<p>记住java中，重载要求参数列表不相同，若只有返回值相同，是会报错的。<br>还有java中的注解只有@Override，没有所谓的<br>@Overload、@Overwrite,</p>
+<p>记住java中，重载要求参数列表不相同，若只有返回值相同，是会报错的。<br>还有java中的注解只有@Override，没有所谓的@Overload、@Overwrite,</p>
 <p>使用@Override会帮你检查，你重写的方法和你要重写的那个方法方法名、参数列表是否一致。可以用在子类写父类，实现类写接口类当中。</p>
 <h3 id="接口、抽象类、类-之间的关系"><a href="#接口、抽象类、类-之间的关系" class="headerlink" title="接口、抽象类、类 之间的关系"></a>接口、抽象类、类 之间的关系</h3><p>接口和她的实现类之间只有实现关系，没有继承关系，接口和接口之间可以继承，类和类（包括抽象类）之间是继承关系。只能extends一个，却可以implements多个。</p>
 <h3 id="抽象类和抽象方法"><a href="#抽象类和抽象方法" class="headerlink" title="抽象类和抽象方法"></a>抽象类和抽象方法</h3><p>public abstract class chouxianglei() {}<br>public abstract string chouxiangfangfa();<br>1）抽象方法没有实现，只有声明；<br>2）抽象类通常包含抽象方法，也可以没有；<br>3）包含抽象方法的类，必须声明为抽象类；<br>4）继承抽象类的子类，若不能实现所有父类的抽象方法，那么该子类要被声明为抽象类，也就说，可以不用全部实现，但是要声明为抽象类；<br>5）构造方法、静态方法不能声明为抽象方法。<br>6）抽象类不能实例化 </p>
@@ -123,7 +123,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/02/01/java小知识整理/" data-id="cjdbl714t0001wgvaufqggifb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/02/01/java小知识整理/" data-id="cjdbmoj7t00003kva9n3hsbcf" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
