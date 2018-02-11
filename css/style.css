@@ -1243,3 +1243,19 @@ pre .javascript .function {
   margin-right: 5px;
   display: inline-block;
 }
+#myself {
+  margin: 20px;
+  width: 80%;
+  height: 200px;
+  border: 1px solid #00f;
+  font-size: 15px;
+}
+.abox {
+  text-align: center;
+}
+.myGithub {
+  text-decoration: none;
+}
+.selfIntroduction {
+  margin-top: 10px;
+}
