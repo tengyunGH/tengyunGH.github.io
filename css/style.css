@@ -1176,25 +1176,25 @@ pre .javascript .function {
   width: 100px;
   margin: 20px;
 }
-#wrap {
+#mewrap {
   overflow: hidden;
   width: 200px;
 }
-#slider {
+#mewrap #slider {
   width: 200px;
 }
-#slider li {
+#mewrap #slider li {
   float: left;
   width: 200px;
   height: 200px;
 }
-#slider li:nth-child(1) {
+#mewrap #slider li:nth-child(1) {
   background: url("images/me1.jpg");
 }
-#slider li:nth-child(2) {
+#mewrap #slider li:nth-child(2) {
   background: url("images/me2.jpg");
 }
-#slider li:nth-child(3) {
+#mewrap #slider li:nth-child(3) {
   background: url("images/me3.jpg");
 }
 @-webkit-keyframes slide1 {
@@ -1266,13 +1266,13 @@ pre .javascript .function {
     margin-left: -400px;
   }
 }
-.one:checked ~ #wrap #slider {
+.one:checked ~ #mewrap #slider {
   -webkit-animation-name: slide1;
 }
-.two:checked ~ #wrap #slider {
+.two:checked ~ #mewrap #slider {
   -webkit-animation-name: slide2;
 }
-.three:checked ~ #wrap #slider {
+.three:checked ~ #mewrap #slider {
   -webkit-animation-name: slide3;
 }
 .selfIntroduction {
