@@ -91,7 +91,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/05/MD常用语法总结/" data-id="cjednp37o0006tkva8l51qlbl" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/05/MD常用语法总结/" data-id="cjedq2ubr000080vatq1y0xww" class="article-share-link">Share</a>
       
       
     </footer>
@@ -129,16 +129,19 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>不知道我理解的对不对，如果有错误的地方，请指出</p>
-<p>首先 IDEA自带tomcat ，但是还是要配置我们本地的tomcat</p>
-<p>运行时，IDEA从咱们配置的本地的tomcat那里复制一份配置文件到system/tomcat（这个路径一般在c盘，但是可以更改（bin目录下的idea.properties这里面修改IDEA的系统文件位置从c盘改到其他的盘））中，这个文件夹里面每个项目是一个文件夹，也就是说，每个项目有一个自己的tomcat配置，互不干扰，在自己的项目文件夹中conf/Catalina/localhost/ROOT.xml 文件里的内容，是这样的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;Context path=&quot;/tengyun&quot; docBase=&quot;E:\IDEA\IDEAProjects\fifthTest\out\artifacts\fifthtest_Web_exploded&quot; /&gt;</span><br></pre></td></tr></table></figure></p>
-<p>这里面，docBase指的就是我们要运行的项目部署的位置，这个位置是我们在设置tomcat的configuration时选择部署的artifact，这个artifact的设置在IDEA的project structure(我的快捷键是ctrl+shift+alt+s)里面的Artifacts里面设置output directory，这个路径就是项目的部署位置，</p>
-<p>而项目的编译位置在在IDEA的project modules里面有设置，可以选择从projects中设置的继承过来，也可以在这里重新配置，</p>
-<p>一般默认把项目源码放在E:\IDEA\IDEAProjects\IdeaProjects\src中，<br>E:\IDEA\IDEAProjects\fifthTest\out\artifacts\fifthtest_Web_exploded就是build之后生成的项目<br>这里的path=”/tengyun”是我在run-&gt;edit configuration的deployment中的application context中设置的路径,一般默认就行，不用填，填了之后，在浏览器输入路径的时候要带上这个路径，不填的话就不用带这个路径了<br><img width="400px" height="50px" src=""></p>
+<h2 id="首先-IDEA自带tomcat-，但是还是要配置我们本地的tomcat"><a href="#首先-IDEA自带tomcat-，但是还是要配置我们本地的tomcat" class="headerlink" title="首先 IDEA自带tomcat ，但是还是要配置我们本地的tomcat"></a>首先 IDEA自带tomcat ，但是还是要配置我们本地的tomcat</h2><p>运行时，IDEA从咱们配置的本地的tomcat那里复制一份配置文件到system/tomcat（这个路径一般在c盘，但是可以更改（bin目录下的idea.properties这里面修改IDEA的系统文件位置从c盘改到其他的盘））中，这个文件夹里面每个项目是一个文件夹，也就是说，每个项目有一个自己的tomcat配置，互不干扰</p>
+<h3 id="项目的源码位置"><a href="#项目的源码位置" class="headerlink" title="项目的源码位置"></a>项目的源码位置</h3><p>一般是你自己打开的项目的位置 E:\IDEA\IDEAProjects\IdeaProjects\src</p>
+<h3 id="项目编译后的位置"><a href="#项目编译后的位置" class="headerlink" title="项目编译后的位置"></a>项目编译后的位置</h3><p>在IDEA的project settings的modules模块里面有设置，可以选择从projects中设置的继承过来，也可以在这里重新配置<br><img width="500px" height="200px" src="http://p3o1rymh9.bkt.clouddn.com/IDEA-Tomcat1.png"></p>
+<h3 id="项目部署位置（tomcat加载项目的地方）"><a href="#项目部署位置（tomcat加载项目的地方）" class="headerlink" title="项目部署位置（tomcat加载项目的地方）"></a>项目部署位置（tomcat加载项目的地方）</h3><p>在自己的项目配置文件夹中system/tomcat/某个项目/conf/Catalina/localhost/ROOT.xml 文件里的内容，是这样的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;Context path=&quot;/tengyun&quot; docBase=&quot;E:\IDEA\IDEAProjects\fifthTest\out\artifacts\fifthtest_Web_exploded&quot; /&gt;</span><br></pre></td></tr></table></figure></p>
+<p>1、这里面，docBase指的就是我们要运行的项目部署的位置，这个位置是我们在设置tomcat的configuration（alt+E）时选择部署的artifact<br><img width="500px" height="200px" src="http://p3o1rymh9.bkt.clouddn.com/IDEA-Tomcat2.png"><br>这个artifact的设置在IDEA的project settings(我的快捷键是ctrl+shift+alt+s)里面的Artifacts模块里面设置output directory，这个路径就是项目的部署位置<br><img width="500px" height="200px" src="http://p3o1rymh9.bkt.clouddn.com/IDEA-Tomcat3.png"><br>其中1是项目部署位置，2是lib包，如果出现class not found问题，很多原因就是jar包没导进去，需要在3中添加</p>
+<p>2、这里的path=”/tengyun”是我在run-&gt;edit configuration（alt+E）的deployment中的application（见上上图） context中设置的路径,表示访问的url的根路径，一般默认为空就行，不用填，填了之后，在浏览器输入路径的时候要带上这个路径，不填的话就不用带这个路径了</p>
+<p>建议参考<a href="https://www.cnblogs.com/deng-cc/p/6416332.html" target="_blank" rel="noopener">https://www.cnblogs.com/deng-cc/p/6416332.html</a></p>
+<h2 id="项目部署的形式"><a href="#项目部署的形式" class="headerlink" title="项目部署的形式"></a>项目部署的形式</h2><p>有两种，一种是war模式，一种是war exploded模式<br><img width="500px" height="200px" src="http://p3o1rymh9.bkt.clouddn.com/IDEA-Tomcat4.png"><br>war模式：将WEB工程以包的形式部署到服务器，是先打成war包，再发布<br>war exploded模式：将WEB工程以当前文件夹的位置关系部署到服务器，是直接把文件夹、页面、classes等移到tomcat部署文件夹里面，进行加载部署，这种方式支持热部署，一般开发时使用这种方式<br>这两种模式在projects settings的Artifacts模块中添加artifact时设置<br><img width="500px" height="200px" src="http://p3o1rymh9.bkt.clouddn.com/IDEA-Tomcat5.png"><br>可以在这里面的type中选择artifact的类型</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/05/IDEA中的tomcat使用心得/" data-id="cjednp3790002tkvabegnbea0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/05/IDEA中的tomcat使用心得/" data-id="cjedq2uc7000280vaiorteu8r" class="article-share-link">Share</a>
       
       
     </footer>
@@ -178,11 +181,11 @@
         <p>下面是简单的按照网上的教程建立的一个springboot的项目，过程简单，但是也有些地方需要注意，记录下来</p>
 <p>1、新建项目的步骤，很简单，在网上搜下教程就有<br>Spring Initializer -&gt; web web -&gt; mysql jdbc mybatis -&gt;还有个thymeleafs这个选上 -&gt; 然后就是一些命名</p>
 <p>2、由于项目新建后就会引入maven，所以在IDEA中配置一下全局设置（default settings中设置maven），这样的话就不会下载到c盘了</p>
-<p>3、最重要的设置modules里面，别忘了Web这个选项<br><img width="100px" src="http://p3o1rymh9.bkt.clouddn.com/IDEA-SpringBoot1.png"><br><img width="300px" src="http://p3o1rymh9.bkt.clouddn.com/IDEA-SpringBoot2.png"><br>Web的设置很重要<br><img width="300px" src="http://p3o1rymh9.bkt.clouddn.com/IDEA-SpringBoot3.png"><br>这个里面设置的是项目文件的属性</p>
-<p>4、然后是Artifacts里面的设置<br><img width="300px" src="http://p3o1rymh9.bkt.clouddn.com/IDEA-SpringBoot4.png"><br>尤其要注意这个里面的部署的目录，如果上一步骤中的WEB没有配置正确的话，这里也不会正确的，那么tomcat不会正常运行（404错误页面），但是XXXXXApplication可以正常加载出来，能够访问</p>
+<p>3、最重要的设置modules里面，别忘了Web这个选项<br><img width="200px" height="150px" src="http://p3o1rymh9.bkt.clouddn.com/IDEA-SpringBoot1.png"><br><img width="400px" src="http://p3o1rymh9.bkt.clouddn.com/IDEA-SpringBoot2.png"><br>Web的设置很重要<br><img width="400px" src="http://p3o1rymh9.bkt.clouddn.com/IDEA-SpringBoot3.png"><br>这个里面设置的是项目文件的属性</p>
+<p>4、然后是Artifacts里面的设置<br><img width="400px" src="http://p3o1rymh9.bkt.clouddn.com/IDEA-SpringBoot4.png"><br>尤其要注意这个里面的部署的目录，如果上一步骤中的WEB没有配置正确的话，这里也不会正确的，那么tomcat不会正常运行（404错误页面），但是XXXXXApplication可以正常加载出来，能够访问</p>
 <p>5、除此之外，如果是用自己配置的tomcat来运行这个项目的话，有补救措施<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FifthtestApplication</span> <span class="keyword">extends</span> <span class="title">SpringBootServletInitializer</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> SpringApplicationBuilder <span class="title">configure</span><span class="params">(SpringApplicationBuilder application)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> application.sources(FifthtestApplication.class);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">       SpringApplication.run(FifthtestApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>注意啦，这里面多了一个SpringBootServletInitializer的继承实现，这样的话，就可以用自己配置的tomcat跑项目，如果不继承这个就不用写configure方法，但是就只能用IDEA自己的内置tomcat跑项目（不知道是不是tomcat）</p>
-<p>6、然后说下springboot的框架搭建<br>Src的目录<br><img width="200px" height="300px" src="http://p3o1rymh9.bkt.clouddn.com/IDEA-SpringBoot5.png"><br>这里面HelloController里面是controller的描写，尤其注意@RestController相当于@Controller和@ResponseBody的合体，今天在这里面捣鼓了半天，如果要返回一个页面，直接@Controller就OK了，这个类上面有无@RequestMapping（“/tengyun”）都可以，方法上面要有路径</p>
+<p>6、然后说下springboot的框架搭建<br>Src的目录<br><img width="400px" height="300px" src="http://p3o1rymh9.bkt.clouddn.com/IDEA-SpringBoot5.png"><br>这里面HelloController里面是controller的描写，尤其注意@RestController相当于@Controller和@ResponseBody的合体，今天在这里面捣鼓了半天，如果要返回一个页面，直接@Controller就OK了，这个类上面有无@RequestMapping（“/tengyun”）都可以，方法上面要有路径</p>
 <p>FifthtestApplication里面就是main方法和继承SpringBootServletInitializer的@Overrides的configure方法，继承的这个方法是为了让自己配置的tomcat能跑起来</p>
 <p>在applicaiton.properties中写上spring.thymeleaf.prefix=classpath:/templates/这样就可以返回templates文件夹中的页面了</p>
 <p>Templates文件夹中存放你所需的page，应该可以改的</p>
@@ -190,7 +193,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/04/使用IDEA建立一个SpringBoot的过程及注意问题/" data-id="cjednp37o0007tkvamucrmbn7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/04/使用IDEA建立一个SpringBoot的过程及注意问题/" data-id="cjedq2udi000780vazqsuznt8" class="article-share-link">Share</a>
       
       
     </footer>
@@ -237,7 +240,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/02/05/java类间的强制转换/" data-id="cjednp3790005tkvaji297f7k" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/02/05/java类间的强制转换/" data-id="cjedq2ud2000580vazs91y8qm" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/强制转换/">强制转换</a></li></ul>
@@ -307,7 +310,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/02/01/java小知识整理/" data-id="cjednp36t0000tkva5ywxqa1n" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/02/01/java小知识整理/" data-id="cjedq2ucn000380va3rxp88wb" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
