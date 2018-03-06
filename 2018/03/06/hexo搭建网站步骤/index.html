@@ -1,4 +1,3 @@
-layout模板
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,10 +14,12 @@ layout模板
 <meta property="og:site_name" content="The Marvellous World!">
 <meta property="og:description" content="搭建网站步骤1.注册github https://github.com ，创建相应的仓库2.下载与你电脑匹配的git并安装 下载：https://git-scm.com/download 安装参考：https://www.cnblogs.com/smuxiaolei/p/7484678.html3.将git与github绑定4.安装node.js5.搭建hexo，6.绑定域名7.写文章，推送 注册">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-03-06T11:37:59.047Z">
+<meta property="og:image" content="http://p3o1rymh9.bkt.clouddn.com/HEXO-moudle1.png">
+<meta property="og:updated_time" content="2018-03-06T14:08:13.588Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo搭建网站步骤">
 <meta name="twitter:description" content="搭建网站步骤1.注册github https://github.com ，创建相应的仓库2.下载与你电脑匹配的git并安装 下载：https://git-scm.com/download 安装参考：https://www.cnblogs.com/smuxiaolei/p/7484678.html3.将git与github绑定4.安装node.js5.搭建hexo，6.绑定域名7.写文章，推送 注册">
+<meta name="twitter:image" content="http://p3o1rymh9.bkt.clouddn.com/HEXO-moudle1.png">
   
     <link rel="alternate" href="/atom.xml" title="The Marvellous World!" type="application/atom+xml">
   
@@ -34,8 +35,7 @@ layout模板
 <body>
   <div id="container">
     <div id="wrap">
-      header模板
-<header id="header">
+      <header id="header">
 <!--   <div id="banner"></div> -->
 
   <div id="header-outer" class="outer">
@@ -63,8 +63,8 @@ layout模板
 </header>
       <div class="outer">
 
-        <section id="main">#post模板
-#/*_partial文章模板*/
+        <section id="main">
+
 <article id="post-hexo搭建网站步骤" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/03/06/hexo搭建网站步骤/" class="article-date">
@@ -72,7 +72,7 @@ layout模板
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/IDEA/">IDEA</a>►<a class="article-category-link" href="/categories/IDEA/SpringBoot/">SpringBoot</a>►<a class="article-category-link" href="/categories/IDEA/Tomcat/">Tomcat</a>►<a class="article-category-link" href="/categories/hexo/">hexo</a>►<a class="article-category-link" href="/categories/java/">java</a>►<a class="article-category-link" href="/categories/language/">language</a>►<a class="article-category-link" href="/categories/language/MD语法/">MD语法</a>
+    <a class="article-category-link" href="/categories/hexo/">hexo</a>
   </div>
 
   </div>
@@ -118,13 +118,25 @@ layout模板
 <p>说下_config.yml这个文件是主题配置文件，有些东西我也不太清楚，就不解释了，把我知道的解释一下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"># Header</span><br><span class="line">#menu在header.ejs中被for循环读取其中的每个a链接,显示在页面顶部</span><br><span class="line">menu:</span><br><span class="line">  首页: /         #默认使用index模板</span><br><span class="line">  归档: /archives #默认使用archive模板</span><br><span class="line">  了解我: /myself #使用page模板</span><br><span class="line">rss: /atom.xml</span><br><span class="line"></span><br><span class="line"># Content</span><br><span class="line"># excerpt_link: Read More</span><br><span class="line">excerpt_link: 了解更多</span><br><span class="line">fancybox: true</span><br><span class="line"></span><br><span class="line"># Sidebar</span><br><span class="line">sidebar: left</span><br><span class="line"></span><br><span class="line"># widgets这个是和E:\HEXO\themes\landscape\layout\_widget这个里面的文件相对应，表示左边的那个小方框的格式</span><br><span class="line">widgets:</span><br><span class="line">- category</span><br><span class="line">- tag</span><br><span class="line">- tagcloud</span><br><span class="line">- archive</span><br><span class="line">- recent_posts</span><br><span class="line"></span><br><span class="line"># display widgets at the bottom of index pages (pagination == 2)</span><br><span class="line">index_widgets:</span><br><span class="line"># - category</span><br><span class="line"># - tagcloud</span><br><span class="line"># - archive</span><br><span class="line"></span><br><span class="line"># widget behavior</span><br><span class="line">archive_type: &apos;monthly&apos;</span><br><span class="line">show_count: true</span><br><span class="line"></span><br><span class="line">#这里表示当前文件夹是source，所以可以在source文件夹中国创建一个images文件，在这里存放图片</span><br><span class="line">favicon: /images/favicon.png #网站标题的小图标</span><br><span class="line">wechatpay: /images/wechatpay.png</span><br><span class="line">alipay: /images/alipay.png</span><br><span class="line"></span><br><span class="line"># Miscellaneous</span><br><span class="line">github: https://github.com/tengyunGH</span><br><span class="line">google_analytics:</span><br><span class="line">gauges_analytics:</span><br><span class="line">twitter:</span><br><span class="line">google_plus:</span><br><span class="line">fb_admins:</span><br><span class="line">fb_app_id:</span><br></pre></td></tr></table></figure></p>
 <h3 id="landscape主题使用心得"><a href="#landscape主题使用心得" class="headerlink" title="landscape主题使用心得"></a>landscape主题使用心得</h3><p>没有系统性的学过ejs，但是大概理解还是可以的。<br>想自己写个主题的话，可以参考<a href="https://segmentfault.com/a/1190000006057336#articleHeader1" target="_blank" rel="noopener">https://segmentfault.com/a/1190000006057336#articleHeader1</a> 我觉得思路比较清晰</p>
 <p>好，这里面最重要的是layout文件夹了，这是网站的布局文件，我的layout.ejs<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;%- partial(&apos;_partial/head&apos;) %&gt; &lt;%# 表示引用_partial文件夹中的head.ejs模板 %&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;div id=&quot;container&quot;&gt;</span><br><span class="line">    &lt;div id=&quot;wrap&quot;&gt;</span><br><span class="line">      &lt;%- partial(&apos;_partial/header&apos;, null, &#123;cache: !config.relative_link&#125;) %&gt;  &lt;%# 表示引用_partial文件夹中的header.ejs模板  %&gt;</span><br><span class="line">      &lt;div class=&quot;outer&quot;&gt;</span><br><span class="line"></span><br><span class="line">        &lt;section id=&quot;main&quot;&gt;&lt;%- body %&gt;&lt;/section&gt;</span><br><span class="line"></span><br><span class="line">        &lt;% if (theme.sidebar &amp;&amp; theme.sidebar !== &apos;bottom&apos;)&#123; %&gt;</span><br><span class="line">          &lt;%- partial(&apos;_partial/sidebar&apos;, null, &#123;cache: !config.relative_link&#125;) %&gt;</span><br><span class="line">        &lt;% &#125; %&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">      &lt;%- partial(&apos;_partial/footer&apos;, null, &#123;cache: !config.relative_link&#125;) %&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;%- partial(&apos;_partial/mobile-nav&apos;, null, &#123;cache: !config.relative_link&#125;) %&gt;</span><br><span class="line">    &lt;%- partial(&apos;_partial/after-footer&apos;) %&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
-<p>整个网站用layout.ejs模板构建，这个模板可以复用其他的模板</p>
+<p>整个网站用layout.ejs模板构建，这个模板的组成代表着网站页面的组成，也就是我每点击一个链接，页面的布局都按照layout.ejs来布局</p>
+<p><strong>明确一下：一个网页由head和body来组成，head一般是网页的一些属性，我们在浏览器上是看不见的，而渲染在浏览器上的是网页的body部分</strong></p>
+<p>1、首先，第一行，引用head.ejs模板，这个是网站页面的html的<head>标签部分，可以在这个里面规划网站的标题、要引入的css文件等等，是head部分</head></p>
+<p>2、body部分，body部分由三部分组成（也就是我们看见的网页组成部分）：头-身-尾。<br><strong>头部</strong>，用了header.ejs模板渲染；<br><strong>身体</strong>，由一个section和一个sidebar.ejs模板渲染的工具栏部分（位置可以在主题配置文件中更改），section中的&lt;%- body %&gt;，这个里面的内容可以由archive、category、index、page、post、tag这六种<strong>模板布局</strong>来创建<br><img width="600px" height="400px" src="http://p3o1rymh9.bkt.clouddn.com/HEXO-moudle1.png"><br>我们在用hexo new [layout] “name”的时候，其实是在创建一个显示在网页body中的身体部位除了sidebar以外的部分，命令中layout可以省略，表示用默认布局，这个可以设置，在站点配置文件中有<strong>default_layout: post</strong>,这样表示默认布局文件是post，可以更改，改成其他五种，那么来说说这六类模板是干什么的</p>
+<p><em>archive模板</em>：对应archive.ejs文件，表示归档模板，与主题配置文件中的menu中的/archives链接相匹配，当点击这个链接时，网页body的身体中的section部分就由archive.ejs模板来布局</p>
+<p><em>category模板</em>：对应category.ejs文件，表示分类模板，我们hexo new category “某个东西”之后，这个东西就是一个category，所有这个东西的链接转至的网页，网页身体中的section部分就由archive.ejs模板来布局</p>
+<p><em>index模板</em>：对应index.ejs文件，表示首页模板，与主题配置文件中的menu中的/链接相匹配，也和我们自己在hexo new index “name”的时候创建的东西对应的链接相匹配，当点击这类链接的时候，会转到网站的起始页面，当访问这个页面时，网页的body的身体中的section就由index.ejs来渲染</p>
+<p><em>page模板</em>：对应page.ejs文件，表示页面模板，当我们hexo new page “name” 就会在source文件夹下创建name文件夹，里面有一个index.md,可以在这里面写东西，要想显示这个页面，必须在主题配置文件的menu中添加相应的链接，这样，这个链接就会显示在网页body的头部中，点击那个链接，网页的body的身体中的section就由page.ejs来渲染内容，如果没有在menu中添加的话，是找不到这个链接的</p>
+<p><em>post模板</em>：当hexo new post “name” 的时候，会有一个name.md出现在source/_posts中，这个name.md对应的链接，点击他的时候，转到的网页的body的身体中的section由post.ejs来渲染。由于网站的首页模板，也就是index.ejs模板，index.ejs是这样的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;% page.posts.each(function(post)&#123; %&gt;</span><br><span class="line">    &lt;%- partial(&apos;article&apos;, &#123;post: post, index: true&#125;) %&gt;</span><br><span class="line">&lt;% &#125;) %&gt;</span><br></pre></td></tr></table></figure></p>
+<p>将所有的post按照article.ejs模板来渲染并排列在首页中，所以我们在首页可以看到所有的post，当点击某一个具体的post的链接时，转到的网页的body的身体的section就会由post.ejs来渲染</p>
+<p><em>tag模板</em> ：标签模板，和category类似，这里就不说了<br>body的身体部位小结：我觉得整个网站的布局是固定的，所有页面的不同之处仅仅是这个部分，网站的链接类型决定着转到的网页该部位的内容是什么样的，也就是说，链接类型决定使用什么模板来渲染这部分</p>
+<p><strong>尾部</strong><code>&lt;%- partial(&#39;_partial/footer&#39;, null, {cache: !config.relative_link}) %&gt;</code>由footer模板渲染</p>
 <p>本文参考自<br><a href="https://zhuanlan.zhihu.com/p/26625249" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/26625249</a><br><a href="https://www.cnblogs.com/visugar/p/6821777.html" target="_blank" rel="noopener">https://www.cnblogs.com/visugar/p/6821777.html</a></p>
+<p>本文最后的部分是探究的部分，或许有很多理解不到位甚至错误的地方，欢迎加我微信与我交流</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/06/hexo搭建网站步骤/" data-id="cjefluj0m00056svaf47hpex7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/06/hexo搭建网站步骤/" data-id="cjefqfwoe0006swvajlbln2ou" class="article-share-link">Share</a>
       
       
     </footer>
@@ -148,7 +160,7 @@ layout模板
 </section>
 
         
-          #/*_partial里面的归档模板（复用的）*/
+          
 <aside id="sidebar">
   
     
@@ -224,8 +236,7 @@ layout模板
 </aside>
         
       </div>
-      footer模板
-<footer id="footer">
+      <footer id="footer">
   
   <div class="outer">
     <div id="footer-info" class="inner">
