@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>The Marvellous World!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="寒假之前看了java8，觉得设计的很巧妙，看的云里雾里的，以为掌握了，但实际动手还是挺困难的，现在总结下lambda表达式的用法 1、首先根据所有需求归纳出所有小需求的lambda表达式，以计算器为例，应该是(Double,Double) -&amp;gt; Double (这里仅考虑加减乘除)2、根据lambda表达式设计一个函数式接口（只有一个未实现的方法），或者用现成的3、设计一个方法，这个方法传入">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第一次用lambda表达式">
+<meta property="og:url" content="http://yoursite.com/2018/03/07/第一次用lambda表达式/index.html">
+<meta property="og:site_name" content="The Marvellous World!">
+<meta property="og:description" content="寒假之前看了java8，觉得设计的很巧妙，看的云里雾里的，以为掌握了，但实际动手还是挺困难的，现在总结下lambda表达式的用法 1、首先根据所有需求归纳出所有小需求的lambda表达式，以计算器为例，应该是(Double,Double) -&amp;gt; Double (这里仅考虑加减乘除)2、根据lambda表达式设计一个函数式接口（只有一个未实现的方法），或者用现成的3、设计一个方法，这个方法传入">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-03-07T14:05:43.548Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="第一次用lambda表达式">
+<meta name="twitter:description" content="寒假之前看了java8，觉得设计的很巧妙，看的云里雾里的，以为掌握了，但实际动手还是挺困难的，现在总结下lambda表达式的用法 1、首先根据所有需求归纳出所有小需求的lambda表达式，以计算器为例，应该是(Double,Double) -&amp;gt; Double (这里仅考虑加减乘除)2、根据lambda表达式设计一个函数式接口（只有一个未实现的方法），或者用现成的3、设计一个方法，这个方法传入">
+  
+    <link rel="alternate" href="/atom.xml" title="The Marvellous World!" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+<!--   <div id="banner"></div> -->
+
+  <div id="header-outer" class="outer">
+    <div id="header-title">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">The Marvellous World!</a>
+      </h1>
+    </div>
+    <div id="header-inner">
+      <div id="myMessage">
+        <div id="photo"></div>
+        <p>时间总会让一切变好的</p>
+      </div>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/myself">了解我</a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+
+        <section id="main">
+
+<article id="post-第一次用lambda表达式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/07/第一次用lambda表达式/" class="article-date">
+  <time datetime="2018-03-07T13:41:38.000Z" itemprop="datePublished">2018-03-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>►<a class="article-category-link" href="/categories/java/java8/">java8</a>►<a class="article-category-link" href="/categories/java/java8/Lambda表达式/">Lambda表达式</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      第一次用lambda表达式
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          <p>寒假之前看了java8，觉得设计的很巧妙，看的云里雾里的，以为掌握了，但实际动手还是挺困难的，现在总结下lambda表达式的用法</p>
+<p>1、首先根据所有需求归纳出所有小需求的lambda表达式，以计算器为例，应该是(Double,Double) -&gt; Double (这里仅考虑加减乘除)<br>2、根据lambda表达式设计一个函数式接口（只有一个未实现的方法），或者用现成的<br>3、设计一个方法，这个方法传入lambda表达式，调用函数接口中的方法 (这个方法其实很巧妙，不知道行为，要从宏观上把握，具有很强的灵活性)<br>4、客户端，根据规则确定lambda表达式，并调用3中的方法，传入lambda表达式，得到结果<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line">import java.util.function.DoubleBinaryOperator;</span><br><span class="line"></span><br><span class="line">abstract class ComputeParent &#123;</span><br><span class="line">	private Double operandOne;</span><br><span class="line">	private Double operandTwo;</span><br><span class="line"></span><br><span class="line">	public void setOperandOne(Double operandOne) &#123;</span><br><span class="line">		this.operandOne = operandOne;</span><br><span class="line">	&#125;</span><br><span class="line">	public Double getOperandOne() &#123;</span><br><span class="line">		return operandOne;</span><br><span class="line">	&#125;</span><br><span class="line">	public void setOperandTwo(Double operandTwo) &#123;</span><br><span class="line">		this.operandTwo = operandTwo;</span><br><span class="line">	&#125;</span><br><span class="line">	public Double getOperandTwo() &#123;</span><br><span class="line">		return operandTwo;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public abstract DoubleBinaryOperator getLamuda();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class ComputeAdd extends ComputeParent &#123;</span><br><span class="line">	public DoubleBinaryOperator getLamuda() &#123;</span><br><span class="line">		return (one, two) -&gt; one + two;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">class ComputeSub extends ComputeParent &#123;</span><br><span class="line">	public DoubleBinaryOperator getLamuda() &#123;</span><br><span class="line">		return (one, two) -&gt; one - two;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">class ComputeMul extends ComputeParent &#123;</span><br><span class="line">	public DoubleBinaryOperator getLamuda() &#123;</span><br><span class="line">		return (one, two) -&gt; one / two;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class ComputeFactory &#123;</span><br><span class="line">	public static ComputeParent getTool(char operator) &#123;</span><br><span class="line">		ComputeParent computeParent = null;</span><br><span class="line"></span><br><span class="line">		switch (operator) &#123;</span><br><span class="line">			case &apos;+&apos; :</span><br><span class="line">			computeParent = new ComputeAdd();</span><br><span class="line">			break;</span><br><span class="line">			case &apos;-&apos; :</span><br><span class="line">			computeParent = new ComputeSub();</span><br><span class="line">			break;</span><br><span class="line">			case &apos;/&apos; :</span><br><span class="line">			computeParent = new ComputeMul();</span><br><span class="line">			break;</span><br><span class="line">		&#125;</span><br><span class="line">		return computeParent;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public static Double computeByLamuda(DoubleBinaryOperator b, char operator, Double one, Double two) throws Exception &#123; </span><br><span class="line">		if(operator == &apos;/&apos; &amp;&amp; two == 0.0) &#123;</span><br><span class="line">			throw new Exception(&quot;除数不能为0&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">		return b.applyAsDouble(one,two);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class ComputeJava8 &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line"> 		DoubleBinaryOperator b = null;</span><br><span class="line">		ComputeParent computeParent = ComputeFactory.getTool(&apos;/&apos;);  //获得了制造拉姆达的工具</span><br><span class="line"></span><br><span class="line">		b = computeParent.getLamuda();</span><br><span class="line"></span><br><span class="line">		computeParent.setOperandOne(1.0);</span><br><span class="line">		computeParent.setOperandTwo(0.0);</span><br><span class="line">		try &#123;</span><br><span class="line">			double result = ComputeFactory.computeByLamuda(b, &apos;/&apos;, computeParent.getOperandOne(), computeParent.getOperandTwo());</span><br><span class="line">			System.out.println(result);</span><br><span class="line">		&#125; catch(Exception e) &#123;</span><br><span class="line">			System.out.println(e.toString());</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>现在想想，计算器，的确不适合用lambda，首先，计算器的所有需求并不一致，lambda表达式强调的是输入和输出一致，仅仅只是中间的操作不同，计算器的例子，输入的并不一样，或许输入两个或许输入一个，以上实例简化为只有加减乘除了。其次，假设仅考虑加减乘除，那么，根据输入的符号，生成lambda表达式，不采用工厂模式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">import java.util.function.DoubleBinaryOperator;</span><br><span class="line"></span><br><span class="line">class Compute &#123;</span><br><span class="line">	public static Double computeByLamuda(DoubleBinaryOperator b, char operator, Double one, Double two) throws Exception &#123; </span><br><span class="line">		if(operator == &apos;/&apos; &amp;&amp; two == 0.0) &#123;</span><br><span class="line">			throw new Exception(&quot;除数不能为0&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">		return b.applyAsDouble(one,two);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class ComputeJava8 &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line"> 		DoubleBinaryOperator b = null;</span><br><span class="line"> 		char operator = &apos;+&apos;;</span><br><span class="line">		switch (operator) &#123;</span><br><span class="line">			case &apos;+&apos; :</span><br><span class="line">			b = (one, two) -&gt; one + two;</span><br><span class="line">			break;</span><br><span class="line">			case &apos;-&apos; :</span><br><span class="line">			b = (one, two) -&gt; one - two;</span><br><span class="line">			break;</span><br><span class="line">			case &apos;/&apos; :</span><br><span class="line">			b = (one, two) -&gt; one / two;</span><br><span class="line">			break;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		computeParent.setOperandOne(1.0);</span><br><span class="line">		computeParent.setOperandTwo(0.0);</span><br><span class="line"></span><br><span class="line">		try &#123;</span><br><span class="line">			double result = ComputeFactory.computeByLamuda(b, &apos;/&apos;, computeParent.getOperandOne(), computeParent.getOperandTwo());</span><br><span class="line">			System.out.println(result);</span><br><span class="line">		&#125; catch(Exception e) &#123;</span><br><span class="line">			System.out.println(e.toString());</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如果不采用工厂模式，那么根据规则生成表达式好像多此一举了，就算采用工厂模式，似乎也多此一举，总之这个例子不太好，但是作为倒了一晚上的东西，还是记录下来。目前好像还是没有找到lambda表达式的用武之地。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/03/07/第一次用lambda表达式/" data-id="cjeh5pm4j000la0vai6ahnqww" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/03/07/设计模式之简单工厂模式/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">设计模式之简单工厂模式</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+
+        
+          
+<aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/">IDEA</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/SpringBoot/">SpringBoot</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/Tomcat/">Tomcat</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/java8/">java8</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/java8/Lambda表达式/">Lambda表达式</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/language/">language</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/language/MD语法/">MD语法</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/简单工厂模式/">简单工厂模式</a><span class="category-list-count">1</span></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/强制转换/">强制转换</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">tagcloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/强制转换/" style="font-size: 10px;">强制转换</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">archive_a</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">recent_posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/03/07/第一次用lambda表达式/">第一次用lambda表达式</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/07/设计模式之简单工厂模式/">设计模式之简单工厂模式</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/06/hexo搭建网站步骤/">hexo搭建网站步骤</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/06/IDEA的一些使用经验/">IDEA的一些使用经验</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/05/MD常用语法总结/">MD常用语法总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 滕云(Catherine)<br>
+      电话 13920041397 <br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/myself" class="mobile-nav-link">了解我</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
