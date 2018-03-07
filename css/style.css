@@ -128,7 +128,7 @@ body {
   -webkit-text-size-adjust: 100%;
 }
 .outer {
-  max-width: 1220px;
+  max-width: 1320px;
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -143,8 +143,8 @@ body {
 .inner {
   display: inline;
   float: left;
-  width: 98.33333333333333%;
-  margin: 0 0.833333333333333%;
+  width: 98.46153846153847%;
+  margin: 0 0.769230769230769%;
 }
 .left,
 .alignleft {
@@ -183,8 +183,8 @@ body {
   #main {
     display: inline;
     float: left;
-    width: 81.66666666666667%;
-    margin: 0 0.833333333333333%;
+    width: 75.38461538461539%;
+    margin: 0 0.769230769230769%;
   }
 }
 @media screen and (min-width: 768px) {
@@ -1182,8 +1182,8 @@ pre .javascript .function {
   #sidebar {
     display: inline;
     float: left;
-    width: 15%;
-    margin: 0 0.833333333333333%;
+    width: 21.53846153846154%;
+    margin: 0 0.769230769230769%;
   }
 }
 .widget-wrap {
