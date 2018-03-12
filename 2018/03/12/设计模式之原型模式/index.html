@@ -7,20 +7,17 @@
   
   <title>The Marvellous World!</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="下载安装JDK之后，有个src压缩包，解压缩之后是这样的：这里面的java文件夹大概就是我们开发的时候用到的，文件结构是这样的">
+  <meta name="description" content="1、原型模式，应用于，当我们需要创建一个类的许多实例，并且初始化的信息相同的时候，如果在调用构造函数时初始化较复杂，那么就会大大影响程序的性能。原型模式是说在类中定义一个可以复制自己的方法，当创建一个对象之后，调用该方法复制自己得到多个同类型对象2、java的Object类定义了clone()方法，克隆自己得到另一个对象，这里的clone方法是native原生方法，效率远高于java中的非nati">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java中的包结构">
-<meta property="og:url" content="http://yoursite.com/2018/03/11/java中的包结构/index.html">
+<meta property="og:title" content="设计模式之原型模式">
+<meta property="og:url" content="http://yoursite.com/2018/03/12/设计模式之原型模式/index.html">
 <meta property="og:site_name" content="The Marvellous World!">
-<meta property="og:description" content="下载安装JDK之后，有个src压缩包，解压缩之后是这样的：这里面的java文件夹大概就是我们开发的时候用到的，文件结构是这样的">
+<meta property="og:description" content="1、原型模式，应用于，当我们需要创建一个类的许多实例，并且初始化的信息相同的时候，如果在调用构造函数时初始化较复杂，那么就会大大影响程序的性能。原型模式是说在类中定义一个可以复制自己的方法，当创建一个对象之后，调用该方法复制自己得到多个同类型对象2、java的Object类定义了clone()方法，克隆自己得到另一个对象，这里的clone方法是native原生方法，效率远高于java中的非nati">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://p3o1rymh9.bkt.clouddn.com/JavaPackage1.png">
-<meta property="og:image" content="http://p3o1rymh9.bkt.clouddn.com/JavaPackage2.png">
-<meta property="og:updated_time" content="2018-03-12T12:10:31.954Z">
+<meta property="og:updated_time" content="2018-03-12T14:10:28.740Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="java中的包结构">
-<meta name="twitter:description" content="下载安装JDK之后，有个src压缩包，解压缩之后是这样的：这里面的java文件夹大概就是我们开发的时候用到的，文件结构是这样的">
-<meta name="twitter:image" content="http://p3o1rymh9.bkt.clouddn.com/JavaPackage1.png">
+<meta name="twitter:title" content="设计模式之原型模式">
+<meta name="twitter:description" content="1、原型模式，应用于，当我们需要创建一个类的许多实例，并且初始化的信息相同的时候，如果在调用构造函数时初始化较复杂，那么就会大大影响程序的性能。原型模式是说在类中定义一个可以复制自己的方法，当创建一个对象之后，调用该方法复制自己得到多个同类型对象2、java的Object类定义了clone()方法，克隆自己得到另一个对象，这里的clone方法是native原生方法，效率远高于java中的非nati">
   
     <link rel="alternate" href="/atom.xml" title="The Marvellous World!" type="application/atom+xml">
   
@@ -66,14 +63,14 @@
 
         <section id="main">
 
-<article id="post-java中的包结构" class="article article-type-post" itemscope itemprop="blogPost">
+<article id="post-设计模式之原型模式" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/03/11/java中的包结构/" class="article-date">
-  <time datetime="2018-03-11T13:10:25.000Z" itemprop="datePublished">2018-03-11</time>
+    <a href="/2018/03/12/设计模式之原型模式/" class="article-date">
+  <time datetime="2018-03-12T12:11:57.000Z" itemprop="datePublished">2018-03-12</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/java/">java</a>►<a class="article-category-link" href="/categories/java/包结构/">包结构</a>
+    <a class="article-category-link" href="/categories/设计模式/">设计模式</a>►<a class="article-category-link" href="/categories/设计模式/原型模式/">原型模式</a>
   </div>
 
   </div>
@@ -84,7 +81,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      java中的包结构
+      设计模式之原型模式
     </h1>
   
 
@@ -92,14 +89,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-          <p>下载安装JDK之后，有个src压缩包，解压缩之后是这样的：<br><img width="600px" height="500px" src="http://p3o1rymh9.bkt.clouddn.com/JavaPackage1.png"><br>这里面的java文件夹大概就是我们开发的时候用到的，文件结构是这样的<br><a id="more"></a><br><img width="800px" height="600px" src="http://p3o1rymh9.bkt.clouddn.com/JavaPackage2.png"></p>
-<p>1、<strong>java.applet</strong>：提供了需要创建一个小程序和用来跟其他小程序交流上下文的类。<br>2、<strong>java.awt</strong>：包含了所有用于创建用户界面和绘制图形和图像的类。<br>3、<strong>java.beans</strong>：包含了beans（基于JavaBean架构组件）开发相关的类。<br>4、<strong>java.io</strong>：提供了通过数据流、序列化和文件系统进行的系统系统输入和输出。<br>5、<strong>java.lang</strong>：java的核心类库，如基本数据类型、基本数学函数、字符串处理、线程、异常处理、系统缺省加载<br>6、<strong>java.math</strong>：提供用于执行任意精度整数算法 (BigInteger) 和任意精度小数算法 (BigDecimal) 的类<br>7、<strong>java.net</strong>：提供了实现网络应用程序的类。<br>8、<strong>java.nio</strong>：定义了缓冲器，它是数据容器，并且提供其他NIO包的概述。<br>9、<strong>java.rmi</strong>：提供了RMI包。<br>10、<strong>java.security</strong>：提供了安全框架的类和接口。<br>11、<strong>java.sql</strong>：提供了使用Java编程语言访问和处理存储在一个数据源（通常是一个关系数据库）的API。<br>12、<strong>java.text</strong>：提供了语言无关的方式处理文本、日期、数字和信息的类和接口。<br>13、<strong>java.time</strong>：日期、时间、时刻和时间段的主要API。<br>14、<strong>java.util</strong>：包含了集合框架、遗留的集合类、事件模型、日期和时间工具、国际化和各种各样的工具类（一个字符编译器、一个随机数生成器和一个位数组）。<br>参考自<a href="http://blog.csdn.net/lc0817/article/details/54773516" target="_blank" rel="noopener">http://blog.csdn.net/lc0817/article/details/54773516</a><br>在这些包中还有包，java的类库很多<br>学习一下常用包吧</p>
-<h3 id="java-lang"><a href="#java-lang" class="headerlink" title="java.lang"></a>java.lang</h3><p>lang包中，有我们的基本类型包装类(Integer.java等)、Class.java、Comparable.java、Exception.java、Error.java、Math.java、Object.java、Override.java、Package.java、Runnable.java、Runtime.java、String.java、StringBuffer.java、StringBuilder.java、System.java、Thread.java、Iterable.java还有各种Exception的子类等等等等。核心类库，一点也不为过。<br>这里面还有<br>java.lang.annotation包，这个包里面是java的注解，有Annotation.java ElementType.java Target.java等等<br>java.lang.reflect包，提供了用于获取类和对象的反射信息的类和接口。反射是java的一大特性，一定要明白才行。</p>
+          <p>1、原型模式，应用于，当我们需要创建一个类的许多实例，并且初始化的信息相同的时候，如果在调用构造函数时初始化较复杂，那么就会大大影响程序的性能。原型模式是说在类中定义一个可以复制自己的方法，当创建一个对象之后，调用该方法复制自己得到多个同类型对象<br>2、java的Object类定义了clone()方法，克隆自己得到另一个对象，这里的clone方法是native原生方法，效率远高于java中的非native方法。</p>
+<h2 id="原型模式组成："><a href="#原型模式组成：" class="headerlink" title="原型模式组成："></a>原型模式组成：</h2><p>1、一个原型接口或者抽象类，定义clone方法<br>2、多个具体原型类，实现1中的clone方法，还有自己的其他一些方法<br><a id="more"></a><br>注意：java对于原型模式，定义了一个Cloneable接口(在java.lang包中)，该接口内部没有任何方法的定义<code>public interface Cloneable {}</code>，这是java的<strong>标识接口</strong>，仅仅标明实现它的类可以拷贝,也就是可以使用clone方法（Object的或者自定义的）。</p>
+<p>对clone方法的几点：<br>1、首先Object的clone方法是Protected，所以，只能在自己类或者自己的子类的方法中被调用，不能被对象拿到别的类中的方法中去调用。<br>2、其次，java规定，如果你想使用clone方法，必须implements Cloneable这个接口，标明你这个类可以拷贝。<br>3、然后，clone方法会抛出CloneNotSupportedException异常，因此，在使用clone方法时要try catch 或者throws。<br>4、最后，如果想实现深拷贝，那么自己重写一个clone方法，将原有的覆盖掉，那么这个clone方法定义为public，以便这个类的对象可以在外部调用，这样的话你的这个方法体内部，就可以创建你的引用类型变量，从而实现深拷贝。我觉得可以在这个方法体内部，先调用原生clone方法，然后重新创建那些引用类型的变量，这样也挺快的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//代码明天补上</span></span><br></pre></td></tr></table></figure>
+<p>java中的标识性接口：java中的RandomAccess、Cloneable、Serializable都是标识性接口，接口内部没有任何方法的定义，用来告诉虚拟机，implements它的类拥有某种功能。implements RandomAccess表示可以随机存取，implements Cloneable表示可以</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/11/java中的包结构/" data-id="cjeob2jt7000598va92v9gu3d" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/12/设计模式之原型模式/" data-id="cjeob2jte000b98vaw5off9nz" class="article-share-link">Share</a>
       
       
     </footer>
@@ -108,19 +107,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/03/12/设计模式之原型模式/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          设计模式之原型模式
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/03/11/java中的数组/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/03/11/java中的包结构/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">java中的数组</div>
+      <div class="article-nav-title">java中的包结构</div>
     </a>
   
 </nav>
