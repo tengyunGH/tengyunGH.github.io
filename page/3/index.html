@@ -7,23 +7,16 @@
   
   <title>The Marvellous World!</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="不知道我理解的对不对，如果有错误的地方，请指出 首先 IDEA自带tomcat ，但是还是要配置我们本地的tomcat运行时，IDEA从咱们配置的本地的tomcat那里复制一份配置文件到system/tomcat（这个路径一般在c盘，但是可以更改（bin目录下的idea.properties这里面修改IDEA的系统文件位置从c盘改到其他的盘））中，这个文件夹里面每个项目是一个文件夹，也就是说，每个">
-<meta property="og:type" content="article">
-<meta property="og:title" content="IDEA中的tomcat使用心得">
-<meta property="og:url" content="http://yoursite.com/2018/03/05/IDEA中的tomcat使用心得/index.html">
+  <meta name="description" content="这是我的个人网站，主要发布一些我的工作生活经历">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Marvellous World!">
+<meta property="og:url" content="http://yoursite.com/page/3/index.html">
 <meta property="og:site_name" content="The Marvellous World!">
-<meta property="og:description" content="不知道我理解的对不对，如果有错误的地方，请指出 首先 IDEA自带tomcat ，但是还是要配置我们本地的tomcat运行时，IDEA从咱们配置的本地的tomcat那里复制一份配置文件到system/tomcat（这个路径一般在c盘，但是可以更改（bin目录下的idea.properties这里面修改IDEA的系统文件位置从c盘改到其他的盘））中，这个文件夹里面每个项目是一个文件夹，也就是说，每个">
+<meta property="og:description" content="这是我的个人网站，主要发布一些我的工作生活经历">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://p3o1rymh9.bkt.clouddn.com/IDEA-Tomcat1.png">
-<meta property="og:image" content="http://p3o1rymh9.bkt.clouddn.com/IDEA-Tomcat2.png">
-<meta property="og:image" content="http://p3o1rymh9.bkt.clouddn.com/IDEA-Tomcat3.png">
-<meta property="og:image" content="http://p3o1rymh9.bkt.clouddn.com/IDEA-Tomcat4.png">
-<meta property="og:image" content="http://p3o1rymh9.bkt.clouddn.com/IDEA-Tomcat5.png">
-<meta property="og:updated_time" content="2018-03-05T07:07:56.054Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="IDEA中的tomcat使用心得">
-<meta name="twitter:description" content="不知道我理解的对不对，如果有错误的地方，请指出 首先 IDEA自带tomcat ，但是还是要配置我们本地的tomcat运行时，IDEA从咱们配置的本地的tomcat那里复制一份配置文件到system/tomcat（这个路径一般在c盘，但是可以更改（bin目录下的idea.properties这里面修改IDEA的系统文件位置从c盘改到其他的盘））中，这个文件夹里面每个项目是一个文件夹，也就是说，每个">
-<meta name="twitter:image" content="http://p3o1rymh9.bkt.clouddn.com/IDEA-Tomcat1.png">
+<meta name="twitter:title" content="The Marvellous World!">
+<meta name="twitter:description" content="这是我的个人网站，主要发布一些我的工作生活经历">
   
     <link rel="alternate" href="/atom.xml" title="The Marvellous World!" type="application/atom+xml">
   
@@ -69,6 +62,12 @@
 
         <section id="main">
 
+
+  
+
+
+
+    
 <article id="post-IDEA中的tomcat使用心得" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/03/05/IDEA中的tomcat使用心得/" class="article-date">
@@ -86,8 +85,8 @@
       <header class="article-header">
         
   
-    <h1 class="article-title" itemprop="name">
-      IDEA中的tomcat使用心得
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/05/IDEA中的tomcat使用心得/">IDEA中的tomcat使用心得</a>
     </h1>
   
 
@@ -95,16 +94,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-          <p>不知道我理解的对不对，如果有错误的地方，请指出</p>
+        <p>不知道我理解的对不对，如果有错误的地方，请指出</p>
 <h2 id="首先-IDEA自带tomcat-，但是还是要配置我们本地的tomcat"><a href="#首先-IDEA自带tomcat-，但是还是要配置我们本地的tomcat" class="headerlink" title="首先 IDEA自带tomcat ，但是还是要配置我们本地的tomcat"></a>首先 IDEA自带tomcat ，但是还是要配置我们本地的tomcat</h2><p>运行时，IDEA从咱们配置的本地的tomcat那里复制一份配置文件到system/tomcat（这个路径一般在c盘，但是可以更改（bin目录下的idea.properties这里面修改IDEA的系统文件位置从c盘改到其他的盘））中，这个文件夹里面每个项目是一个文件夹，也就是说，每个项目有一个自己的tomcat配置，互不干扰</p>
 <h3 id="项目的源码位置"><a href="#项目的源码位置" class="headerlink" title="项目的源码位置"></a>项目的源码位置</h3><p>一般是你自己打开的项目的位置 E:\IDEA\IDEAProjects\IdeaProjects\src</p>
-<h3 id="项目编译后的位置"><a href="#项目编译后的位置" class="headerlink" title="项目编译后的位置"></a>项目编译后的位置</h3><p>在IDEA的project settings的modules模块里面有设置，可以选择从projects中设置的继承过来，也可以在这里重新配置<br><a id="more"></a><br><img width="700px" height="350px" src="http://p3o1rymh9.bkt.clouddn.com/IDEA-Tomcat1.png"></p>
-<h3 id="项目部署位置（tomcat加载项目的地方）"><a href="#项目部署位置（tomcat加载项目的地方）" class="headerlink" title="项目部署位置（tomcat加载项目的地方）"></a>项目部署位置（tomcat加载项目的地方）</h3><p>在自己的项目配置文件夹中system/tomcat/某个项目/conf/Catalina/localhost/ROOT.xml 文件里的内容，是这样的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;Context path=&quot;/tengyun&quot; docBase=&quot;E:\IDEA\IDEAProjects\fifthTest\out\artifacts\fifthtest_Web_exploded&quot; /&gt;</span><br></pre></td></tr></table></figure></p>
-<p>1、这里面，docBase指的就是我们要运行的项目部署的位置，这个位置是我们在设置tomcat的configuration（alt+E）时选择部署的artifact<br><img width="700px" height="350px" src="http://p3o1rymh9.bkt.clouddn.com/IDEA-Tomcat2.png"><br>这个artifact的设置在IDEA的project settings(我的快捷键是ctrl+shift+alt+s)里面的Artifacts模块里面设置output directory，这个路径就是项目的部署位置<br><img width="700px" height="350px" src="http://p3o1rymh9.bkt.clouddn.com/IDEA-Tomcat3.png"><br>其中1是项目部署位置，2是lib包，如果出现class not found问题，很多原因就是jar包没导进去，需要在3中添加</p>
-<p>2、这里的path=”/tengyun”是我在run-&gt;edit configuration（alt+E）的deployment中的application（见上上图） context中设置的路径,表示访问的url的根路径，一般默认为空就行，不用填，填了之后，在浏览器输入路径的时候要带上这个路径，不填的话就不用带这个路径了</p>
-<p>建议参考<a href="https://www.cnblogs.com/deng-cc/p/6416332.html" target="_blank" rel="noopener">https://www.cnblogs.com/deng-cc/p/6416332.html</a></p>
-<h2 id="项目部署的形式"><a href="#项目部署的形式" class="headerlink" title="项目部署的形式"></a>项目部署的形式</h2><p>有两种，一种是war模式，一种是war exploded模式<br><img width="700px" height="350px" src="http://p3o1rymh9.bkt.clouddn.com/IDEA-Tomcat4.png"><br>war模式：将WEB工程以包的形式部署到服务器，是先打成war包，再发布<br>war exploded模式：将WEB工程以当前文件夹的位置关系部署到服务器，是直接把文件夹、页面、classes等移到tomcat部署文件夹里面，进行加载部署，这种方式支持热部署，一般开发时使用这种方式<br>这两种模式在projects settings的Artifacts模块中添加artifact时设置<br><img width="700px" height="350px" src="http://p3o1rymh9.bkt.clouddn.com/IDEA-Tomcat5.png"><br>可以在这里面的type中选择artifact的类型</p>
-
+<h3 id="项目编译后的位置"><a href="#项目编译后的位置" class="headerlink" title="项目编译后的位置"></a>项目编译后的位置</h3><p>在IDEA的project settings的modules模块里面有设置，可以选择从projects中设置的继承过来，也可以在这里重新配置<br>
+        
+          <p class="article-more-link">
+            <a href="/2018/03/05/IDEA中的tomcat使用心得/#more">了解更多</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -114,28 +112,176 @@
     </footer>
   </div>
   
-    
-<nav id="article-nav">
-  
-    <a href="/2018/03/05/MD常用语法总结/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          MD常用语法总结
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2018/03/04/使用IDEA建立一个SpringBoot的过程及注意问题/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">使用IDEA建立一个SpringBoot的过程及注意问题</div>
-    </a>
-  
-</nav>
+</article>
+
+
 
   
+
+
+
+    
+<article id="post-使用IDEA建立一个SpringBoot的过程及注意问题" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/04/使用IDEA建立一个SpringBoot的过程及注意问题/" class="article-date">
+  <time datetime="2018-03-04T15:29:21.000Z" itemprop="datePublished">2018-03-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/IDEA/">IDEA</a>►<a class="article-category-link" href="/categories/IDEA/SpringBoot/">SpringBoot</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/04/使用IDEA建立一个SpringBoot的过程及注意问题/">使用IDEA建立一个SpringBoot的过程及注意问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>下面是简单的按照网上的教程建立的一个springboot的项目，过程简单，但是也有些地方需要注意，记录下来</p>
+<p>1、新建项目的步骤，很简单，在网上搜下教程就有<br>Spring Initializer -&gt; web web -&gt; mysql jdbc mybatis -&gt;还有个thymeleafs这个选上 -&gt; 然后就是一些命名</p>
+<p>2、由于项目新建后就会引入maven，所以在IDEA中配置一下全局设置（default settings中设置maven），这样的话就不会下载到c盘了</p>
+        
+          <p class="article-more-link">
+            <a href="/2018/03/04/使用IDEA建立一个SpringBoot的过程及注意问题/#more">了解更多</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/03/04/使用IDEA建立一个SpringBoot的过程及注意问题/" data-id="cjepn7nbu000yucvac9prrx1w" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
 </article>
+
+
+
+  
+
+
+
+    
+<article id="post-java类间的强制转换" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/02/05/java类间的强制转换/" class="article-date">
+  <time datetime="2018-02-05T07:43:10.000Z" itemprop="datePublished">2018-02-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/05/java类间的强制转换/">java类间的强制转换</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="基本数据类型和String之间的相互转换"><a href="#基本数据类型和String之间的相互转换" class="headerlink" title="基本数据类型和String之间的相互转换"></a>基本数据类型和String之间的相互转换</h2><h4 id="1、基本数据-except-char-转换为String类型"><a href="#1、基本数据-except-char-转换为String类型" class="headerlink" title="1、基本数据 (except char)转换为String类型"></a>1、基本数据 (except char)转换为String类型</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String str = String.valueOf(anyData);</span><br></pre></td></tr></table></figure>
+        
+          <p class="article-more-link">
+            <a href="/2018/02/05/java类间的强制转换/#more">了解更多</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/02/05/java类间的强制转换/" data-id="cjepn7nd5001pucvaaobodz8k" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/强制转换/">强制转换</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+
+    
+<article id="post-java小知识整理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/02/01/java小知识整理/" class="article-date">
+  <time datetime="2018-02-01T05:44:22.000Z" itemprop="datePublished">2018-02-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/01/java小知识整理/">java知识积累</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>java有些知识点不容易理解，还有些容易忘记，写篇博客，以后常来逛逛</p>
+<h3 id="访问控制"><a href="#访问控制" class="headerlink" title="访问控制"></a>访问控制</h3><p>1、对类来说，有两种，一种是public，一种是缺省（friendly）。Public是所有类均可访问。缺省的话，只有当前类所在的包中的类可访问</p>
+<p>2、对类中成员来说，有四种 public &gt; protected &gt; friendly &gt; private。</p>
+<p>3、Private只能在当前类中被成员方法访问，friendly(缺省)声明的，只能是当前包中的所有类都可访问。Protected不仅当前包中所有类，其他包中的子类也都可以访问，public是谁都可以访问。<br>注意访问范围：protected要比friendly的范围大</p>
+        
+          <p class="article-more-link">
+            <a href="/2018/02/01/java小知识整理/#more">了解更多</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/02/01/java小知识整理/" data-id="cjepn7ndl0023ucvaci75t66e" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/2/">&laquo; 上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+  </nav>
 
 
 </section>
