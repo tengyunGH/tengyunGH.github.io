@@ -68,6 +68,56 @@
 
 
     
+<article id="post-java中的Volatile关键字" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/18/java中的Volatile关键字/" class="article-date">
+  <time datetime="2018-03-18T11:00:14.000Z" itemprop="datePublished">2018-03-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>►<a class="article-category-link" href="/categories/java/volatile/">volatile</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/18/java中的Volatile关键字/">java中的volatile关键字</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>作用：<br>1、volatile修饰的变量不会被某个线程内部缓存和重排序，也就是说他修饰的变量被改变时，是直接操作的内存，这样保证了他修饰的变量具有可见性。<br>2、volatile修饰的变量参与地指令将不会被重排序，保证了线程之间操作的有序性。<br>
+        
+          <p class="article-more-link">
+            <a href="/2018/03/18/java中的Volatile关键字/#more">了解更多</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/03/18/java中的Volatile关键字/" data-id="cjewuozmx0000zwvavedqxvww" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+
+    
 <article id="post-字符编码规则的学习" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/03/17/字符编码规则的学习/" class="article-date">
@@ -94,60 +144,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-          <h3 id="什么是字符编码？"><a href="#什么是字符编码？" class="headerlink" title="什么是字符编码？"></a>什么是字符编码？</h3><p>计算机的世界是二进制的，8bit也就是我们常说的一个字节，一般用两位十六进制数表示。那么计算机如何存储从键盘或者从文件等其他地方读取的字符呢，字符编码就是解决这个问题。我们将字符编码，字符一一映射为一个数值，然后计算机将值存储，当要显示在屏幕时按规则映射为对应的字符。</p>
-<h3 id="字符有哪些"><a href="#字符有哪些" class="headerlink" title="字符有哪些"></a>字符有哪些</h3><p>字符包括电脑键盘上的字符、中文、其他国家的文字</p>
-<h3 id="编码规则"><a href="#编码规则" class="headerlink" title="编码规则"></a>编码规则</h3><h4 id="1、ASCII码"><a href="#1、ASCII码" class="headerlink" title="1、ASCII码"></a>1、ASCII码</h4><p>全称： American Standard Code for Information Interchange，美国信息交换标准代码<br>规则：用8bit表示字符，其中，最高位为0，其他7位对应的值映射到每个特定的字符<br>组成：ASCII码共包含128个字符，其中有95个可显示字符，33个不可显示字符<br>ASCII码对照表： <a href="http://ascii.911cha.com/" target="_blank" rel="noopener">http://ascii.911cha.com/</a></p>
-<h4 id="2、EASCII码"><a href="#2、EASCII码" class="headerlink" title="2、EASCII码"></a>2、EASCII码</h4><p>由ASCII码扩充而来，最高位也加入表示行列，扩充出来的编码用来表示表格符号、计算符号、希腊字母等等，但是还是无法显示中文等一些语言。目前这种编码很少使用了。</p>
-<h4 id="3、ISO-IEC-8859-编码"><a href="#3、ISO-IEC-8859-编码" class="headerlink" title="3、ISO/IEC 8859 编码"></a>3、ISO/IEC 8859 编码</h4><p>也是由ASCII码扩充而来，这种编码，是将字符集分组，一共有15组，这样表示：ISO/IEC 8859-n 这里面n的取值是从1到16除掉12，所以一共是15组，例如ISO/IEC 8859-1 ISO/IEC 8859-2,其实可以理解为有15中编码规则了，所以一共可以表示128*15这么多个字符，但是在实际写一个东西的时候，只能运用一组规则，也就是说，不能同时支持多个组里面的字符编码，还有个缺点是，这种字符集没有考虑亚洲文字，这也是个缺点吧</p>
-<h4 id="4、Unicode码-统一码"><a href="#4、Unicode码-统一码" class="headerlink" title="4、Unicode码(统一码)"></a>4、Unicode码(统一码)</h4><p>还有种编码叫 ISO 10646编码标准，Unicode和ISO 10646是两个独立的尝试创立单一字符集的组织各自开发的，一个是International Standard Organization，一个是多语言软件制造商组成的统一码联盟。两者独立存在，却为创立一个单一编码表而协同工作。所以从大体上说，Unicode = ISO 10646。<br>世界上的所有字符数，大概有几万个。ISO 10646标准所定义的字符集称作为通用字符集Universal Character Set(UCS)。UCS-2表示用2个字节表示一个字符，UCS-4表示用4个字节表示一个字符</p>
-<p>Unicode只是定义了每个字符他的编码是多少，但是却没有定义字符应该怎样存储在计算机中。如果Unicode统一规定，每个字符要用三或四个字节表示，那么对于存储来说，是极大的浪费，这样呢，也就形成了Unicode码的多种存储方式。<br>这种存储方式在互联网上有UTF-8、UTF-16、UTF-32，其中UTF-8是互联网上使用最广泛的Unicode的实现方式，这里，UTF-8只是Unicode码存储的一种方式。<br>Unicode码的大小和存储的数据的大小(UTF-8)的对应关系<br><img width="600px" height="400px" src="http://p3o1rymh9.bkt.clouddn.com/Computer-Encoded1.png"><br>比如说，某个字符的Unicode码表示为15678(1 0101 0110 0111 1000)，那么转换为UTF-8的存储数据之后，就是(11110<strong>000</strong> 10<strong>010101</strong> 10<strong>011001</strong> 10<strong>111000</strong>),就是按照数据的大小根据UTF-8的编码方式将二进制逐位补充进去，Unicode码最多就是能表示21bit的字符</p>
-<p>参考 <a href="http://blog.csdn.net/vivisoul/article/details/68962137" target="_blank" rel="noopener">http://blog.csdn.net/vivisoul/article/details/68962137</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/17/字符编码规则的学习/" data-id="cjevf29ei000ki8va4vqzg6b6" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-
-
-
-    
-<article id="post-Java中的Volatile关键字" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/03/17/Java中的Volatile关键字/" class="article-date">
-  <time datetime="2018-03-17T09:05:45.000Z" itemprop="datePublished">2018-03-17</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+        <h3 id="什么是字符编码？"><a href="#什么是字符编码？" class="headerlink" title="什么是字符编码？"></a>什么是字符编码？</h3><p>计算机的世界是二进制的，8bit也就是我们常说的一个字节，一般用两位十六进制数表示。那么计算机如何存储从键盘或者从文件等其他地方读取的字符呢，字符编码就是解决这个问题。我们将字符编码，字符一一映射为一个数值，然后计算机将值存储，当要显示在屏幕时按规则映射为对应的字符。</p>
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/17/Java中的Volatile关键字/">Java中的Volatile关键字</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
+          <p class="article-more-link">
+            <a href="/2018/03/17/字符编码规则的学习/#more">了解更多</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/17/Java中的Volatile关键字/" data-id="cjevf29cl0005i8va3acp31ec" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/17/字符编码规则的学习/" data-id="cjewuozu9000ezwva68ubjdjv" class="article-share-link">Share</a>
       
       
     </footer>
@@ -197,7 +203,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/14/java中的输入输出流学习/" data-id="cjevf29dg000ci8vaueutu9k8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/14/java中的输入输出流学习/" data-id="cjewuoztd0009zwvacj0pr8bz" class="article-share-link">Share</a>
       
       
     </footer>
@@ -248,7 +254,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/13/设计模式之建造者模式/" data-id="cjevf29fs0016i8vacwmt7s0x" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/13/设计模式之建造者模式/" data-id="cjewuozzc001fzwvarp7w6vvq" class="article-share-link">Share</a>
       
       
     </footer>
@@ -298,7 +304,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/13/设计模式之外观模式/" data-id="cjevf29fd0011i8va07jaf4kb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/13/设计模式之外观模式/" data-id="cjewuozyu0018zwvaxy2fsfoc" class="article-share-link">Share</a>
       
       
     </footer>
@@ -348,7 +354,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/13/设计模式之模板方法模式/" data-id="cjevf29fs0017i8va1yd33kkf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/13/设计模式之模板方法模式/" data-id="cjewuozy30014zwva28vizaij" class="article-share-link">Share</a>
       
       
     </footer>
@@ -398,7 +404,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/13/深度优先算法实例/" data-id="cjevf29ei000pi8vanhu0m1i4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/13/深度优先算法实例/" data-id="cjewuozxa000tzwva4w1cr30i" class="article-share-link">Share</a>
       
       
     </footer>
@@ -449,7 +455,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/12/设计模式之原型模式/" data-id="cjevf29fd000yi8vaodqejetm" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/12/设计模式之原型模式/" data-id="cjewuozz1001bzwvavtzf6bs3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -499,7 +505,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/11/java中的包结构/" data-id="cjevf29d10008i8va8bnuggt1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/11/java中的包结构/" data-id="cjewuoztz000bzwva9hmfxsjv" class="article-share-link">Share</a>
       
       
     </footer>
@@ -552,7 +558,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/11/java中的数组/" data-id="cjevf29dg000bi8vawchxcl8o" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/11/java中的数组/" data-id="cjewuozw2000kzwvatqxkb9eh" class="article-share-link">Share</a>
       
       
     </footer>
@@ -581,7 +587,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/">IDEA</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/SpringBoot/">SpringBoot</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/Tomcat/">Tomcat</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">8</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/java8/">java8</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/java8/Lambda表达式/">Lambda表达式</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/包结构/">包结构</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/异常的使用/">异常的使用</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/数组/">数组</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/输入输出流/">输入输出流</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/重写和重载/">重写和重载</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/language/">language</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/language/MD语法/">MD语法</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/算法/深度优先/">深度优先</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/编码规则/">编码规则</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/代理模式/">代理模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/原型模式/">原型模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/外观模式/">外观模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/工厂方法模式/">工厂方法模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/建造者模式/">建造者模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/模板方法模式/">模板方法模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/策略模式/">策略模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/简单工厂模式/">简单工厂模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/装饰模式/">装饰模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/设计原则/">设计原则</a><span class="category-list-count">1</span></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/">IDEA</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/SpringBoot/">SpringBoot</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/Tomcat/">Tomcat</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/java8/">java8</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/java8/Lambda表达式/">Lambda表达式</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/volatile/">volatile</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/包结构/">包结构</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/异常的使用/">异常的使用</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/数组/">数组</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/输入输出流/">输入输出流</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/重写和重载/">重写和重载</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/language/">language</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/language/MD语法/">MD语法</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/算法/深度优先/">深度优先</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/编码规则/">编码规则</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/代理模式/">代理模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/原型模式/">原型模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/外观模式/">外观模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/工厂方法模式/">工厂方法模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/建造者模式/">建造者模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/模板方法模式/">模板方法模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/策略模式/">策略模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/简单工厂模式/">简单工厂模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/装饰模式/">装饰模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/设计原则/">设计原则</a><span class="category-list-count">1</span></li></ul></li></ul>
     </div>
   </div>
 
@@ -623,11 +629,11 @@
       <ul>
         
           <li>
-            <a href="/2018/03/17/字符编码规则的学习/">字符编码规则的学习</a>
+            <a href="/2018/03/18/java中的Volatile关键字/">java中的volatile关键字</a>
           </li>
         
           <li>
-            <a href="/2018/03/17/Java中的Volatile关键字/">Java中的Volatile关键字</a>
+            <a href="/2018/03/17/字符编码规则的学习/">字符编码规则的学习</a>
           </li>
         
           <li>
