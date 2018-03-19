@@ -68,6 +68,258 @@
 
 
     
+<article id="post-异常的使用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/08/异常的使用/" class="article-date">
+  <time datetime="2018-03-08T11:29:41.000Z" itemprop="datePublished">2018-03-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>►<a class="article-category-link" href="/categories/java/异常的使用/">异常的使用</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/08/异常的使用/">异常的使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在写java程序的时候，时常碰到异常，写篇博客，记录用到过的吧，如果有写的不对的地方，请加我微信与我探讨<br>1、有两种抛出异常的方法，一种是在定义方法时抛出 <strong>throws</strong>，一种是在方法体中抛出(throw)并catch<br>2、try-catch-finally 体系中，try、catch一定要有，finally可以没有<br>3、catch异常可以catch多个，总是从上到下捕获最近的异常，所以在有多个catch时应按照先catch子类，再catch父类的原则<br>4、自定义异常要继承Exception类<br>
+        
+          <p class="article-more-link">
+            <a href="/2018/03/08/异常的使用/#more">了解更多</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/03/08/异常的使用/" data-id="cjey91c3k000rocvaqdna6cht" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+
+    
+<article id="post-设计模式之策略模式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/08/设计模式之策略模式/" class="article-date">
+  <time datetime="2018-03-08T07:46:01.000Z" itemprop="datePublished">2018-03-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/设计模式/">设计模式</a>►<a class="article-category-link" href="/categories/设计模式/策略模式/">策略模式</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/08/设计模式之策略模式/">设计模式之策略模式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天学习了程杰写的大话设计模式中的策略模式，和简单工厂模式来比较的话，有很多相似之处，下面归纳一下<br>对于策略模式的使用，就是实现一个相同的目标，假如说是计算从某个地方到某个地方的时间，有几种不同的实现需求，比如说，客户要求，有三种方式：1、走路过去，速度是v1，2、先以速度v走到总路程的一半再开车以速度v2过去，3、开车以速度v3过去，那么我们有三类算法来实现那个目标，用工厂模式的话，父类中封装一个计算时间的方法，子类分别在自己的构造方法中初始化相应的参数，并重写父类的方法，工厂的静态方法根据传入的规则生成父类引用（指向子类实例）（这里我们假设v1、v2、v3都是固定的），然后在客户端，获得总路程和实现方式，就可以调用工厂类的静态方法获得父类引用，然后计算得到时间。<br>
+        
+          <p class="article-more-link">
+            <a href="/2018/03/08/设计模式之策略模式/#more">了解更多</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/03/08/设计模式之策略模式/" data-id="cjey91c40001mocvaw5h2qzhg" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+
+    
+<article id="post-第一次用lambda表达式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/07/第一次用lambda表达式/" class="article-date">
+  <time datetime="2018-03-07T13:41:38.000Z" itemprop="datePublished">2018-03-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>►<a class="article-category-link" href="/categories/java/java8/">java8</a>►<a class="article-category-link" href="/categories/java/java8/Lambda表达式/">Lambda表达式</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/07/第一次用lambda表达式/">第一次用lambda表达式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>寒假之前看了java8，觉得设计的很巧妙，看的云里雾里的，以为掌握了，但实际动手还是挺困难的，现在总结下lambda表达式的用法</p>
+<p>1、首先根据所有需求归纳出所有小需求的lambda表达式，以计算器为例，应该是(Double,Double) -&gt; Double (这里仅考虑加减乘除)<br>2、根据lambda表达式设计一个函数式接口（只有一个未实现的方法），或者用现成的<br>3、设计一个方法，这个方法传入lambda表达式，调用函数接口中的方法 (这个方法其实很巧妙，不知道行为，要从宏观上把握，具有很强的灵活性)<br>4、客户端，根据规则确定lambda表达式，并调用3中的方法，传入lambda表达式，得到结果<br>
+        
+          <p class="article-more-link">
+            <a href="/2018/03/07/第一次用lambda表达式/#more">了解更多</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/03/07/第一次用lambda表达式/" data-id="cjey91c3k001aocvamwruf5p2" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+
+    
+<article id="post-设计模式之简单工厂模式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/07/设计模式之简单工厂模式/" class="article-date">
+  <time datetime="2018-03-07T00:42:07.000Z" itemprop="datePublished">2018-03-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/设计模式/">设计模式</a>►<a class="article-category-link" href="/categories/设计模式/简单工厂模式/">简单工厂模式</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/07/设计模式之简单工厂模式/">设计模式之简单工厂模式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>面向对象程序设计(OOP)是基于<strong>对象</strong>概念的软件设计方法，在面向对象概念中，类是<strong>数据</strong>和<strong>对数据的操作</strong>的封装体，类具有<strong>封装、继承、多态</strong>，还具有抽象性。类的这些特性，使得面向对象程序<strong>可维护、可复用、可扩充、灵活性好</strong>。<br><em>可维护</em>：只需更改要改之处<br><em>可复用</em>：程序可多处使用<br><em>可扩充</em>：增加一些东西无需更改另一些东西<br><em>灵活性好</em>：以上做好了也就灵活了</p>
+        
+          <p class="article-more-link">
+            <a href="/2018/03/07/设计模式之简单工厂模式/#more">了解更多</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/03/07/设计模式之简单工厂模式/" data-id="cjey91c5x003wocvavnu9mqij" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+
+    
+<article id="post-hexo搭建网站步骤" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/06/hexo搭建网站步骤/" class="article-date">
+  <time datetime="2018-03-06T07:20:26.000Z" itemprop="datePublished">2018-03-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/hexo/">hexo</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/06/hexo搭建网站步骤/">hexo搭建网站步骤</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="搭建网站步骤"><a href="#搭建网站步骤" class="headerlink" title="搭建网站步骤"></a>搭建网站步骤</h3><p>1.注册github <a href="https://github.com" target="_blank" rel="noopener">https://github.com</a> ，创建相应的仓库<br>2.下载与你电脑匹配的git并安装 下载：<a href="https://git-scm.com/download" target="_blank" rel="noopener">https://git-scm.com/download</a> 安装参考：<a href="https://www.cnblogs.com/smuxiaolei/p/7484678.html" target="_blank" rel="noopener">https://www.cnblogs.com/smuxiaolei/p/7484678.html</a><br>3.将git与github绑定<br>4.安装node.js<br>5.搭建hexo，<br>6.绑定域名<br>7.写文章，推送</p>
+<h3 id="注册github-https-github-com"><a href="#注册github-https-github-com" class="headerlink" title="注册github https://github.com"></a>注册github <a href="https://github.com" target="_blank" rel="noopener">https://github.com</a></h3><p>创建一个仓库，仓库的名字一定是<code>你的用户名.github.io</code></p>
+        
+          <p class="article-more-link">
+            <a href="/2018/03/06/hexo搭建网站步骤/#more">了解更多</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/03/06/hexo搭建网站步骤/" data-id="cjey91c29000eocvahbidriqt" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+
+    
 <article id="post-IDEA的一些使用经验" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/03/06/IDEA的一些使用经验/" class="article-date">
@@ -105,7 +357,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/06/IDEA的一些使用经验/" data-id="cjewuozu4000dzwva5s1jp6g3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/06/IDEA的一些使用经验/" data-id="cjey91c1u000aocvacu9eqyge" class="article-share-link">Share</a>
       
       
     </footer>
@@ -155,7 +407,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/05/MD常用语法总结/" data-id="cjewuozsj0007zwvappowunvu" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/05/MD常用语法总结/" data-id="cjey91byf0000ocvataoa9vsr" class="article-share-link">Share</a>
       
       
     </footer>
@@ -208,7 +460,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/05/IDEA中的tomcat使用心得/" data-id="cjewuozs50005zwvaxf88rhjv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/05/IDEA中的tomcat使用心得/" data-id="cjey91c29000iocvancookn4z" class="article-share-link">Share</a>
       
       
     </footer>
@@ -260,7 +512,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/04/使用IDEA建立一个SpringBoot的过程及注意问题/" data-id="cjewuozw9000lzwvab8j54us5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/04/使用IDEA建立一个SpringBoot的过程及注意问题/" data-id="cjey91c40001pocvatmwguy6f" class="article-share-link">Share</a>
       
       
     </footer>
@@ -310,7 +562,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/02/05/java类间的强制转换/" data-id="cjewuozwm000ozwvafostxxgt" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/02/05/java类间的强制转换/" data-id="cjey91c35000mocvahr1js3pl" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/强制转换/">强制转换</a></li></ul>
@@ -325,64 +577,9 @@
   
 
 
-
-    
-<article id="post-java小知识整理" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/02/01/java小知识整理/" class="article-date">
-  <time datetime="2018-02-01T05:44:22.000Z" itemprop="datePublished">2018-02-01</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/java/">java</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/01/java小知识整理/">java知识积累</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>java有些知识点不容易理解，还有些容易忘记，写篇博客，以后常来逛逛</p>
-<h3 id="访问控制"><a href="#访问控制" class="headerlink" title="访问控制"></a>访问控制</h3><p>1、对类来说，有两种，一种是public，一种是缺省（friendly）。Public是所有类均可访问。缺省的话，只有当前类所在的包中的类可访问</p>
-<p>2、对类中成员来说，有四种 public &gt; protected &gt; friendly &gt; private。</p>
-<p>3、Private只能在当前类中被成员方法访问，friendly(缺省)声明的，只能是当前包中的所有类都可访问。Protected不仅当前包中所有类，其他包中的子类也都可以访问，public是谁都可以访问。<br>注意访问范围：protected要比friendly的范围大</p>
-        
-          <p class="article-more-link">
-            <a href="/2018/02/01/java小知识整理/#more">了解更多</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/02/01/java小知识整理/" data-id="cjewuozx1000qzwvauaeu9jxf" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-
-
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/2/">&laquo; 上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    <a class="extend prev" rel="prev" href="/page/2/">&laquo; 上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">下一页 &raquo;</a>
   </nav>
 
 
@@ -396,7 +593,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/">IDEA</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/SpringBoot/">SpringBoot</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/Tomcat/">Tomcat</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/java8/">java8</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/java8/Lambda表达式/">Lambda表达式</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/volatile/">volatile</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/包结构/">包结构</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/异常的使用/">异常的使用</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/数组/">数组</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/输入输出流/">输入输出流</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/重写和重载/">重写和重载</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/language/">language</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/language/MD语法/">MD语法</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/算法/深度优先/">深度优先</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/编码规则/">编码规则</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/代理模式/">代理模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/原型模式/">原型模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/外观模式/">外观模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/工厂方法模式/">工厂方法模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/建造者模式/">建造者模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/模板方法模式/">模板方法模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/策略模式/">策略模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/简单工厂模式/">简单工厂模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/装饰模式/">装饰模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/设计原则/">设计原则</a><span class="category-list-count">1</span></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/">IDEA</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/SpringBoot/">SpringBoot</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/Tomcat/">Tomcat</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/基础知识/">基础知识</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/java8/">java8</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/java8/Lambda表达式/">Lambda表达式</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/volatile/">volatile</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/包结构/">包结构</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/异常的使用/">异常的使用</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/数组/">数组</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/输入输出流/">输入输出流</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/重写和重载/">重写和重载</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/language/">language</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/language/MD语法/">MD语法</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统/">操作系统</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统/基本知识/">基本知识</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/">数据结构</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/基础知识/">基础知识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/算法概念/">算法概念</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/算法/深度优先/">深度优先</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/编码规则/">编码规则</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/计算机的组成部分/">计算机的组成部分</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/代理模式/">代理模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/原型模式/">原型模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/外观模式/">外观模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/工厂方法模式/">工厂方法模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/建造者模式/">建造者模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/模板方法模式/">模板方法模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/策略模式/">策略模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/简单工厂模式/">简单工厂模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/装饰模式/">装饰模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/设计原则/">设计原则</a><span class="category-list-count">1</span></li></ul></li></ul>
     </div>
   </div>
 
@@ -425,7 +622,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">archive_a</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">29</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -438,23 +635,23 @@
       <ul>
         
           <li>
-            <a href="/2018/03/18/java中的Volatile关键字/">java中的volatile关键字</a>
+            <a href="/2018/03/19/算法和算法的评价/">算法和算法的评价</a>
           </li>
         
           <li>
-            <a href="/2018/03/17/字符编码规则的学习/">字符编码规则的学习</a>
+            <a href="/2018/03/19/数据结构基础知识/">数据结构基础知识</a>
           </li>
         
           <li>
-            <a href="/2018/03/14/java中的输入输出流学习/">java中的输入输出流学习</a>
+            <a href="/2018/03/19/计算机的主要组成部分/">计算机的主要组成部分</a>
           </li>
         
           <li>
-            <a href="/2018/03/13/设计模式之建造者模式/">设计模式之建造者模式</a>
+            <a href="/2018/03/19/操作系统的基础知识/">操作系统的基础知识</a>
           </li>
         
           <li>
-            <a href="/2018/03/13/设计模式之外观模式/">设计模式之外观模式</a>
+            <a href="/2018/03/18/学习linux的必备基础知识/">学习linux的必备基础知识</a>
           </li>
         
       </ul>
