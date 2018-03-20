@@ -14,10 +14,16 @@
 <meta property="og:site_name" content="The Marvellous World!">
 <meta property="og:description" content="linux是一种操作系统1、什么是操作系统？操作系统是计算机硬件之上的第一层软件，计算机的硬件由 操作系统直接管理，同时，操作系统也是一种特殊的系统软件，其他的系统软件运行在操作系统的基础之上。参考自 http://blog.csdn.net/u012934551/article/details/48207409 2、从资源管理方面讲，操作系统有五大基本功能：进程和线程的管理；存储管理；文件管理；">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-03-19T12:39:36.395Z">
+<meta property="og:image" content="http://p3o1rymh9.bkt.clouddn.com/Linux-Token.png">
+<meta property="og:image" content="http://p3o1rymh9.bkt.clouddn.com/Linux-Subregion1.png">
+<meta property="og:image" content="http://p3o1rymh9.bkt.clouddn.com/Linux-Subregion2.png">
+<meta property="og:image" content="http://p3o1rymh9.bkt.clouddn.com/Linux-Subregion3.png">
+<meta property="og:image" content="http://p3o1rymh9.bkt.clouddn.com/Linux-Subregion4.png">
+<meta property="og:updated_time" content="2018-03-20T15:37:37.737Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习linux的必备基础知识">
 <meta name="twitter:description" content="linux是一种操作系统1、什么是操作系统？操作系统是计算机硬件之上的第一层软件，计算机的硬件由 操作系统直接管理，同时，操作系统也是一种特殊的系统软件，其他的系统软件运行在操作系统的基础之上。参考自 http://blog.csdn.net/u012934551/article/details/48207409 2、从资源管理方面讲，操作系统有五大基本功能：进程和线程的管理；存储管理；文件管理；">
+<meta name="twitter:image" content="http://p3o1rymh9.bkt.clouddn.com/Linux-Token.png">
   
     <link rel="alternate" href="/atom.xml" title="The Marvellous World!" type="application/atom+xml">
   
@@ -94,15 +100,41 @@
 <p>4、操作系统的分类：批处理操作系统；分时操作系统；通用操作系统；实时操作系统；个人计算机操作系统；网络操作系统；分布式操作系统；嵌入式操作系统<br>参考<a href="http://blog.csdn.net/sinat_22055459/article/details/51055410" target="_blank" rel="noopener">http://blog.csdn.net/sinat_22055459/article/details/51055410</a> </p>
 <p>5、什么是系统软件？<br>系统软件是为各种不同的应用软件（wps、QQ等）提供基础操作的支持应用软件运行的软件。基础操作有比如说，从输入设备获取数据，向输出设备发送设备，向外存读写数据等等，这些操作也要由一系列指令来完成，人们把这一系列指令集合在一起，形成专门的系统软件，用来支持应用软件的执行。常见的系统软件有操作系统、数据库管理系统、编译软件。<br>参考自 <a href="https://zhidao.baidu.com/question/206576807.html" target="_blank" rel="noopener">https://zhidao.baidu.com/question/206576807.html</a> </p>
 <p>6、Linux操作系统是一种嵌入式操作系统，来了解一下什么是嵌入式操作系统(Embeded Operating System)。简单说就是嵌入式系统的操作系统</p>
-<h3 id="Linux操作系统的组成部分"><a href="#Linux操作系统的组成部分" class="headerlink" title="Linux操作系统的组成部分"></a>Linux操作系统的组成部分</h3><p>1、Linux内核 是操作系统的核心，具有很多最基本的功能，虚拟内存、多任务、共享库、需求加载、可执行程序、TCP/IP网络功能。</p>
+<h3 id="Linux的特点"><a href="#Linux的特点" class="headerlink" title="Linux的特点"></a>Linux的特点</h3><p>1、以键盘为特色（Windows是以鼠标为特色）<br>2、是多任务多用户的操作系统<br>3、功能丰富，可扩展，源码开放<br>4、可编程shell(目前没太理解)</p>
+<h3 id="Linux操作系统的组成部分"><a href="#Linux操作系统的组成部分" class="headerlink" title="Linux操作系统的组成部分"></a>Linux操作系统的组成部分</h3><p>1、Linux内核 是操作系统的核心，实现操作系统最基本的功能，虚拟内存、多任务、共享库、需求加载、可执行程序、TCP/IP网络功能。</p>
 <p>2、Linux Shell，也就是系统的用户界面，提供了用户和内核进行交互操作的一种接口。Shell接受用户输入的指令并送入内核去执行，是一个命令解释器。</p>
-<p>3、Linux文件系统，文件系统是管理文件如何存储在存储设备上的方法。Linux支持多种文件系统。</p>
-<p>4、Linux应用程序，就是文本编辑器、编程语言、XWindow、办公套件、Internet工具、数据库等</p>
+<p>3、Linux文件系统，文件系统是管理文件如何存储在存储设备上的方法，通常是按照目录层次的方式进行组织。系统以/为根目录。Linux支持多种文件系统。</p>
+<p>4、Linux应用程序，包括文本编辑器、编程语言、XWindow、办公套件、Internet工具、数据库等</p>
+<h3 id="Linux内核"><a href="#Linux内核" class="headerlink" title="Linux内核"></a>Linux内核</h3><p>标志是一个企鹅<br><img src="http://p3o1rymh9.bkt.clouddn.com/Linux-Token.png"><br>内核实现了操作系统的基本功能<br>硬件方面：控制硬件设备、内存管理、硬件接口、基本I/O<br>软件方面：管理文件系统、分配内存、分配CPU时间等</p>
+<p>我们常说的redhat、CentOS、Ubuntu、红旗Linux这些都是以的Linux内核为核心，搭配各种应用程序和工具的软件集合体组成的一个完整的操作系统。</p>
+<h3 id="硬盘结构和磁盘分区"><a href="#硬盘结构和磁盘分区" class="headerlink" title="硬盘结构和磁盘分区"></a>硬盘结构和磁盘分区</h3><p>一整块硬盘，比如你的电脑里面的硬盘，硬盘划分为主分区和扩展分区，扩展分区又划分为多个逻辑分区。主分区：可以马上被使用并且不能再分。<br><img width="800px" height="400px" src="http://p3o1rymh9.bkt.clouddn.com/Linux-Subregion1.png"></p>
+<h5 id="磁盘和硬盘的关系："><a href="#磁盘和硬盘的关系：" class="headerlink" title="磁盘和硬盘的关系："></a>磁盘和硬盘的关系：</h5><p>磁盘是一种通过磁性进行读写的设备，磁盘有软盘、硬盘，硬盘容量大一般在机箱里负责存储数据，是电脑主要的存储媒介之一。软盘容量小，一般在机箱外负责搬运数据，现在已经逐渐被U盘取代。U盘不是磁盘，是闪存的一种，读写速度快（比硬盘快几倍甚至数十倍），存储容量大，携带方便，但是有寿命（读写次数）的限制。（之后可以了解一下硬盘是怎么完成读写的，硬盘速度很大层度上取决于机械马达的速度）</p>
+<h5 id="那么在Linux中如何访问磁盘（硬盘）呢？"><a href="#那么在Linux中如何访问磁盘（硬盘）呢？" class="headerlink" title="那么在Linux中如何访问磁盘（硬盘）呢？"></a>那么在Linux中如何访问磁盘（硬盘）呢？</h5><p>在Linux中用户用设备名来访问设备。磁盘也是设备，所以访问磁盘就访问磁盘的设备名。Linux系统中，所有的设备名都存放在/dev目录中，看下磁盘的设备名组成<br>/dev/hda5<br>1、/dev 存储磁盘设备名的目录，固定不变<br>2、hd 根据硬盘的接口类型的不同，这里可以是hd或者sd，<br>硬盘接口类型参考 <a href="https://jingyan.baidu.com/article/636f38bb4992fbd6b84610a5.html" target="_blank" rel="noopener">https://jingyan.baidu.com/article/636f38bb4992fbd6b84610a5.html</a><br>hd表示IDE接口硬盘，sd表示SCSI/SAS/SATA/USB接口硬盘<br>3、a表示硬盘的顺序号，用a、b、c、d、e……表示。计算机中的硬盘数取决于主板上有几个硬盘接口。<br>4、5表示分区的顺序号，用数字1、2、3、4、5……表示。其中主分区是用1到4表示，逻辑分区编号从5开始，例如IDE第1个硬盘（master)的第1个逻辑分区就是/dev/hda5</p>
+<h5 id="Linux和windows的分区对比："><a href="#Linux和windows的分区对比：" class="headerlink" title="Linux和windows的分区对比："></a>Linux和windows的分区对比：</h5><p><img width="800px" height="400px" src="http://p3o1rymh9.bkt.clouddn.com/Linux-Subregion2.png"></p>
+<h5 id="那么当你的电脑安装了多系统的时候，磁盘怎样分区呢？"><a href="#那么当你的电脑安装了多系统的时候，磁盘怎样分区呢？" class="headerlink" title="那么当你的电脑安装了多系统的时候，磁盘怎样分区呢？"></a>那么当你的电脑安装了多系统的时候，磁盘怎样分区呢？</h5><p><img width="800px" height="600px" src="http://p3o1rymh9.bkt.clouddn.com/Linux-Subregion3.png"></p>
+<h5 id="Linux如何使用分区"><a href="#Linux如何使用分区" class="headerlink" title="Linux如何使用分区"></a>Linux如何使用分区</h5><p>Linux将分区当成目录使用<br>1、任何一个分区都必须挂载到某个目录上。<br>2、目录是逻辑上的区分。分区是物理上的区分。<br>3、磁盘分区都必须挂载到<strong>目录树</strong>中的某个具体的目录上才能进行读写操作。<br>4、根目录是所有Linux的文件和目录所在的地方，需要挂载上一个磁盘分区。</p>
+<p>分区的话，可以用静态分区方法，但是有很多缺点，比如说，你要预估分区的容量，分区空间耗尽了，你要采取措施调整分区并且这不能根本性的解决问题，分区又耗尽了怎么办呢。<br>使用<strong>逻辑盘卷管理</strong>（Logical Volume Manager）可从根本上解决问题。之后再来了解这个吧。</p>
+<h3 id="Linux下的文件系统"><a href="#Linux下的文件系统" class="headerlink" title="Linux下的文件系统"></a>Linux下的文件系统</h3><h5 id="什么是文件系统？来理解一下"><a href="#什么是文件系统？来理解一下" class="headerlink" title="什么是文件系统？来理解一下"></a>什么是文件系统？来理解一下</h5><p>1、是包括在一个磁盘上的目录结构，一个磁盘上可以有一个或多个文件系统<br>2、是在一个磁盘上组织文件的方法<br>3、是文件的数据结构<br>4、是基于被划分的存储设备上的一种文件的命名、存储、组织及读取的方法</p>
+<p>Linux的所有文件和目录以一个树状的结构组织构成文件系统。在硬盘上分区之后，还要在分区上创建文件系统，Linux常用的文件系统类型有：ext2/3/4、HFS、XFS、JFS、NFS、NTFS、FAT32等。Linux内核采用了<strong>虚拟文件系统</strong>(Virtual File System,VFS)的技术，因此Linux可以支持多种不同的文件系统类型</p>
+<p><img width="800px" height="800px" src="http://p3o1rymh9.bkt.clouddn.com/Linux-Subregion4.png"><br>/            -&gt;        根分区<br>/boot        -&gt;        存放Linux系统启动文件，/boot/vmlinuz为linux的内核文件<br>/bin        -&gt;        可执行二进制文件的目录</p>
+<p>/home        -&gt;        系统默认的用户目录，新增的用户宿主目录的父目录，比如用户user的主目录就是/home/user，可以用~user表示<br>/root        -&gt;        系统管理员root的主目录，系统第一个启动的分区是根目录/，所以最好将/root和根目录/放在同一个分区</p>
+<p>/dev        -&gt;        存放设备文件，访问这个目录下的某个文件，相当于访问某个设备<br>/etc        -&gt;        系统管理和配置文件<br>/etc/rc.d    -&gt;        启动的配置文件和脚本</p>
+<p>/lib        -&gt;        函数库保存位置，标准程序设计库，又叫动态链接共享库，作用类似windows里的.dll文件<br>/sbin        -&gt;        放置系统管理员root的可执行命令，一般用户只能查看<br>/tmp        -&gt;        公用的临时文件存储点，任何人都可访问，就不要在这里放重要的数据了</p>
+<p>/mnt        -&gt;        系统提供这个目录是让用户临时挂载其他的文件系统。<br>/lost+found    -&gt;        这个目录平时是空的，系统非正常关机而留下“无家可归”的文件（windows下叫什么.chk）就在这里</p>
+<p>/var        -&gt;        放置系统执行过程中经常变化的文件，比方说各种服务的日志文件，存放临时文件<br>/var/log：存放系统日志文件，/var/log/message：所有的登录文件存放目录，/var/spool/mail：邮件存放的目录，/var/run:程序或服务启动后，其PID存放在该目录下。建议单独分区，设置较大的磁盘空间</p>
+<p>/proc        -&gt;        是系统内存的映射。可直接访问这个目录来获取系统信息。此目录的数据都在内存中，如系统核心，外部设备，网络状态，由于数据都存放于内存中，所以不占用磁盘空间</p>
+<p>/usr        -&gt;        最庞大的目录，要用到的<strong>应用程序和文件</strong>几乎都在这个目录。其中包含：<br>    /usr/X11R6        -&gt;        存放X window的目录<br>    /usr/bin        -&gt;        众多的应用程序<br>    /usr/sbin        -&gt;        超级用户的一些管理程序<br>    /usr/doc        -&gt;        linux文档<br>    /usr/include    -&gt;        linux下开发和编译应用程序所需要的头文件<br>    /usr/lib        -&gt;        常用的动态链接库和软件包的配置文件<br>    /usr/man        -&gt;        帮助文档<br>    /usr/src        -&gt;        源代码，linux内核的源代码就放在/usr/src/linux里<br>    /usr/local/bin    -&gt;        本地增加的命令<br>    /usr/local/lib    -&gt;        本地增加的库</p>
+<p>SWAP        -&gt;        交换分区</p>
+<p>参考自<br><a href="https://www.cnblogs.com/sytfyf/p/6364691.html" target="_blank" rel="noopener">https://www.cnblogs.com/sytfyf/p/6364691.html</a><br><a href="https://www.cnblogs.com/lvdongjie/p/6829619.html" target="_blank" rel="noopener">https://www.cnblogs.com/lvdongjie/p/6829619.html</a> </p>
+<h5 id="使用文件系统的一般方法"><a href="#使用文件系统的一般方法" class="headerlink" title="使用文件系统的一般方法"></a>使用文件系统的一般方法</h5><p>1、在硬盘上创建分区或者逻辑卷：可使用fdisk命令创建分区，或者使用LVM相关的命令创建逻辑卷<br>2、在分区或者逻辑卷上建立文件系统：类似于windows的格式化操作<br>3、挂载文件系统到系统中：使用mount命令自己挂载，或者启动时自动挂载，这样子的话需要编辑“/etc/fstab”添加相应的配置行<br>4、卸载文件系统：对于可移动介质上的文件系统，使用完毕后可使用umount命令卸载文件系统</p>
+<h5 id="挂装文件系统的mount命令"><a href="#挂装文件系统的mount命令" class="headerlink" title="挂装文件系统的mount命令"></a>挂装文件系统的mount命令</h5><p>格式：mount [可选项] [&lt;分区设备名&gt;] [&lt;挂载点&gt;]<br>这里面的可选项有：<br>-t&lt;文件系统类型&gt;   指定文件系统的类型<br>-r                     使用只读方式挂载<br>-a                     挂载/etc/fstab文件中记录的设备<br>-o iocharset=cp936    使挂载的设备可以显示中文文件名<br>-o loop             使用回送设备挂载ISO文件和映像文件<br>来看看实际例子<br>$ mount<br>$ mount -l<br>$ mount –guess /dev/sda3<br># mount –t ext3 /dev/sdb1 /opt<br># mount –t vfat /dev/hda6 /mnt/win<br># mount –t vfat –o iocharset=cp936 /dev/hda8  /mnt/win2</p>
+<h5 id="卸载文件系统"><a href="#卸载文件系统" class="headerlink" title="卸载文件系统"></a>卸载文件系统</h5><p>格式：umount &lt;分区设备名或挂载点&gt;<br>粒子：umount /dev/hda6<br>        umount /dev/sdb1<br>        umount /opt</p>
+<h5 id="挂装-卸载文件系统要注意的"><a href="#挂装-卸载文件系统要注意的" class="headerlink" title="挂装/卸载文件系统要注意的"></a>挂装/卸载文件系统要注意的</h5><p>1、挂载点目录必须是存在的<br>2、应该在挂装目录的上级目录下进行挂装操作<br>3、不能在同一挂装点目录下挂装两个文件系统<br>4、当文件系统处于”busy”状态时不能进行卸载<br>5、系统是”busy”状态：文件系统上有打开的文件；某个进程的工作目录在此文件系统上；文件系统上面的缓存文件正在被使用</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/18/学习linux的必备基础知识/" data-id="cjey91c29000jocva7vvzvqfi" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/18/学习linux的必备基础知识/" data-id="cjeztpp0e000bp8va9ixhh7jz" class="article-share-link">Share</a>
       
       
     </footer>

@@ -14,12 +14,12 @@
 <meta property="og:site_name" content="The Marvellous World!">
 <meta property="og:description" content="数据结构太重要了，需要重新学一遍，今天先看看基础知识 在了解数据结构之前，先了解一点定义 什么是数据数据是信息的载体，包括数字、字符、所有能输入到计算机中并能被计算机接收的各种符号的集合。 什么是数据元素、数据项数据元素是数据的基本单位（目前还不能理解这么定义）。书上是这么定义的，学生记录就是一个数据元素，学号、姓名、性别分别是一个个数据项。数据项是构成数据元素的不可分割的最小单位。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://p3o1rymh9.bkt.clouddn.com/DataStructure-LogicalStructure1.png">
-<meta property="og:updated_time" content="2018-03-19T12:39:27.982Z">
+<meta property="og:image" content="http://p3o1rymh9.bkt.clouddn.com/DataStructure-LogicalStructure1.jpg">
+<meta property="og:updated_time" content="2018-03-20T01:04:26.785Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构基础知识">
 <meta name="twitter:description" content="数据结构太重要了，需要重新学一遍，今天先看看基础知识 在了解数据结构之前，先了解一点定义 什么是数据数据是信息的载体，包括数字、字符、所有能输入到计算机中并能被计算机接收的各种符号的集合。 什么是数据元素、数据项数据元素是数据的基本单位（目前还不能理解这么定义）。书上是这么定义的，学生记录就是一个数据元素，学号、姓名、性别分别是一个个数据项。数据项是构成数据元素的不可分割的最小单位。">
-<meta name="twitter:image" content="http://p3o1rymh9.bkt.clouddn.com/DataStructure-LogicalStructure1.png">
+<meta name="twitter:image" content="http://p3o1rymh9.bkt.clouddn.com/DataStructure-LogicalStructure1.jpg">
   
     <link rel="alternate" href="/atom.xml" title="The Marvellous World!" type="application/atom+xml">
   
@@ -98,7 +98,7 @@
 <h5 id="什么是数据-对象"><a href="#什么是数据-对象" class="headerlink" title="什么是数据 对象"></a>什么是数据 对象</h5><p>数据对象是具有相同性质的<strong>数据元素</strong>的集合，比如整形数据对象。</p>
 <h5 id="什么是数据类型，什么是类型"><a href="#什么是数据类型，什么是类型" class="headerlink" title="什么是数据类型，什么是类型"></a>什么是数据类型，什么是类型</h5><p><strong>类型</strong>：是指具有相同逻辑意义的一组值的集合(我觉得就是一个数据对象)<br><strong>数据类型</strong>：指的是，一组具有相同逻辑意义的值的集合（也就是<strong>一个类型</strong>），<strong>和定义在这些值中的操作的集合</strong>的总称。也就是说，数据类型分两部分，一部分是类型(数据对象)，一部分是操作的集合。<br>数据类型有三种：<br>原子类型：其值不可再分（java的基本数据类型）的数据类型；<br>结构类型：其值可分解为多个（java的引用数据类型）的数据类型；<br>抽象数据类型(Abstrace Data Type)：ADT,指一个数学模型和以及定义在该模型上的一组操作，通常用一个三元组来表示一个抽象数据类型，(数据对象，数据关系，操作集合)</p>
 <h3 id="什么是数据结构"><a href="#什么是数据结构" class="headerlink" title="什么是数据结构"></a>什么是数据结构</h3><p>在任何问题中，数据元素之间一定存在着某种关系，这种关系，就叫做<strong>结构</strong>，<strong>数据结构是相互之间存在着一种或多种特定关系的数据元素的集合</strong>，简单说，数据结构是数据元素的集合。数据结构包括三方面的内容：<strong>逻辑结构 存储结构 数据的运算</strong>。一个算法的设计取决于所选定的逻辑结构，而算法的实现依赖于所采用的存储结构。</p>
-<h5 id="逻辑结构"><a href="#逻辑结构" class="headerlink" title="逻辑结构"></a>逻辑结构</h5><p>是指数据元素之间的逻辑关系，与存储无关。<br>逻辑关系包括：线性结构和非线性结构。线性结构的代表有：线性表；非线性结构的代表有：集合、树、图<br><img width="800px" height="500px" src="http://p3o1rymh9.bkt.clouddn.com/DataStructure-LogicalStructure1.png"></p>
+<h5 id="逻辑结构"><a href="#逻辑结构" class="headerlink" title="逻辑结构"></a>逻辑结构</h5><p>是指数据元素之间的逻辑关系，与存储无关。<br>逻辑关系包括：线性结构和非线性结构。线性结构的代表有：线性表；非线性结构的代表有：集合、树、图<br><img width="800px" height="500px" src="http://p3o1rymh9.bkt.clouddn.com/DataStructure-LogicalStructure1.jpg"></p>
 <h5 id="存储结构"><a href="#存储结构" class="headerlink" title="存储结构"></a>存储结构</h5><p>是指数据结构在计算机中的表示，包括数据元素的表示和数据元素之间的关系的表示。<br>数据的存储结构主要有：顺序存储、链式存储、索引存储和散列存储四种。<br>1、顺序存储：逻辑上相邻的元素，物理上也相邻。元素之间的关系也就是存储单元的邻接关系。优点是：可以随机存取，每个元素占用最少的存储空间（因为不用多余的地方来表示关系了）。缺点是，只能在连续的存储空间中，可能产生较多的外部碎片。比如，java中的数组的结构就是采用顺序关系。</p>
 <p>2、链式存储：逻辑上相邻的元素在存储中没有物理位置的要求，借助一个元素的某部分来表示相邻元素的邻接关系。优点是：不会产生碎片，可以充分利用存储单元，缺点是：每个元素需要空间存储相邻元素的指针，并且只能实现顺序存取。比如java中的List</p>
 <p>3、索引存储：在存储元素信息时，建立附加的索引表，表中的每一项称为索引项(关键字，地址)。优点是检索速度快；缺点是：增加了索引表的存储空间，并且在增加和修改数据时还需要修改索引表，反而会花费较多的时间。（索引表中都存了那些数据的地址，为什么增加和修改数据的时候要修改索引表）</p>
@@ -108,7 +108,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/19/数据结构基础知识/" data-id="cjey91c3k000tocva702db2y2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/19/数据结构基础知识/" data-id="cjeztpp7c000mp8vamm51kfs0" class="article-share-link">Share</a>
       
       
     </footer>
