@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>The Marvellous World!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Linux下的文件系统什么是文件系统？来理解一下文件系统是基于被划分的存储设备上的一种文件的命名、存储、组织及读取的方法。 Linux文件系统的工作原理文件系统通过为每个文件分配文件块的方式把数据存储在硬盘中。所以要维护每个文件的所有文件块的分配信息，这些信息也都存储在硬盘上。不同的文件系统，它的分配方式和读取文件块的方式是不一样的。文件的块结构信息也称为meta-data（元信息），包括文件的权">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux的文件系统">
+<meta property="og:url" content="http://yoursite.com/2018/03/21/Linux的文件系统/index.html">
+<meta property="og:site_name" content="The Marvellous World!">
+<meta property="og:description" content="Linux下的文件系统什么是文件系统？来理解一下文件系统是基于被划分的存储设备上的一种文件的命名、存储、组织及读取的方法。 Linux文件系统的工作原理文件系统通过为每个文件分配文件块的方式把数据存储在硬盘中。所以要维护每个文件的所有文件块的分配信息，这些信息也都存储在硬盘上。不同的文件系统，它的分配方式和读取文件块的方式是不一样的。文件的块结构信息也称为meta-data（元信息），包括文件的权">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://p3o1rymh9.bkt.clouddn.com/Linux-Subregion4.png">
+<meta property="og:updated_time" content="2018-03-21T15:02:48.017Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux的文件系统">
+<meta name="twitter:description" content="Linux下的文件系统什么是文件系统？来理解一下文件系统是基于被划分的存储设备上的一种文件的命名、存储、组织及读取的方法。 Linux文件系统的工作原理文件系统通过为每个文件分配文件块的方式把数据存储在硬盘中。所以要维护每个文件的所有文件块的分配信息，这些信息也都存储在硬盘上。不同的文件系统，它的分配方式和读取文件块的方式是不一样的。文件的块结构信息也称为meta-data（元信息），包括文件的权">
+<meta name="twitter:image" content="http://p3o1rymh9.bkt.clouddn.com/Linux-Subregion4.png">
+  
+    <link rel="alternate" href="/atom.xml" title="The Marvellous World!" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+<!--   <div id="banner"></div> -->
+
+  <div id="header-outer" class="outer">
+    <div id="header-title">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">The Marvellous World!</a>
+      </h1>
+    </div>
+    <div id="header-inner">
+      <div id="myMessage">
+        <div id="photo"></div>
+        <p>There are always something fantastic waiting for me!</p>
+      </div>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/myself">了解我</a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+
+        <section id="main">
+
+<article id="post-Linux的文件系统" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/21/Linux的文件系统/" class="article-date">
+  <time datetime="2018-03-21T00:41:14.000Z" itemprop="datePublished">2018-03-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>►<a class="article-category-link" href="/categories/Linux/文件系统/">文件系统</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Linux的文件系统
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          <h3 id="Linux下的文件系统"><a href="#Linux下的文件系统" class="headerlink" title="Linux下的文件系统"></a>Linux下的文件系统</h3><h5 id="什么是文件系统？来理解一下"><a href="#什么是文件系统？来理解一下" class="headerlink" title="什么是文件系统？来理解一下"></a>什么是文件系统？来理解一下</h5><p>文件系统是基于被<strong>划分</strong>的存储设备上的一种文件的<strong>命名、存储、组织及读取</strong>的方法。</p>
+<h5 id="Linux文件系统的工作原理"><a href="#Linux文件系统的工作原理" class="headerlink" title="Linux文件系统的工作原理"></a>Linux文件系统的工作原理</h5><p>文件系统通过为每个文件分配<strong>文件块</strong>的方式把数据存储在硬盘中。所以要维护每个文件的所有文件块的分配信息，这些信息也都存储在硬盘上。不同的文件系统，它的<strong>分配方式和读取文件块的方式</strong>是不一样的。<br>文件的块结构信息也称为meta-data（元信息），包括文件的权限、所有者、创建和访问和更改的时间等等这些与文件有关的信息。<br><a id="more"></a></p>
+<h5 id="Linux常见的文件系统分配策略"><a href="#Linux常见的文件系统分配策略" class="headerlink" title="Linux常见的文件系统分配策略"></a>Linux常见的文件系统分配策略</h5><p>首先来了解一下磁盘的随机和顺序读写 参考自<a href="https://zhidao.baidu.com/question/1759018980722373228.html" target="_blank" rel="noopener">https://zhidao.baidu.com/question/1759018980722373228.html</a> </p>
+<p>分配策略有块分配和扩展分配<br>1、块分配<br>    磁盘上的文件块根据需要分配给文件<br>    优点：可以避免存储空间的浪费<br>    缺点：当一个文件不断扩充的时候，可能会造成文件中文件块不连续，从而导致过多的磁盘寻道时间。读写文件时，可能要采用随机读写，而不能用顺序读取的方式，这样效率也会降低。<br>2、扩展分配<br>    当文件被创建时，很多文件块同时被分配，当文件扩展时，也一次性分配很多块。文件的块结构信息meta-data在文件创建时写入，只要文件没有再分配文件块都不需要再写。当文件需要再次分配文件块的时候，再写入这个。<br>    优点：文件会比较连续，若采用顺序存取的方式，读取的效率会很高<br>    缺点：若一次性分配的块多了会浪费，若采用随机存取的方式，效率类似块分配</p>
+<p>Linux的所有文件和目录以一个<strong>树状</strong>的结构组织构成文件系统。在硬盘上分区之后，还要在分区上创建文件系统，Linux常用的文件系统类型有：ext2/3/4、HFS、XFS、JFS、NFS、NTFS、FAT32等。Linux内核采用了<strong>虚拟文件系统</strong>(Virtual File System,VFS)的技术，因此Linux可以支持多种不同的文件系统类型。<br>我觉得就是，文件系统是一种规则，我们要按照这种规则来对硬盘访问、读写。</p>
+<h5 id="Linux中有哪些种类的文件"><a href="#Linux中有哪些种类的文件" class="headerlink" title="Linux中有哪些种类的文件"></a>Linux中有哪些种类的文件</h5><p>1、普通文件<br>2、目录文件<br>3、设备文件<br>4、链接文件<br>5、管道文件<br>6、套接口文件</p>
+<p>来看一下Linux中的树状目录结构(既然这个目录结构已经确定，为什么还会有多种不同的文件系统呢？)<br>我觉得这个目录结构是Linux的标准，所有Linux支持的文件系统通过不同的方式来实现这个目录结构<br><img width="800px" height="800px" src="http://p3o1rymh9.bkt.clouddn.com/Linux-Subregion4.png"><br>/            -&gt;        根分区<br>/boot        -&gt;        存放Linux系统启动文件，/boot/vmlinuz为linux的内核文件<br>/bin        -&gt;        可执行二进制文件的目录</p>
+<p>/home        -&gt;        系统默认的用户目录，新增的用户宿主目录的父目录，比如用户user的主目录就是/home/user，可以用~user表示<br>/root        -&gt;        系统管理员root的主目录，系统第一个启动的分区是根目录/，所以最好将/root和根目录/放在同一个分区</p>
+<p>/dev        -&gt;        存放设备文件，访问这个目录下的某个文件，相当于访问某个设备<br>/etc        -&gt;        系统管理和配置文件<br>/etc/rc.d    -&gt;        启动的配置文件和脚本</p>
+<p>/lib        -&gt;        函数库保存位置，标准程序设计库，又叫动态链接共享库，作用类似windows里的.dll文件<br>/sbin        -&gt;        放置系统管理员root的可执行命令，一般用户只能查看<br>/tmp        -&gt;        公用的临时文件存储点，任何人都可访问，就不要在这里放重要的数据了</p>
+<p>/mnt        -&gt;        系统提供这个目录是让用户临时挂载其他的文件系统。<br>/lost+found    -&gt;        这个目录平时是空的，系统非正常关机而留下“无家可归”的文件（windows下叫什么.chk）就在这里</p>
+<p>/var        -&gt;        放置系统执行过程中经常变化的文件，比方说各种服务的日志文件，存放临时文件<br>/var/log：存放系统日志文件，/var/log/message：所有的登录文件存放目录，/var/spool/mail：邮件存放的目录，/var/run:程序或服务启动后，其PID存放在该目录下。建议单独分区，设置较大的磁盘空间</p>
+<p>/proc        -&gt;        是系统内存的映射。可直接访问这个目录来获取系统信息。此目录的数据都在内存中，如系统核心，外部设备，网络状态，由于数据都存放于内存中，所以不占用磁盘空间</p>
+<p>/usr        -&gt;        最庞大的目录，要用到的<strong>应用程序和文件</strong>几乎都在这个目录。其中包含：<br>    /usr/X11R6        -&gt;        存放X window的目录<br>    /usr/bin        -&gt;        众多的应用程序<br>    /usr/sbin        -&gt;        超级用户的一些管理程序<br>    /usr/doc        -&gt;        linux文档<br>    /usr/include    -&gt;        linux下开发和编译应用程序所需要的头文件<br>    /usr/lib        -&gt;        常用的动态链接库和软件包的配置文件<br>    /usr/man        -&gt;        帮助文档<br>    /usr/src        -&gt;        源代码，linux内核的源代码就放在/usr/src/linux里<br>    /usr/local/bin    -&gt;        本地增加的命令<br>    /usr/local/lib    -&gt;        本地增加的库</p>
+<p>SWAP        -&gt;        交换分区</p>
+<p>参考自<br><a href="https://www.cnblogs.com/sytfyf/p/6364691.html" target="_blank" rel="noopener">https://www.cnblogs.com/sytfyf/p/6364691.html</a><br><a href="https://www.cnblogs.com/lvdongjie/p/6829619.html" target="_blank" rel="noopener">https://www.cnblogs.com/lvdongjie/p/6829619.html</a> </p>
+<h5 id="使用文件系统的一般方法"><a href="#使用文件系统的一般方法" class="headerlink" title="使用文件系统的一般方法"></a>使用文件系统的一般方法</h5><p>1、在硬盘上创建分区或者逻辑卷：可使用fdisk命令创建分区，或者使用LVM相关的命令创建逻辑卷<br>2、在分区或者逻辑卷上建立文件系统：类似于windows的格式化操作<br>3、挂载文件系统到系统中：使用mount命令自己挂载，或者启动时自动挂载，这样子的话需要编辑“/etc/fstab”添加相应的配置行<br>4、卸载文件系统：对于可移动介质上的文件系统，使用完毕后可使用umount命令卸载文件系统</p>
+<h5 id="挂装文件系统的mount命令"><a href="#挂装文件系统的mount命令" class="headerlink" title="挂装文件系统的mount命令"></a>挂装文件系统的mount命令</h5><p>格式：mount [可选项] [&lt;分区设备名&gt;] [&lt;挂载点&gt;]<br>这里面的可选项有：<br>-t&lt;文件系统类型&gt;   指定文件系统的类型<br>-r                     使用只读方式挂载<br>-a                     挂载/etc/fstab文件中记录的设备<br>-o iocharset=cp936    使挂载的设备可以显示中文文件名<br>-o loop             使用回送设备挂载ISO文件和映像文件<br>来看看实际例子<br>$ mount<br>$ mount -l<br>$ mount –guess /dev/sda3<br># mount –t ext3 /dev/sdb1 /opt<br># mount –t vfat /dev/hda6 /mnt/win<br># mount –t vfat –o iocharset=cp936 /dev/hda8  /mnt/win2</p>
+<h5 id="卸载文件系统"><a href="#卸载文件系统" class="headerlink" title="卸载文件系统"></a>卸载文件系统</h5><p>格式：umount &lt;分区设备名或挂载点&gt;<br>粒子：umount /dev/hda6<br>        umount /dev/sdb1<br>        umount /opt</p>
+<h5 id="挂装-卸载文件系统要注意的"><a href="#挂装-卸载文件系统要注意的" class="headerlink" title="挂装/卸载文件系统要注意的"></a>挂装/卸载文件系统要注意的</h5><p>1、挂载点目录必须是存在的<br>2、应该在挂装目录的上级目录下进行挂装操作<br>3、不能在同一挂装点目录下挂装两个文件系统<br>4、当文件系统处于”busy”状态时不能进行卸载<br>5、系统是”busy”状态：文件系统上有打开的文件；某个进程的工作目录在此文件系统上；文件系统上面的缓存文件正在被使用</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/03/21/Linux的文件系统/" data-id="cjf0ddbco0000pcvawsgltg22" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/03/19/算法和算法的评价/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">算法和算法的评价</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+
+        
+          
+<aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/">IDEA</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/SpringBoot/">SpringBoot</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/Tomcat/">Tomcat</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/基础知识/">基础知识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/文件系统/">文件系统</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/java8/">java8</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/java8/Lambda表达式/">Lambda表达式</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/volatile/">volatile</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/包结构/">包结构</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/异常的使用/">异常的使用</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/数组/">数组</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/输入输出流/">输入输出流</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/重写和重载/">重写和重载</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/language/">language</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/language/MD语法/">MD语法</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统/">操作系统</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统/基本知识/">基本知识</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/">数据结构</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/基础知识/">基础知识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/算法概念/">算法概念</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/算法/深度优先/">深度优先</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/编码规则/">编码规则</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/计算机的组成部分/">计算机的组成部分</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/代理模式/">代理模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/原型模式/">原型模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/外观模式/">外观模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/工厂方法模式/">工厂方法模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/建造者模式/">建造者模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/模板方法模式/">模板方法模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/策略模式/">策略模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/简单工厂模式/">简单工厂模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/装饰模式/">装饰模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/设计原则/">设计原则</a><span class="category-list-count">1</span></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/强制转换/">强制转换</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">tagcloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/强制转换/" style="font-size: 10px;">强制转换</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">archive_a</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">recent_posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/03/21/Linux的文件系统/">Linux的文件系统</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/19/算法和算法的评价/">算法和算法的评价</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/19/数据结构基础知识/">数据结构基础知识</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/19/计算机的主要组成部分/">计算机的主要组成部分</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/19/操作系统的基础知识/">操作系统的基础知识</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 滕云(Catherine)<br>
+      电话 13920041397 <br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/myself" class="mobile-nav-link">了解我</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
