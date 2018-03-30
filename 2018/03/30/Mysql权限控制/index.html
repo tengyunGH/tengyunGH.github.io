@@ -7,16 +7,25 @@
   
   <title>The Marvellous World!</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这是我的个人网站，主要发布一些我的工作生活经历">
-<meta property="og:type" content="website">
-<meta property="og:title" content="The Marvellous World!">
-<meta property="og:url" content="http://yoursite.com/categories/算法/index.html">
+  <meta name="description" content="今天连接一个数据库的时候，突然对使用的Navicat有点好奇，以前只知道建个数据库，今天来了解一下一般就这么建立一个远程连接，或者一个本地连接，我现在的理解是，每个连接里面可以建立多个数据库，本地连接对应自己本机的数据库，可以建立多个本地连接，但是端口号一样，主机名也一样，你操作的实际上是一个东西，我尝试建立了一个tengyun本地连接和mysql0107本地连接，在任意一个里面新建一个数据库，并">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mysql权限控制">
+<meta property="og:url" content="http://yoursite.com/2018/03/30/Mysql权限控制/index.html">
 <meta property="og:site_name" content="The Marvellous World!">
-<meta property="og:description" content="这是我的个人网站，主要发布一些我的工作生活经历">
+<meta property="og:description" content="今天连接一个数据库的时候，突然对使用的Navicat有点好奇，以前只知道建个数据库，今天来了解一下一般就这么建立一个远程连接，或者一个本地连接，我现在的理解是，每个连接里面可以建立多个数据库，本地连接对应自己本机的数据库，可以建立多个本地连接，但是端口号一样，主机名也一样，你操作的实际上是一个东西，我尝试建立了一个tengyun本地连接和mysql0107本地连接，在任意一个里面新建一个数据库，并">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://p3o1rymh9.bkt.clouddn.com/MySql-Grant1.png">
+<meta property="og:image" content="http://p3o1rymh9.bkt.clouddn.com/MySql-Grant2.png">
+<meta property="og:image" content="http://p3o1rymh9.bkt.clouddn.com/MySql-Grant3.png">
+<meta property="og:image" content="http://p3o1rymh9.bkt.clouddn.com/MySql-Grant4.png">
+<meta property="og:image" content="http://p3o1rymh9.bkt.clouddn.com/MySql-Grant5.png">
+<meta property="og:image" content="http://p3o1rymh9.bkt.clouddn.com/MySql-Grant6.png">
+<meta property="og:image" content="http://p3o1rymh9.bkt.clouddn.com/MySql-Grant7.png">
+<meta property="og:updated_time" content="2018-03-30T14:19:36.813Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="The Marvellous World!">
-<meta name="twitter:description" content="这是我的个人网站，主要发布一些我的工作生活经历">
+<meta name="twitter:title" content="Mysql权限控制">
+<meta name="twitter:description" content="今天连接一个数据库的时候，突然对使用的Navicat有点好奇，以前只知道建个数据库，今天来了解一下一般就这么建立一个远程连接，或者一个本地连接，我现在的理解是，每个连接里面可以建立多个数据库，本地连接对应自己本机的数据库，可以建立多个本地连接，但是端口号一样，主机名也一样，你操作的实际上是一个东西，我尝试建立了一个tengyun本地连接和mysql0107本地连接，在任意一个里面新建一个数据库，并">
+<meta name="twitter:image" content="http://p3o1rymh9.bkt.clouddn.com/MySql-Grant1.png">
   
     <link rel="alternate" href="/atom.xml" title="The Marvellous World!" type="application/atom+xml">
   
@@ -62,33 +71,67 @@
 
         <section id="main">
 
+<article id="post-Mysql权限控制" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/30/Mysql权限控制/" class="article-date">
+  <time datetime="2018-03-30T12:51:17.000Z" itemprop="datePublished">2018-03-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/MySql/">MySql</a>►<a class="article-category-link" href="/categories/MySql/权限控制/">权限控制</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Mysql权限控制
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          <p>今天连接一个数据库的时候，突然对使用的Navicat有点好奇，以前只知道建个数据库，今天来了解一下<br><img width="500px" height="700px" src="http://p3o1rymh9.bkt.clouddn.com/MySql-Grant1.png"><br>一般就这么建立一个远程连接，或者一个本地连接，我现在的理解是，每个连接里面可以建立多个数据库，本地连接对应自己本机的数据库，可以建立多个本地连接，但是端口号一样，主机名也一样，你操作的实际上是一个东西，我尝试建立了一个tengyun本地连接和mysql0107本地连接，在任意一个里面新建一个数据库，并建立表格，在另一个连接里都会显示出来。好像这么简单的一个事我还写了这么多字。</p>
+<p>在一个连接里面，以root身份登录之后，有四个基本数据库<br><img width="500px" height="700px" src="http://p3o1rymh9.bkt.clouddn.com/MySql-Grant2.png"><br>这四个，据说是存放这个连接的一些基本配置，比如这个连接有哪些用户，在mysql数据库的user表里面，存放了用户名、以及该用户的所有权限还有密码什么的<br><img width="500px" height="700px" src="http://p3o1rymh9.bkt.clouddn.com/MySql-Grant3.png"><br><img width="500px" height="700px" src="http://p3o1rymh9.bkt.clouddn.com/MySql-Grant4.png"><br><img width="500px" height="700px" src="http://p3o1rymh9.bkt.clouddn.com/MySql-Grant5.png"><br><img width="500px" height="700px" src="http://p3o1rymh9.bkt.clouddn.com/MySql-Grant6.png"><br><img width="500px" height="700px" src="http://p3o1rymh9.bkt.clouddn.com/MySql-Grant7.png"><br>还有一部分没有你看目前我的这个本地连接有root用户，还有两个我现在不认识，看列名，priv，就是privilege，权限，的缩写了，所以这每一列大多都表示一种权限</p>
+<p>MySql为了安全，用户默认只允许在本地登录，但是要远程登录的时候，<strong>有 设 置</strong></p>
+<p>1、一般，我们需要允许root用户在任何地方都可以远程登录，并具有任何数据库的任何操作权限<br>怎么设置呢？<br>需要在本机先使用root登录mysql —&gt;   mysql -u root -p “yourPassword”;<br>然后授权 —&gt; grant all privileges on <em>.</em> to ‘root’@’%’ identified by ‘yourPassword’ with grant option;<br>最后重载授权表 —&gt;  flush privilege;<br>退出吧  exit</p>
+<p>2、设置root用户可以在一个特定的IP进行远程的登录，并具有所有库的所有权限<br>重复1中的步骤，只需要在授权的地方改一下<br>grant all privileges on <em>.</em> to ‘root’@’192.45.67.89’ identified by ‘yourPassword’ with grant option;<br>如果说不是授予所有的权限，那就改成<br>grant select,insert,update,delete on <em>.</em> to ‘root’@’192.45.67.89’ identified by ‘yourPassword’ with grant option;</p>
+<p>3、删除用户的权限  这个需要revoke命令  按照1和2里面，root先登录mysql，然后GRANT select，insert，update，delete ON TEST-DB TO test-user@”172.16.16.152” IDENTIFIED BY “youpassword”; 再进行删除授权操作： REVOKE all on TEST-DB from test-user; <em>**</em>注：该操作只是清除了用户对于TEST-DB的相关授权权限，但是这个“test-user”这个用户还是存在。 最后从用户表内清除用户： DELETE FROM user WHERE user=”test-user”; 重载授权表： FLUSH PRIVILEGES; 退出mysql数据库： exit</p>
+<p>对于一个用户来说，有有哪些权限呢？我习惯小写<br>全局管理权限：<br>1、FILE: 在MySQL服务器上读写文件。<br>2、PROCESS: 显示或杀死属于其它用户的服务线程。<br>3、RELOAD: 重载访问控制表，刷新日志等。<br>4、SHUTDOWN: 关闭MySQL服务。 </p>
+<p>数据库/数据表/数据列权限：<br>1、ALTER: 修改已存在的数据表(例如增加/删除列)和索引。<br>2、CREATE: 建立新的数据库或数据表。<br>3、DELETE: 删除表的记录。<br>4、DROP: 删除数据表或数据库。<br>5、INDEX: 建立或删除索引。<br>6、INSERT: 增加表的记录。<br>7、SELECT: 显示/搜索表的记录。<br>8、UPDATE: 修改表中已存在的记录。</p>
+<p> 特别的权限：<br> 1、ALL: 允许做任何事(和root一样)。<br> 2、USAGE: 只允许登录–其它什么也不允许做</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/03/30/Mysql权限控制/" data-id="cjfe1bhq5000818vacj6m2llz" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/03/27/各种排序/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">各种排序</div>
+    </a>
+  
+</nav>
+
+  
+</article>
 
 
-
-<div class="archive">
-	
-	
-		
-		
-			<h3 class="year">2018</h3>
-			
-		
-		<div class="archive_item">
-			<span class="date">2018-03-27</span>
-			<a class="title" href="/2018/03/27/各种排序/">各种排序</a>
-		</div>
-	
-		
-		
-		<div class="archive_item">
-			<span class="date">2018-03-13</span>
-			<a class="title" href="/2018/03/13/深度优先算法实例/">深度优先算法实例</a>
-		</div>
-	
-	<div class="pagination">
-		
-	</div>
-</div></section>
+</section>
 
         
           

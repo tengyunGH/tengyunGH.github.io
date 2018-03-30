@@ -67,6 +67,59 @@
 
     
     
+<article id="post-Mysql权限控制" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/30/Mysql权限控制/" class="article-date">
+  <time datetime="2018-03-30T12:51:17.000Z" itemprop="datePublished">2018-03-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/MySql/">MySql</a>►<a class="article-category-link" href="/categories/MySql/权限控制/">权限控制</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/30/Mysql权限控制/">Mysql权限控制</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          <p>今天连接一个数据库的时候，突然对使用的Navicat有点好奇，以前只知道建个数据库，今天来了解一下<br><img width="500px" height="700px" src="http://p3o1rymh9.bkt.clouddn.com/MySql-Grant1.png"><br>一般就这么建立一个远程连接，或者一个本地连接，我现在的理解是，每个连接里面可以建立多个数据库，本地连接对应自己本机的数据库，可以建立多个本地连接，但是端口号一样，主机名也一样，你操作的实际上是一个东西，我尝试建立了一个tengyun本地连接和mysql0107本地连接，在任意一个里面新建一个数据库，并建立表格，在另一个连接里都会显示出来。好像这么简单的一个事我还写了这么多字。</p>
+<p>在一个连接里面，以root身份登录之后，有四个基本数据库<br><img width="500px" height="700px" src="http://p3o1rymh9.bkt.clouddn.com/MySql-Grant2.png"><br>这四个，据说是存放这个连接的一些基本配置，比如这个连接有哪些用户，在mysql数据库的user表里面，存放了用户名、以及该用户的所有权限还有密码什么的<br><img width="500px" height="700px" src="http://p3o1rymh9.bkt.clouddn.com/MySql-Grant3.png"><br><img width="500px" height="700px" src="http://p3o1rymh9.bkt.clouddn.com/MySql-Grant4.png"><br><img width="500px" height="700px" src="http://p3o1rymh9.bkt.clouddn.com/MySql-Grant5.png"><br><img width="500px" height="700px" src="http://p3o1rymh9.bkt.clouddn.com/MySql-Grant6.png"><br><img width="500px" height="700px" src="http://p3o1rymh9.bkt.clouddn.com/MySql-Grant7.png"><br>还有一部分没有你看目前我的这个本地连接有root用户，还有两个我现在不认识，看列名，priv，就是privilege，权限，的缩写了，所以这每一列大多都表示一种权限</p>
+<p>MySql为了安全，用户默认只允许在本地登录，但是要远程登录的时候，<strong>有 设 置</strong></p>
+<p>1、一般，我们需要允许root用户在任何地方都可以远程登录，并具有任何数据库的任何操作权限<br>怎么设置呢？<br>需要在本机先使用root登录mysql —&gt;   mysql -u root -p “yourPassword”;<br>然后授权 —&gt; grant all privileges on <em>.</em> to ‘root’@’%’ identified by ‘yourPassword’ with grant option;<br>最后重载授权表 —&gt;  flush privilege;<br>退出吧  exit</p>
+<p>2、设置root用户可以在一个特定的IP进行远程的登录，并具有所有库的所有权限<br>重复1中的步骤，只需要在授权的地方改一下<br>grant all privileges on <em>.</em> to ‘root’@’192.45.67.89’ identified by ‘yourPassword’ with grant option;<br>如果说不是授予所有的权限，那就改成<br>grant select,insert,update,delete on <em>.</em> to ‘root’@’192.45.67.89’ identified by ‘yourPassword’ with grant option;</p>
+<p>3、删除用户的权限  这个需要revoke命令  按照1和2里面，root先登录mysql，然后GRANT select，insert，update，delete ON TEST-DB TO test-user@”172.16.16.152” IDENTIFIED BY “youpassword”; 再进行删除授权操作： REVOKE all on TEST-DB from test-user; <em>**</em>注：该操作只是清除了用户对于TEST-DB的相关授权权限，但是这个“test-user”这个用户还是存在。 最后从用户表内清除用户： DELETE FROM user WHERE user=”test-user”; 重载授权表： FLUSH PRIVILEGES; 退出mysql数据库： exit</p>
+<p>对于一个用户来说，有有哪些权限呢？我习惯小写<br>全局管理权限：<br>1、FILE: 在MySQL服务器上读写文件。<br>2、PROCESS: 显示或杀死属于其它用户的服务线程。<br>3、RELOAD: 重载访问控制表，刷新日志等。<br>4、SHUTDOWN: 关闭MySQL服务。 </p>
+<p>数据库/数据表/数据列权限：<br>1、ALTER: 修改已存在的数据表(例如增加/删除列)和索引。<br>2、CREATE: 建立新的数据库或数据表。<br>3、DELETE: 删除表的记录。<br>4、DROP: 删除数据表或数据库。<br>5、INDEX: 建立或删除索引。<br>6、INSERT: 增加表的记录。<br>7、SELECT: 显示/搜索表的记录。<br>8、UPDATE: 修改表中已存在的记录。</p>
+<p> 特别的权限：<br> 1、ALL: 允许做任何事(和root一样)。<br> 2、USAGE: 只允许登录–其它什么也不允许做</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/03/30/Mysql权限控制/" data-id="cjfe1bhq5000818vacj6m2llz" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+    
+    
 <article id="post-各种排序" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/03/27/各种排序/" class="article-date">
@@ -114,7 +167,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/27/各种排序/" data-id="cjfdy4jum000kf0vavlc3cl38" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/27/各种排序/" data-id="cjfe1bhs6000o18va7oid1611" class="article-share-link">Share</a>
       
       
     </footer>
@@ -164,7 +217,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/21/Linux的文件系统/" data-id="cjfdy4jqa0000f0vaqnv8upbm" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/21/Linux的文件系统/" data-id="cjfe1bhpl000518vabz2xycgv" class="article-share-link">Share</a>
       
       
     </footer>
@@ -214,7 +267,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/19/算法和算法的评价/" data-id="cjfdy4jvx0014f0va4ut3m4fw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/19/算法和算法的评价/" data-id="cjfe1bhtb001918vawj12zpua" class="article-share-link">Share</a>
       
       
     </footer>
@@ -266,7 +319,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/19/数据结构基础知识/" data-id="cjfdy4jv2000qf0va35t18g50" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/19/数据结构基础知识/" data-id="cjfe1bhsx001118vac9ec4gge" class="article-share-link">Share</a>
       
       
     </footer>
@@ -311,7 +364,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/19/计算机的主要组成部分/" data-id="cjfdy4jvx0010f0vae20juxbn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/19/计算机的主要组成部分/" data-id="cjfe1bhte001a18varubrytap" class="article-share-link">Share</a>
       
       
     </footer>
@@ -355,7 +408,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/19/操作系统的基础知识/" data-id="cjfdy4jum000mf0va3n02m1n8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/19/操作系统的基础知识/" data-id="cjfe1bhst001018va7do70s8x" class="article-share-link">Share</a>
       
       
     </footer>
@@ -405,7 +458,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/18/学习linux的必备基础知识/" data-id="cjfdy4jvi000tf0vafdxtjkjj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/18/学习linux的必备基础知识/" data-id="cjfe1bhsk000v18vatd386ypc" class="article-share-link">Share</a>
       
       
     </footer>
@@ -454,7 +507,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/18/java中的Volatile关键字/" data-id="cjfdy4jt40006f0valz1narr4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/18/java中的Volatile关键字/" data-id="cjfe1bhqf000b18vaz46wtuzi" class="article-share-link">Share</a>
       
       
     </footer>
@@ -503,56 +556,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/17/字符编码规则的学习/" data-id="cjfdy4jum000jf0va14ubpzym" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-
-    
-    
-<article id="post-java中的输入输出流学习" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/03/14/java中的输入输出流学习/" class="article-date">
-  <time datetime="2018-03-14T03:36:20.000Z" itemprop="datePublished">2018-03-14</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/java/">java</a>►<a class="article-category-link" href="/categories/java/输入输出流/">输入输出流</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/14/java中的输入输出流学习/">java中的输入输出流学习</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>最近写一个处理字符串的程序，读取字符串把我卡了半天，刚学Java的时候，输入输出流就很模糊，现在来补下基础吧<br>基本概念：<br>1、流是指一组有顺序的、有起点和终点的<strong>字节集合</strong>，是一种抽象概念<br>2、流对程序而言是有方向的，由外部到内部的数据流称为输入流，由程序到外部的流称为输出流<br>3、一个流要么是输入流，要么是输出流，只能有一种身份。对输入流，只能读，对输出流只能写<br>4、对流操作的最小单位是字节，也就是每次只能读或写一个字节，为了提高效率，java将一块内存空间设计为<strong>缓冲区</strong>，将传送的数据都放这里，然后可以一次性的读/写若干字节的数据。缓冲区中的流叫<strong>缓冲流</strong><br>5、当程序读输入流的时候，程序实际从缓冲区中读取，当缓冲区为空时，系统会从相关设备读取数据充满缓冲区。<br>6、当程序写输出流的时候，先写入缓冲区，当缓冲区满时，系统将数据全部发送到相应的设备，如果说，还没满就要发送，称为<strong>立即传输</strong>(flush)<br>7、流按照流中元素的不同分为两类，一类是字节流（每次操作一字节），一类是字符流（每次操作一个字符，2字节的unicode码）<br>
-        
-          <p class="article-more-link">
-            <a href="/2018/03/14/java中的输入输出流学习/#more">了解更多</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/14/java中的输入输出流学习/" data-id="cjfdy4jtr000bf0va9ompqql2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/17/字符编码规则的学习/" data-id="cjfe1bhsf000s18vakt7316p6" class="article-share-link">Share</a>
       
       
     </footer>
@@ -581,7 +585,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/">IDEA</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/SpringBoot/">SpringBoot</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/Tomcat/">Tomcat</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/基础知识/">基础知识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/文件系统/">文件系统</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/java8/">java8</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/java8/Lambda表达式/">Lambda表达式</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/volatile/">volatile</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/包结构/">包结构</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/异常的使用/">异常的使用</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/数组/">数组</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/输入输出流/">输入输出流</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/重写和重载/">重写和重载</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/language/">language</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/language/MD语法/">MD语法</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统/">操作系统</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统/基本知识/">基本知识</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/">数据结构</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/基础知识/">基础知识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/算法概念/">算法概念</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/算法/排序算法/">排序算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/深度优先/">深度优先</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/编码规则/">编码规则</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/计算机的组成部分/">计算机的组成部分</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/代理模式/">代理模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/原型模式/">原型模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/外观模式/">外观模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/工厂方法模式/">工厂方法模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/建造者模式/">建造者模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/模板方法模式/">模板方法模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/策略模式/">策略模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/简单工厂模式/">简单工厂模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/装饰模式/">装饰模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/设计原则/">设计原则</a><span class="category-list-count">1</span></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/">IDEA</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/SpringBoot/">SpringBoot</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/Tomcat/">Tomcat</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/基础知识/">基础知识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/文件系统/">文件系统</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySql/">MySql</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/MySql/权限控制/">权限控制</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/java8/">java8</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/java8/Lambda表达式/">Lambda表达式</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/volatile/">volatile</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/包结构/">包结构</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/异常的使用/">异常的使用</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/数组/">数组</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/输入输出流/">输入输出流</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/重写和重载/">重写和重载</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/language/">language</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/language/MD语法/">MD语法</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统/">操作系统</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统/基本知识/">基本知识</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/">数据结构</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/基础知识/">基础知识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/算法概念/">算法概念</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/算法/排序算法/">排序算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/深度优先/">深度优先</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/编码规则/">编码规则</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/计算机的组成部分/">计算机的组成部分</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/代理模式/">代理模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/原型模式/">原型模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/外观模式/">外观模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/工厂方法模式/">工厂方法模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/建造者模式/">建造者模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/模板方法模式/">模板方法模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/策略模式/">策略模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/简单工厂模式/">简单工厂模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/装饰模式/">装饰模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/设计原则/">设计原则</a><span class="category-list-count">1</span></li></ul></li></ul>
     </div>
   </div>
 
@@ -610,7 +614,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">archive_a</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">31</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">32</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -621,6 +625,10 @@
     <h3 class="widget-title">recent_posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/03/30/Mysql权限控制/">Mysql权限控制</a>
+          </li>
         
           <li>
             <a href="/2018/03/27/各种排序/">各种排序</a>
@@ -636,10 +644,6 @@
         
           <li>
             <a href="/2018/03/19/数据结构基础知识/">数据结构基础知识</a>
-          </li>
-        
-          <li>
-            <a href="/2018/03/19/计算机的主要组成部分/">计算机的主要组成部分</a>
           </li>
         
       </ul>
