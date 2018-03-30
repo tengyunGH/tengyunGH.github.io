@@ -1263,3 +1263,22 @@ pre .javascript .function {
   margin-right: 5px;
   display: inline-block;
 }
+.archive {
+  margin: 50px 10px;
+  background-color: #eee;
+  text-align: center;
+}
+.archive h3 {
+  margin: 10px;
+  font: sans-serif, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue";
+}
+.archive a {
+  margin: 10px;
+  text-decoration: none;
+  display: inline-block;
+  width: 150px;
+  font: 16px;
+}
+.pagination {
+  margin: 10px;
+}
