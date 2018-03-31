@@ -67,6 +67,152 @@
 
     
     
+<article id="post-java中的Class类" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/31/java中的Class类/" class="article-date">
+  <time datetime="2018-03-31T07:26:08.000Z" itemprop="datePublished">2018-03-31</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>►<a class="article-category-link" href="/categories/java/Class的学习/">Class的学习</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/31/java中的Class类/">java中的Class类</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          <p>学一下子 Class对象<br>1、java有个类对象，是一个<strong>类</strong> ，名字是Class，<strong>封装类型的类</strong>（好好体会这句话）<br>2、JVM在加载某一个类或者接口，比如是MyClass的时候，会自动创建一个Class类的对象（ClassLoader生成），这个对象代表了MyClass类或接口的抽象表示（类型）<br>3、Class这个类的实例呢，是JVM根据咱们自己写的class（Myclass）建立这个类的Class实例<br>就是说，Class和Myclass是平级的，Class的每个实例一一对应着咱们自己写的类，通过Class实例可以创建某个类的对象，也可以通过某个类找到JVM创建的这个类的Class实例</p>
+<p>我现在自己写了一个Myclass.java<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Myclass</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Myclass</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line">Myclass my = <span class="keyword">new</span> Myclass();</span><br></pre></td></tr></table></figure></p>
+<h4 id="如何获得JVM创建的这个类的Class对象呢，有三种方法"><a href="#如何获得JVM创建的这个类的Class对象呢，有三种方法" class="headerlink" title="如何获得JVM创建的这个类的Class对象呢，有三种方法"></a>如何获得JVM创建的这个类的Class对象呢，有三种方法</h4><p>1）每个类都隐藏了一个静态变量class，该变量就是存放这个类的Class实例<br><code>Class class1 = Myclass.class;</code><br>2）通过getter方法获取1）中的静态实例<br><code>Class class2 = my.getClass();</code><br>3）通过Class的静态方法forName<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">	Class class3 = Class.forName(<span class="string">"com.tengyun.zhy.Myclass"</span>);<span class="comment">//包名 类名</span></span><br><span class="line">&#125; <span class="keyword">catch</span>(ClassNotFoundException e) &#123;</span><br><span class="line">	e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>总结：每个类相应的Class对象是独一无二的，是类加载器生成<br>加载某个类进内存的时候会初始化他的静态块，创建某个类的实例的时候，首先要看他是否在内存中，不在的话，先加载进来，再初始化他的非静态块，生成一个实例。<br>所以，若只在程序中有Class child = Class.forName(“Child”);</p>
+<h4 id="如何通过这个Class实例创建相应的类的对象呢"><a href="#如何通过这个Class实例创建相应的类的对象呢" class="headerlink" title="如何通过这个Class实例创建相应的类的对象呢"></a>如何通过这个Class实例创建相应的类的对象呢</h4><p>Class class1 = Myclass.class;//先获取这个类的Class对象<br>Myclass myclass2 = (Mycalss)class1.newInstance();//通过Class对象的newInstance()方法<br>注意：这种方法的使用前提是 Myclass这个类要有一个无参构造函数，否则代码执行时会直接crash掉，因为newInstance方法会调用类Myclass的无参构造方法。而java又是如果显示定义了有参构造函数，那么就不会提供默认的无参构造函数，你还得自己写一个无参的。</p>
+<p>实验的时候发现经过javac编译成.class文件后，才会生成这个类的Class对象，因为，如果我没有编译这个类，在Class.forName(“Child”);获取Class实例的时候会抛出异常ClassNotFounException，编译有.class文件后就可以获得了，所以应该是类加载器根据.class文件生成这个类的Class对象。加载类进入内存的时候，会初始化类的静态块，而且是先初始化父类的，再初始化子类的。<br>而在用B b = new B(); Class bb = b.getClass();的时候</p>
+<p>源码  打开eclipse看一下 或者这篇文章也有介绍<br><a href="http://blog.csdn.net/bingduanlbd/article/details/8424243/" target="_blank" rel="noopener">http://blog.csdn.net/bingduanlbd/article/details/8424243/</a><br>1、声明<br>public final class Class<t> implements<br>java.io.Serializable, GenericDeclaration, Type, AnnotatedElement {}</t></p>
+<p>是个final的泛型类，实现了很多接口</p>
+<p>2、构造方法 ：私有的，只能由JVM创建Class对象<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">     * Private constructor. Only the Java Virtual Machine creates Class objects.</span></span><br><span class="line"><span class="comment">     * This constructor is not used and prevents the default constructor being</span></span><br><span class="line"><span class="comment">     * generated.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Class</span><span class="params">(ClassLoader loader)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// Initialize final field for classLoader.  The initialization value of non-null</span></span><br><span class="line">        <span class="comment">// prevents future JIT optimizations from assuming this final field is null.</span></span><br><span class="line">        classLoader = loader;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这里面的 private final ClassLoader classLoader；是个私有最终的ClassLoader对象，只能被初始化一次，而且必须在构造函数中完成初始化。</p>
+<p>3、<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">native</span> <span class="keyword">void</span> <span class="title">registerNatives</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure></p>
+<p>4、<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (isInterface() ? <span class="string">"interface "</span> : (isPrimitive() ? <span class="string">""</span> : <span class="string">"class "</span>))</span><br><span class="line">            + getName();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/03/31/java中的Class类/" data-id="cjff4mco700080cvaj2ue1jgi" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+    
+    
+<article id="post-Sql中的truncate、drop和delete" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/31/Sql中的truncate、drop和delete/" class="article-date">
+  <time datetime="2018-03-31T02:24:46.000Z" itemprop="datePublished">2018-03-31</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/SQL/">SQL</a>►<a class="article-category-link" href="/categories/SQL/delete-truncate-drop/">delete truncate drop</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/31/Sql中的truncate、drop和delete/">Sql中的truncate、drop和delete</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          <p><a href="https://www.cnblogs.com/8765h/archive/2011/11/25/2374167.html" target="_blank" rel="noopener">https://www.cnblogs.com/8765h/archive/2011/11/25/2374167.html</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/03/31/Sql中的truncate、drop和delete/" data-id="cjff4mco100060cvagtv6trvy" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+    
+    
+<article id="post-MySql的运行原理及架构" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/31/MySql的运行原理及架构/" class="article-date">
+  <time datetime="2018-03-31T01:20:45.000Z" itemprop="datePublished">2018-03-31</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/MySql/">MySql</a>►<a class="article-category-link" href="/categories/MySql/运行原理及架构/">运行原理及架构</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/31/MySql的运行原理及架构/">MySql的运行原理及架构</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          <p><a href="https://blog.csdn.net/xujingzhong0077/article/details/53378838" target="_blank" rel="noopener">https://blog.csdn.net/xujingzhong0077/article/details/53378838</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/03/31/MySql的运行原理及架构/" data-id="cjff4mcou000c0cvabk64p79n" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+    
+    
 <article id="post-Mysql权限控制" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/03/30/Mysql权限控制/" class="article-date">
@@ -94,19 +240,30 @@
     <div class="article-entry" itemprop="articleBody">
       
           <p>今天连接一个数据库的时候，突然对使用的Navicat有点好奇，以前只知道建个数据库，今天来了解一下<br><img width="500px" height="700px" src="http://p3o1rymh9.bkt.clouddn.com/MySql-Grant1.png"><br>一般就这么建立一个远程连接，或者一个本地连接，我现在的理解是，每个连接里面可以建立多个数据库，本地连接对应自己本机的数据库，可以建立多个本地连接，但是端口号一样，主机名也一样，你操作的实际上是一个东西，我尝试建立了一个tengyun本地连接和mysql0107本地连接，在任意一个里面新建一个数据库，并建立表格，在另一个连接里都会显示出来。好像这么简单的一个事我还写了这么多字。</p>
-<p>在一个连接里面，以root身份登录之后，有四个基本数据库<br><img width="500px" height="700px" src="http://p3o1rymh9.bkt.clouddn.com/MySql-Grant2.png"><br>这四个，据说是存放这个连接的一些基本配置，比如这个连接有哪些用户，在mysql数据库的user表里面，存放了用户名、以及该用户的所有权限还有密码什么的<br><img width="500px" height="700px" src="http://p3o1rymh9.bkt.clouddn.com/MySql-Grant3.png"><br><img width="500px" height="700px" src="http://p3o1rymh9.bkt.clouddn.com/MySql-Grant4.png"><br><img width="500px" height="700px" src="http://p3o1rymh9.bkt.clouddn.com/MySql-Grant5.png"><br><img width="500px" height="700px" src="http://p3o1rymh9.bkt.clouddn.com/MySql-Grant6.png"><br><img width="500px" height="700px" src="http://p3o1rymh9.bkt.clouddn.com/MySql-Grant7.png"><br>还有一部分没有你看目前我的这个本地连接有root用户，还有两个我现在不认识，看列名，priv，就是privilege，权限，的缩写了，所以这每一列大多都表示一种权限</p>
-<p>MySql为了安全，用户默认只允许在本地登录，但是要远程登录的时候，<strong>有 设 置</strong></p>
-<p>1、一般，我们需要允许root用户在任何地方都可以远程登录，并具有任何数据库的任何操作权限<br>怎么设置呢？<br>需要在本机先使用root登录mysql —&gt;   mysql -u root -p “yourPassword”;<br>然后授权 —&gt; grant all privileges on <em>.</em> to ‘root’@’%’ identified by ‘yourPassword’ with grant option;<br>最后重载授权表 —&gt;  flush privilege;<br>退出吧  exit</p>
+<h4 id="先看下怎么创建用户吧"><a href="#先看下怎么创建用户吧" class="headerlink" title="先看下怎么创建用户吧"></a>先看下怎么创建用户吧</h4><p>首先，我们在安装mysql的时候，就已经创建了root用户，也可以在那时候创建其他的用户，由于我已经安装过了，这里偷偷放一张网上的图片<br><img width="800px" height="600px" src="http://p3o1rymh9.bkt.clouddn.com/MySql-createUsers3.jpg"></p>
+<p>首先你要以root用户登录吧，在navicat里面建立一个连接的时候，就已经包含了登录的用户的信息，如果是在自己的命令提示符里面登录MySql的话，就是 mysql -u root -p回车然后输入你的root用户密码<br><img width="500px" height="300px" src="http://p3o1rymh9.bkt.clouddn.com/MySql-login1.png"><br>登录之后开始以root用户的身份创建其他用户<br>命令：create user ‘1’@’2’ identified by ‘3’<br>这里面<br>1 是你创建的用户名<br>2 是创建的用户可以在哪个主机上登录，本地的就是localhost，也可以是某个ip地址，如果想让这个用户从任意远程主机登录，可以使用通配符%来匹配<br>3 是这个用户的登录密码，为空的话就不需要登录密码了<br>比如说我现在创建一个tengyun用户，允许在任何地方远程登录，密码是tengyun吧<br>create user ‘tengyun’@’%’ identified by ‘tengyun’;  （注意一定要有分号作为结束符）<br><img width="500px" height="300px" src="http://p3o1rymh9.bkt.clouddn.com/MySql-createUsers1.png"><br><img width="600px" height="250px" src="http://p3o1rymh9.bkt.clouddn.com/MySql-createUsers2.png"></p>
+<p>在一个连接里面，以root身份登录之后，有四个基本数据库<br><img width="500px" height="700px" src="http://p3o1rymh9.bkt.clouddn.com/MySql-Grant2.png"><br>这四个，据说是存放这个连接的一些基本配置，比如这个连接有哪些用户，在mysql数据库的user表里面，存放了用户名、以及该用户的所有权限还有密码什么的<br><img width="800px" height="500px" src="http://p3o1rymh9.bkt.clouddn.com/MySql-Grant3.png"><br><img width="800px" height="500px" src="http://p3o1rymh9.bkt.clouddn.com/MySql-Grant4.png"><br><img width="800px" height="500px" src="http://p3o1rymh9.bkt.clouddn.com/MySql-Grant5.png"><br><img width="800px" height="500px" src="http://p3o1rymh9.bkt.clouddn.com/MySql-Grant6.png"><br><img width="800px" height="500px" src="http://p3o1rymh9.bkt.clouddn.com/MySql-Grant7.png"><br>你看目前我的这个本地连接有root用户，还有两个我现在不认识，看列名，priv，就是privilege，权限，的缩写了，所以这每一列大多都表示一种权限</p>
+<h4 id="MySql中的用户权限管理有："><a href="#MySql中的用户权限管理有：" class="headerlink" title="MySql中的用户权限管理有："></a>MySql中的用户权限管理有：</h4><p>1、某用户可以访问哪些库和表<br>2、某用户可以对哪些表执行select、create、delete、alert等等操作<br>3、某用户可以在哪里登录<br>4、某用户是否可以对别的用户授权</p>
+<p>看下授权的命令格式<br>grant 1 on 2.3 to ‘4’@’5’ identified by ‘6’ with grant option<br>1 是权限名称，可以是all privileges、create、index等等好多权限的名称，可以看mysql的官网<a href="https://dev.mysql.com/doc/refman/5.7/en/privileges-provided.html" target="_blank" rel="noopener">https://dev.mysql.com/doc/refman/5.7/en/privileges-provided.html</a> ，下面我把那个表放这里了<br>2 和 3 就是你授权的用户可以访问哪些库的哪些表 比如zhy库里的user表，就是zhy.user，如果可以访问所有库里的所有表，用*，来表示，就是*.*<br>‘4’@’5’ 就是被授权的用户，用户名已经该用户可以在哪里登录 例如’tengyun’@’%’  表示tengyun这个用户可以在任何地方登录<br>6 就是被授权的这个用户的密码<br>with grant option 表示被授权的用户可以将自己的权限授予其他用户</p>
+<p>所以你要是想给某个用户授权，你还得知道这个用户的一些信息才行。</p>
+<p>MySql为了安全，用户默认只允许在本地登录，但是要远程登录的时候，你就要给他授权了。<br>记住对所有用户的权限做了操作之后都要刷新权限，将权限信息从内存写进数据库。 flush privileges;这里面privileges不是表，应该就是一个命令吧。</p>
+<h4 id="对root用户的授权"><a href="#对root用户的授权" class="headerlink" title="对root用户的授权"></a>对root用户的授权</h4><p>1、一般，我们需要允许root用户在任何地方都可以远程登录，并具有任何数据库的任何操作权限<br>怎么设置呢？<br>需要在本机先使用root登录mysql —&gt;   mysql -u root -p “yourPassword”;<br>然后授权 —&gt; grant all privileges on <em>.</em> to ‘root’@’%’ identified by ‘yourPassword’ with grant option;<br>最后重载授权表 —&gt;  flush privilege;<br>退出吧  exit<br>这样的话，就是自己给自己授权吧，如果说，你买了个服务器，把mysql装那上面了，那怎么在本机用root登录呢？你只能是远程的，据说可以使用linux来搭建，目前这里还没搞清楚，等我再请教一下再来写写。所以这里的问题是：如何将mysql数据库部署在阿里云上？</p>
 <p>2、设置root用户可以在一个特定的IP进行远程的登录，并具有所有库的所有权限<br>重复1中的步骤，只需要在授权的地方改一下<br>grant all privileges on <em>.</em> to ‘root’@’192.45.67.89’ identified by ‘yourPassword’ with grant option;<br>如果说不是授予所有的权限，那就改成<br>grant select,insert,update,delete on <em>.</em> to ‘root’@’192.45.67.89’ identified by ‘yourPassword’ with grant option;</p>
-<p>3、删除用户的权限  这个需要revoke命令  按照1和2里面，root先登录mysql，然后GRANT select，insert，update，delete ON TEST-DB TO test-user@”172.16.16.152” IDENTIFIED BY “youpassword”; 再进行删除授权操作： REVOKE all on TEST-DB from test-user; <em>**</em>注：该操作只是清除了用户对于TEST-DB的相关授权权限，但是这个“test-user”这个用户还是存在。 最后从用户表内清除用户： DELETE FROM user WHERE user=”test-user”; 重载授权表： FLUSH PRIVILEGES; 退出mysql数据库： exit</p>
-<p>对于一个用户来说，有有哪些权限呢？我习惯小写<br>全局管理权限：<br>1、FILE: 在MySQL服务器上读写文件。<br>2、PROCESS: 显示或杀死属于其它用户的服务线程。<br>3、RELOAD: 重载访问控制表，刷新日志等。<br>4、SHUTDOWN: 关闭MySQL服务。 </p>
-<p>数据库/数据表/数据列权限：<br>1、ALTER: 修改已存在的数据表(例如增加/删除列)和索引。<br>2、CREATE: 建立新的数据库或数据表。<br>3、DELETE: 删除表的记录。<br>4、DROP: 删除数据表或数据库。<br>5、INDEX: 建立或删除索引。<br>6、INSERT: 增加表的记录。<br>7、SELECT: 显示/搜索表的记录。<br>8、UPDATE: 修改表中已存在的记录。</p>
-<p> 特别的权限：<br> 1、ALL: 允许做任何事(和root一样)。<br> 2、USAGE: 只允许登录–其它什么也不允许做</p>
+<h4 id="查看某个用户的权限"><a href="#查看某个用户的权限" class="headerlink" title="查看某个用户的权限"></a>查看某个用户的权限</h4><p>首先，你还是要以某个用户的身份登录，然后再去查看某个用户的权限<br>show grants </p>
+<h4 id="删除用户的权限"><a href="#删除用户的权限" class="headerlink" title="删除用户的权限"></a>删除用户的权限</h4><p>这个需要revoke命令  按照1和2里面，root先登录mysql<br>比如咱们先授个权吧 grant select，insert，update，delete on someDB.* to ‘someUser’@’%’ identified by ‘password’;<br>删除someUser的所有权限：revoke all on someDB from someUser; 注意了，该操作只是清除了tengyun用户的权限，但是这个‘tengyun’用户还是存在的<br>重载授权表： flush privileges;<br>要是想删除这个用户，那就删了吧 delete from mysql.user where user = ‘tengyun’;<br>退出mysql数据库： exit<br><img width="700px" height="400px" src="http://p3o1rymh9.bkt.clouddn.com/MySql-Grant9.png"></p>
+<p>可以使用 select host,user from mysql.user 来查看mysql有哪些用户，以及他们可以登录的host<br><img width="450px" height="300px" src="http://p3o1rymh9.bkt.clouddn.com/MySql-selectUser1.png"></p>
+<p>4、删除用户<br>除了上面的delete 还有drop可以用<br>drop user ‘tengyun’@’%’;<br><img width="700px" height="400px" src="http://p3o1rymh9.bkt.clouddn.com/MySql-deleteUser1.png"></p>
+<h4 id="查看某个用户有哪些权限"><a href="#查看某个用户有哪些权限" class="headerlink" title="查看某个用户有哪些权限"></a>查看某个用户有哪些权限</h4><p>show grants for ‘tengyun’@’%’;<br><img width="1000px" height="230px" src="http://p3o1rymh9.bkt.clouddn.com/MySql-ShowPriv.png"></p>
+<h4 id="权限有哪些呢？"><a href="#权限有哪些呢？" class="headerlink" title="权限有哪些呢？"></a>权限有哪些呢？</h4><p>全局管理权限：<br>1、file: 在MySQL服务器上读写文件。<br>2、process: 显示或杀死属于其它用户的服务线程。<br>3、reload: 重载访问控制表，刷新日志等。<br>4、shutdown: 关闭MySQL服务。 </p>
+<p>数据库/数据表/数据列权限：<br>1、alert: 修改已存在的数据表(例如增加/删除列)和索引。<br>2、create: 建立新的数据库或数据表。<br>3、delete: 删除表的记录。<br>4、drop: 删除数据表或数据库。<br>5、index: 建立或删除索引。<br>6、insert: 增加表的记录。<br>7、select: 显示/搜索表的记录。<br>8、update: 修改表中已存在的记录。</p>
+<p> 特别的权限：<br> 1、all privileges: 允许做任何事(和root一样)，这里面privileges可写可不写<br> 2、usage: 只允许登录，其它什么也不允许做</p>
+<p> 来 附个权限表吧<br><img width="800px" height="500px" src="http://p3o1rymh9.bkt.clouddn.com/MySql-Grant8.png"></p>
+<p>还有一些 其他的操作，这里也来写一下吧<br>用户重命名：rename user ‘tengyun’@’%’ to ‘ty’@’%’;<br>修改密码：</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/30/Mysql权限控制/" data-id="cjfe1bhq5000818vacj6m2llz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/30/Mysql权限控制/" data-id="cjff4md0l00210cvaz91d361h" class="article-share-link">Share</a>
       
       
     </footer>
@@ -167,7 +324,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/27/各种排序/" data-id="cjfe1bhs6000o18va7oid1611" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/27/各种排序/" data-id="cjff4mcuk000p0cvagkeas7ba" class="article-share-link">Share</a>
       
       
     </footer>
@@ -217,7 +374,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/21/Linux的文件系统/" data-id="cjfe1bhpl000518vabz2xycgv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/21/Linux的文件系统/" data-id="cjff4mcod00090cva3wubqx4f" class="article-share-link">Share</a>
       
       
     </footer>
@@ -267,7 +424,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/19/算法和算法的评价/" data-id="cjfe1bhtb001918vawj12zpua" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/19/算法和算法的评价/" data-id="cjff4mcxq001b0cva2mai1tye" class="article-share-link">Share</a>
       
       
     </footer>
@@ -319,7 +476,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/19/数据结构基础知识/" data-id="cjfe1bhsx001118vac9ec4gge" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/19/数据结构基础知识/" data-id="cjff4mcwj000y0cvanb25etl3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -364,7 +521,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/19/计算机的主要组成部分/" data-id="cjfe1bhte001a18varubrytap" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/19/计算机的主要组成部分/" data-id="cjff4mcxv001d0cva91408mo3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -408,155 +565,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/19/操作系统的基础知识/" data-id="cjfe1bhst001018va7do70s8x" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-
-    
-    
-<article id="post-学习linux的必备基础知识" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/03/18/学习linux的必备基础知识/" class="article-date">
-  <time datetime="2018-03-18T15:06:38.000Z" itemprop="datePublished">2018-03-18</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Linux/">Linux</a>►<a class="article-category-link" href="/categories/Linux/基础知识/">基础知识</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/18/学习linux的必备基础知识/">学习linux的必备基础知识</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="linux是一种操作系统"><a href="#linux是一种操作系统" class="headerlink" title="linux是一种操作系统"></a>linux是一种操作系统</h3><p>1、什么是操作系统？操作系统是计算机硬件之上的第一层软件，计算机的硬件由 操作系统直接管理，同时，操作系统也是一种特殊的系统软件，其他的系统软件运行在操作系统的基础之上。<br>参考自 <a href="http://blog.csdn.net/u012934551/article/details/48207409" target="_blank" rel="noopener">http://blog.csdn.net/u012934551/article/details/48207409</a></p>
-<p>2、从资源管理方面讲，操作系统有五大基本功能：进程和线程的管理；存储管理；文件管理；设备管理；用户接口；<br>
-        
-          <p class="article-more-link">
-            <a href="/2018/03/18/学习linux的必备基础知识/#more">了解更多</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/18/学习linux的必备基础知识/" data-id="cjfe1bhsk000v18vatd386ypc" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-
-    
-    
-<article id="post-java中的Volatile关键字" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/03/18/java中的Volatile关键字/" class="article-date">
-  <time datetime="2018-03-18T11:00:14.000Z" itemprop="datePublished">2018-03-18</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/java/">java</a>►<a class="article-category-link" href="/categories/java/volatile/">volatile</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/18/java中的Volatile关键字/">java中的volatile关键字</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>作用：<br>1、volatile修饰的变量不会被某个线程内部缓存和重排序，也就是说他修饰的变量被改变时，是直接操作的内存，这样保证了他修饰的变量具有可见性。<br>2、volatile修饰的变量参与地指令将不会被重排序，保证了线程之间操作的有序性。<br>
-        
-          <p class="article-more-link">
-            <a href="/2018/03/18/java中的Volatile关键字/#more">了解更多</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/18/java中的Volatile关键字/" data-id="cjfe1bhqf000b18vaz46wtuzi" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-
-    
-    
-<article id="post-字符编码规则的学习" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/03/17/字符编码规则的学习/" class="article-date">
-  <time datetime="2018-03-17T09:25:03.000Z" itemprop="datePublished">2018-03-17</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/计算机基础/">计算机基础</a>►<a class="article-category-link" href="/categories/计算机基础/编码规则/">编码规则</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/17/字符编码规则的学习/">字符编码规则的学习</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="什么是字符编码？"><a href="#什么是字符编码？" class="headerlink" title="什么是字符编码？"></a>什么是字符编码？</h3><p>计算机的世界是二进制的，8bit也就是我们常说的一个字节，一般用两位十六进制数表示。那么计算机如何存储从键盘或者从文件等其他地方读取的字符呢，字符编码就是解决这个问题。我们将字符编码，字符一一映射为一个数值，然后计算机将值存储，当要显示在屏幕时按规则映射为对应的字符。</p>
-        
-          <p class="article-more-link">
-            <a href="/2018/03/17/字符编码规则的学习/#more">了解更多</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/17/字符编码规则的学习/" data-id="cjfe1bhsf000s18vakt7316p6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/19/操作系统的基础知识/" data-id="cjff4mcwr00100cvacb2pjvj7" class="article-share-link">Share</a>
       
       
     </footer>
@@ -585,7 +594,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/">IDEA</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/SpringBoot/">SpringBoot</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/Tomcat/">Tomcat</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/基础知识/">基础知识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/文件系统/">文件系统</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySql/">MySql</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/MySql/权限控制/">权限控制</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/java8/">java8</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/java8/Lambda表达式/">Lambda表达式</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/volatile/">volatile</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/包结构/">包结构</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/异常的使用/">异常的使用</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/数组/">数组</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/输入输出流/">输入输出流</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/重写和重载/">重写和重载</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/language/">language</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/language/MD语法/">MD语法</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统/">操作系统</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统/基本知识/">基本知识</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/">数据结构</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/基础知识/">基础知识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/算法概念/">算法概念</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/算法/排序算法/">排序算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/深度优先/">深度优先</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/编码规则/">编码规则</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/计算机的组成部分/">计算机的组成部分</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/代理模式/">代理模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/原型模式/">原型模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/外观模式/">外观模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/工厂方法模式/">工厂方法模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/建造者模式/">建造者模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/模板方法模式/">模板方法模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/策略模式/">策略模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/简单工厂模式/">简单工厂模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/装饰模式/">装饰模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/设计原则/">设计原则</a><span class="category-list-count">1</span></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/">IDEA</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/SpringBoot/">SpringBoot</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/Tomcat/">Tomcat</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/基础知识/">基础知识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/文件系统/">文件系统</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySql/">MySql</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/MySql/权限控制/">权限控制</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySql/运行原理及架构/">运行原理及架构</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/delete-truncate-drop/">delete truncate drop</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/Class的学习/">Class的学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/java8/">java8</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/java8/Lambda表达式/">Lambda表达式</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/volatile/">volatile</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/包结构/">包结构</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/异常的使用/">异常的使用</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/数组/">数组</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/输入输出流/">输入输出流</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/重写和重载/">重写和重载</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/language/">language</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/language/MD语法/">MD语法</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统/">操作系统</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统/基本知识/">基本知识</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/">数据结构</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/基础知识/">基础知识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/算法概念/">算法概念</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/算法/排序算法/">排序算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/深度优先/">深度优先</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/编码规则/">编码规则</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/计算机的组成部分/">计算机的组成部分</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/代理模式/">代理模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/原型模式/">原型模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/外观模式/">外观模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/工厂方法模式/">工厂方法模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/建造者模式/">建造者模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/模板方法模式/">模板方法模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/策略模式/">策略模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/简单工厂模式/">简单工厂模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/装饰模式/">装饰模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/设计原则/">设计原则</a><span class="category-list-count">1</span></li></ul></li></ul>
     </div>
   </div>
 
@@ -614,7 +623,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">archive_a</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">32</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">35</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -627,23 +636,23 @@
       <ul>
         
           <li>
+            <a href="/2018/03/31/java中的Class类/">java中的Class类</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/31/Sql中的truncate、drop和delete/">Sql中的truncate、drop和delete</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/31/MySql的运行原理及架构/">MySql的运行原理及架构</a>
+          </li>
+        
+          <li>
             <a href="/2018/03/30/Mysql权限控制/">Mysql权限控制</a>
           </li>
         
           <li>
             <a href="/2018/03/27/各种排序/">各种排序</a>
-          </li>
-        
-          <li>
-            <a href="/2018/03/21/Linux的文件系统/">Linux的文件系统</a>
-          </li>
-        
-          <li>
-            <a href="/2018/03/19/算法和算法的评价/">算法和算法的评价</a>
-          </li>
-        
-          <li>
-            <a href="/2018/03/19/数据结构基础知识/">数据结构基础知识</a>
           </li>
         
       </ul>
