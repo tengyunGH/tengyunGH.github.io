@@ -7,17 +7,17 @@
   
   <title>The Marvellous World!</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一些便捷的配置1、settings -&amp;gt; Editor -&amp;gt; File and Code Templates 里面可以设置创建一个类的时候默认的文档注释 2、file-&amp;gt;other settings-&amp;gt;default settings  在这里配置一些所有项目的设置，比如maven的配置 3、安装的bin目录下的idea.properties这里面修改IDEA的系统文件位置">
+  <meta name="description" content="设计表格过程中的规范，先积累一点，以后遇到了再来补充1、大小写是有区分的2、名字不能超过30个字符，字符只有63中 26大写 + 26小写 + 10数字 + ‘_‘ = 63个3、数据库名、数据表名：使用小写英文字母和下划线组成，名字起得应该有意义，使用前缀，前缀不超过5个字母。备份数据库的名字，用数据库的名字加上备份时间组成。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="IDEA的一些使用经验">
-<meta property="og:url" content="http://yoursite.com/2018/03/06/IDEA的一些使用经验/index.html">
+<meta property="og:title" content="Mysql命名规范">
+<meta property="og:url" content="http://yoursite.com/2018/04/02/Mysql命名规范/index.html">
 <meta property="og:site_name" content="The Marvellous World!">
-<meta property="og:description" content="一些便捷的配置1、settings -&amp;gt; Editor -&amp;gt; File and Code Templates 里面可以设置创建一个类的时候默认的文档注释 2、file-&amp;gt;other settings-&amp;gt;default settings  在这里配置一些所有项目的设置，比如maven的配置 3、安装的bin目录下的idea.properties这里面修改IDEA的系统文件位置">
+<meta property="og:description" content="设计表格过程中的规范，先积累一点，以后遇到了再来补充1、大小写是有区分的2、名字不能超过30个字符，字符只有63中 26大写 + 26小写 + 10数字 + ‘_‘ = 63个3、数据库名、数据表名：使用小写英文字母和下划线组成，名字起得应该有意义，使用前缀，前缀不超过5个字母。备份数据库的名字，用数据库的名字加上备份时间组成。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-03-12T11:54:33.710Z">
+<meta property="og:updated_time" content="2018-04-02T13:27:53.119Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="IDEA的一些使用经验">
-<meta name="twitter:description" content="一些便捷的配置1、settings -&amp;gt; Editor -&amp;gt; File and Code Templates 里面可以设置创建一个类的时候默认的文档注释 2、file-&amp;gt;other settings-&amp;gt;default settings  在这里配置一些所有项目的设置，比如maven的配置 3、安装的bin目录下的idea.properties这里面修改IDEA的系统文件位置">
+<meta name="twitter:title" content="Mysql命名规范">
+<meta name="twitter:description" content="设计表格过程中的规范，先积累一点，以后遇到了再来补充1、大小写是有区分的2、名字不能超过30个字符，字符只有63中 26大写 + 26小写 + 10数字 + ‘_‘ = 63个3、数据库名、数据表名：使用小写英文字母和下划线组成，名字起得应该有意义，使用前缀，前缀不超过5个字母。备份数据库的名字，用数据库的名字加上备份时间组成。">
   
     <link rel="alternate" href="/atom.xml" title="The Marvellous World!" type="application/atom+xml">
   
@@ -63,14 +63,14 @@
 
         <section id="main">
 
-<article id="post-IDEA的一些使用经验" class="article article-type-post" itemscope itemprop="blogPost">
+<article id="post-Mysql命名规范" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/03/06/IDEA的一些使用经验/" class="article-date">
-  <time datetime="2018-03-06T00:21:27.000Z" itemprop="datePublished">2018-03-06</time>
+    <a href="/2018/04/02/Mysql命名规范/" class="article-date">
+  <time datetime="2018-04-02T11:54:29.000Z" itemprop="datePublished">2018-04-02</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/IDEA/">IDEA</a>
+    <a class="article-category-link" href="/categories/MySql/">MySql</a>
   </div>
 
   </div>
@@ -81,7 +81,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      IDEA的一些使用经验
+      Mysql命名规范
     </h1>
   
 
@@ -89,21 +89,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-          <h2 id="一些便捷的配置"><a href="#一些便捷的配置" class="headerlink" title="一些便捷的配置"></a>一些便捷的配置</h2><p>1、settings -&gt; Editor -&gt; File and Code Templates 里面可以设置创建一个类的时候默认的文档注释</p>
-<p>2、file-&gt;other settings-&gt;default settings  在这里配置一些所有项目的设置，比如maven的配置</p>
-<p>3、安装的bin目录下的idea.properties这里面修改IDEA的系统文件位置  从c盘改到其他的盘</p>
-<a id="more"></a>
-<h2 id="编译方式的讲解"><a href="#编译方式的讲解" class="headerlink" title="编译方式的讲解"></a>编译方式的讲解</h2><p>编译方式有三种，build  Recompile Rebuild<br>1、build project  对选中的project，有改变的进行编译，没有改变的不编译（make）<br>   build module 对选中的module，改变的进行编译</p>
-<p>2、Recompile 对选中的java类进行重新编译（无论是否重新修改过）</p>
-<p>3、Rebuild 对选中的project进行全部重编译，没改过的也重新编译（是个比较浩大的工程，用的较少）</p>
-<p>这三种情况，针对的目标是：Rebuild的对象只能是project，Recompile的对象只能是Java类文件，Build的对象是project和module，其中build用的最多，只编译改变的文件</p>
-<h2 id="一些目前常用的快捷键"><a href="#一些目前常用的快捷键" class="headerlink" title="一些目前常用的快捷键"></a>一些目前常用的快捷键</h2><p>ctrl + shift + alt + s         调出项目配置<br>ctrl + alt + s                 调出配置<br>ctrl + shift + A             调出查询某操作快捷键</p>
-<p>ctrl + alt + l                 格式化代码<br>alt + E                     调出run configuration<br>实际上，快捷键是可以在 settings-&gt;keymap中查询或者修改，你可以选用你自己熟悉的，然后多用用就好了</p>
+          <p>设计表格过程中的规范，先积累一点，以后遇到了再来补充<br>1、大小写是有区分的<br>2、名字不能超过30个字符，字符只有63中 26大写 + 26小写 + 10数字 + ‘_‘ = 63个<br>3、数据库名、数据表名：使用小写英文字母和下划线组成，名字起得应该有意义，使用前缀，前缀不超过5个字母。备份数据库的名字，用数据库的名字加上备份时间组成。<br><a id="more"></a><br>4、列名：驼峰格式，最好带表名前缀，表与表之间的关联字段要统一<br>5、字段类型：用尽量少的存储空间来存储一个字段的数据<br>6、sql语句规范：关键词大写（好吧，以后强制自己掰过来），所有表名、库名要用`包含起来<br><a href="https://www.cnblogs.com/amboyna/archive/2008/02/18/1072007.html" target="_blank" rel="noopener">https://www.cnblogs.com/amboyna/archive/2008/02/18/1072007.html</a></p>
+<p>常用的字段类型有哪些？<br>一、数值类型<br>1、tinyint       1B<br>2、smallint     2B<br>3、mediumint    3B<br>4、int/integer    4B<br>5、bigint        8B<br>6、float        4B<br>7、double        8B</p>
+<p>二、字符串<br>1、char(n)        255B<br>2、varchar(n)    65535B<br>3、blob            65535B<br>4、text            65535B</p>
+<p>三、时间<br>1、date            3B    1000-01-01/9999-12-31<br>2、time            3B    ‘-838:59:59’/‘838:59:59’<br>3、year            1B    1901/2155<br>4、datetime        8B    1000-01-01 00:00:00/9999-12-31 23:59:59<br>5、timestamp    4B    1970-01-01 00:00:00/2038</p>
+<p>四、二进制<br>bit</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/06/IDEA的一些使用经验/" data-id="cjfi9sjua000d2wvau4cvdefm" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/02/Mysql命名规范/" data-id="cjfi9sjpu00002wvaomqk0dym" class="article-share-link">Share</a>
       
       
     </footer>
@@ -112,19 +107,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/03/06/hexo搭建网站步骤/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          hexo搭建网站步骤
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/03/05/MD常用语法总结/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/04/02/Sql中的truncate、drop和delete/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">MD常用语法总结</div>
+      <div class="article-nav-title">Sql中的truncate、drop和delete</div>
     </a>
   
 </nav>
