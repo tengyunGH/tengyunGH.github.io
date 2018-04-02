@@ -7,16 +7,17 @@
   
   <title>The Marvellous World!</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这是我的个人网站，主要发布一些我的工作生活经历">
-<meta property="og:type" content="website">
-<meta property="og:title" content="The Marvellous World!">
-<meta property="og:url" content="http://yoursite.com/categories/设计模式/index.html">
+  <meta name="description" content="用法1、delete 根据某个条件语句删除表格中符合条件的行delete from 表名 where 条件语句; 2、truncate  删除某个表中的全部记录（表还在）truncate 表名; 3、drop  删除某个表（表不在了）drop 表名;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sql中的truncate、drop和delete">
+<meta property="og:url" content="http://yoursite.com/2018/04/02/Sql中的truncate、drop和delete/index.html">
 <meta property="og:site_name" content="The Marvellous World!">
-<meta property="og:description" content="这是我的个人网站，主要发布一些我的工作生活经历">
+<meta property="og:description" content="用法1、delete 根据某个条件语句删除表格中符合条件的行delete from 表名 where 条件语句; 2、truncate  删除某个表中的全部记录（表还在）truncate 表名; 3、drop  删除某个表（表不在了）drop 表名;">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-04-02T08:20:31.383Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="The Marvellous World!">
-<meta name="twitter:description" content="这是我的个人网站，主要发布一些我的工作生活经历">
+<meta name="twitter:title" content="Sql中的truncate、drop和delete">
+<meta name="twitter:description" content="用法1、delete 根据某个条件语句删除表格中符合条件的行delete from 表名 where 条件语句; 2、truncate  删除某个表中的全部记录（表还在）truncate 表名; 3、drop  删除某个表（表不在了）drop 表名;">
   
     <link rel="alternate" href="/atom.xml" title="The Marvellous World!" type="application/atom+xml">
   
@@ -62,89 +63,63 @@
 
         <section id="main">
 
+<article id="post-Sql中的truncate、drop和delete" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/02/Sql中的truncate、drop和delete/" class="article-date">
+  <time datetime="2018-04-02T02:24:46.000Z" itemprop="datePublished">2018-04-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/SQL/">SQL</a>►<a class="article-category-link" href="/categories/SQL/delete-truncate-drop/">delete truncate drop</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Sql中的truncate、drop和delete
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          <h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><p>1、delete 根据某个条件语句删除表格中符合条件的行<br>delete from 表名 where 条件语句;</p>
+<p>2、truncate  删除某个表中的全部记录（表还在）<br>truncate 表名;</p>
+<p>3、drop  删除某个表（表不在了）<br>drop 表名;<br><a id="more"></a></p>
+<h3 id="相同点"><a href="#相同点" class="headerlink" title="相同点"></a>相同点</h3><p>1、truncate和drop都会全部删除表中的数据<br>2、drop和truncate是数据库定义语言DDL，执行后自动提交</p>
+<h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><p>1、delete和truncate只删除表中的数据，但是不会删除表的定义，drop会将表的定义也删除<br>2、delete是数据库操作语言DML，这个操作要放在rollback segment中，事物提交之后才会生效。drop和truncate是数据库定义语言DDL，执行后自动提交，立即生效。<br>3、delete语句不影响表占用的extent，高水线保持不动。drop 语句将表所占用的空间全部释放。truncate 语句缺省情况下见空间释放到 minextents个 extent，除非使用reuse storage；truncate 会将高水线复位(回到最开始)。extent是db2配置磁盘空间的单位，对于dms表格空间，db2每次在数据容器中分配一个extent。对sms表格空间，db2每次分配一个page，当成长到一个extent时，再换下一个。<br>4、速度上，一般是 drop &gt; truncate &gt; delete<br>5、由于truncate和drop是立即执行语句，所以要慎重执行<br>6、truncate，删除后，表格的结构、列、约束、索引等都不变，计数值从头开始，drop的话，是全都没了。<br>7、有foreign key约束引用的表，不能使用truncate删除，只能用delete了，truncate的操作不会记录在日志中，所以也不能激活触发器。<br>8、truncate 不能删除有索引视图的表</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/04/02/Sql中的truncate、drop和delete/" data-id="cjfhytwhy000nagvavwqbri30" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/03/31/java中的Class类/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">java中的Class类</div>
+    </a>
+  
+</nav>
+
+  
+</article>
 
 
-
-<div class="archive">
-	
-	
-		
-		
-			<h3 class="year">2018</h3>
-			
-		
-		<div class="archive_item">
-			<span class="date">2018-03-13</span>
-			<a class="title" href="/2018/03/13/设计模式之建造者模式/">设计模式之建造者模式</a>
-		</div>
-	
-		
-		
-		<div class="archive_item">
-			<span class="date">2018-03-13</span>
-			<a class="title" href="/2018/03/13/设计模式之外观模式/">设计模式之外观模式</a>
-		</div>
-	
-		
-		
-		<div class="archive_item">
-			<span class="date">2018-03-13</span>
-			<a class="title" href="/2018/03/13/设计模式之模板方法模式/">设计模式之模板模式</a>
-		</div>
-	
-		
-		
-		<div class="archive_item">
-			<span class="date">2018-03-12</span>
-			<a class="title" href="/2018/03/12/设计模式之原型模式/">设计模式之原型模式</a>
-		</div>
-	
-		
-		
-		<div class="archive_item">
-			<span class="date">2018-03-10</span>
-			<a class="title" href="/2018/03/10/设计模式之设计原则/">设计模式之设计原则</a>
-		</div>
-	
-		
-		
-		<div class="archive_item">
-			<span class="date">2018-03-10</span>
-			<a class="title" href="/2018/03/10/设计模式之工厂方法模式/">设计模式之工厂方法模式</a>
-		</div>
-	
-		
-		
-		<div class="archive_item">
-			<span class="date">2018-03-10</span>
-			<a class="title" href="/2018/03/10/设计模式之代理模式/">设计模式之代理模式</a>
-		</div>
-	
-		
-		
-		<div class="archive_item">
-			<span class="date">2018-03-09</span>
-			<a class="title" href="/2018/03/09/设计模式之装饰模式/">设计模式之装饰模式</a>
-		</div>
-	
-		
-		
-		<div class="archive_item">
-			<span class="date">2018-03-08</span>
-			<a class="title" href="/2018/03/08/设计模式之策略模式/">设计模式之策略模式</a>
-		</div>
-	
-		
-		
-		<div class="archive_item">
-			<span class="date">2018-03-07</span>
-			<a class="title" href="/2018/03/07/设计模式之简单工厂模式/">设计模式之简单工厂模式</a>
-		</div>
-	
-	<div class="pagination">
-		
-	</div>
-</div></section>
+</section>
 
         
           
