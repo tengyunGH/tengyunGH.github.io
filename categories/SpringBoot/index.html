@@ -7,17 +7,16 @@
   
   <title>The Marvellous World!</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="面向对象设计的七大原则(SOLID)：单一职责原则、依赖倒转原则、里氏代换原则、迪米特原则、接口隔离原则、开闭原则 单一职责原则(Single Responsibility Principle,SRP) ：一个类完成一个职责。若一个类有过多的职责，一个职责的变化可能影响其他职责的实现，这个叫耦合性较高，">
-<meta property="og:type" content="article">
-<meta property="og:title" content="设计模式之设计原则">
-<meta property="og:url" content="http://yoursite.com/2018/03/10/设计模式之设计原则/index.html">
+  <meta name="description" content="这是我的个人网站，主要发布一些我的工作生活经历">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Marvellous World!">
+<meta property="og:url" content="http://yoursite.com/categories/SpringBoot/index.html">
 <meta property="og:site_name" content="The Marvellous World!">
-<meta property="og:description" content="面向对象设计的七大原则(SOLID)：单一职责原则、依赖倒转原则、里氏代换原则、迪米特原则、接口隔离原则、开闭原则 单一职责原则(Single Responsibility Principle,SRP) ：一个类完成一个职责。若一个类有过多的职责，一个职责的变化可能影响其他职责的实现，这个叫耦合性较高，">
+<meta property="og:description" content="这是我的个人网站，主要发布一些我的工作生活经历">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-03-11T12:05:08.236Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="设计模式之设计原则">
-<meta name="twitter:description" content="面向对象设计的七大原则(SOLID)：单一职责原则、依赖倒转原则、里氏代换原则、迪米特原则、接口隔离原则、开闭原则 单一职责原则(Single Responsibility Principle,SRP) ：一个类完成一个职责。若一个类有过多的职责，一个职责的变化可能影响其他职责的实现，这个叫耦合性较高，">
+<meta name="twitter:title" content="The Marvellous World!">
+<meta name="twitter:description" content="这是我的个人网站，主要发布一些我的工作生活经历">
   
     <link rel="alternate" href="/atom.xml" title="The Marvellous World!" type="application/atom+xml">
   
@@ -63,77 +62,26 @@
 
         <section id="main">
 
-<article id="post-设计模式之设计原则" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/03/10/设计模式之设计原则/" class="article-date">
-  <time datetime="2018-03-10T14:02:57.000Z" itemprop="datePublished">2018-03-10</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/设计模式/">设计模式</a>►<a class="article-category-link" href="/categories/设计模式/设计原则/">设计原则</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      设计模式之设计原则
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          <p>面向对象设计的七大原则(SOLID)：单一职责原则、依赖倒转原则、里氏代换原则、迪米特原则、接口隔离原则、开闭原则</p>
-<p><strong>单一职责原则</strong>(Single Responsibility Principle,SRP) ：一个类完成一个职责。若一个类有过多的职责，一个职责的变化可能影响其他职责的实现，这个叫耦合性较高，</p>
-<a id="more"></a>
-<p><strong>开放-封闭原则</strong> (Open-Closed Principle,OCP)： 对扩展开放，对更改原有代码封闭，简单说就是设计的架构只许增加，不许修改已有的代码。java8中，对接口，现在已经可以增加已实现的方法了，这样子，我们可以随意扩展接口，而不用担心已实现该接口的类的变化，</p>
-<p><strong>里氏代换原则</strong>(Liskov Substitution Principle,LSP)： 大概意思就是父类引用可以指向子类对象，接口引用可以指向实现类对象。但是反过来不行。在程序中尽量使用基类类型来对对象进行定义，而在运行时在确定其子类类型，用子类对象代替父类对象。</p>
-<p><strong>接口隔离原则</strong>(Interface Segregation Principle,ISP)：客户端不应依赖它不需要的接口，将不需要的借口剔除，并将接口细化，使得我们的实现类尽可能的只需要实现它必须实现的，也就是设计最小的接口，将接口隔离。</p>
-<p><strong>依赖倒转原则</strong> (Depend)：<br>1、高层模块（调用低层模块）不应依赖低层模块，两者都应依赖抽象<br>2、抽象不应依赖细节，细节应依赖抽象<br>对这两点的理解，就是，1、在设计代码时，高层模块和低层模块之间不能直接调用，而是通过接口调用，这样，我们只需根据实际情况去对接口编程，扩展子类，就可以了。2、抽象接口的设计不需要考虑某一个具体的实现，而具体的实现方式却需要按照接口的设计来完成。<br>大话设计模式中，举的例子是pc的组成，pc的主板和内存、显卡、硬盘、cpu之间的关系就是高层模块和低层模块之间的关系，世界各地的各类生产商之间，按照一个规范，生产不同的主板、内存、显卡、硬盘等等，A厂主板是可以安装B厂内存C厂显卡等等的，就是因为，接口是固定的一个规范，大家按照这个规范生产，那么最终组装起来就可以用了，内存坏了，就随便换一家的内存也是可以的，也就是说，主板不会依赖特定的某家生产的内存，由于接口是一样的，随便哪家都可以。</p>
-<p><strong>迪米特原则</strong>(Law of Demeter,LOD)： 又叫最小知识原则，就是说，一个类应对自己需要耦合或调用的类知道的最少，并尽可能的减少类与类之间的耦合。<br>1、在类的划分上，应当创建弱耦合的类，类与类之间的耦合越弱，就越有利于实现<strong>可复用</strong>的目标。<br>2、在类的结构设计上，每个类都应该降低成员的访问权限。<br>3、在类的设计上，只要有可能，一个类应当设计成不变的类。closed<br>4、在对其他类的应用上，一个对象对其他类的对象的应用应该降到最低。<br>5、尽量限制局部变量的有效范围。<br>若一个类与另一个类不必彼此直接通信的话，那么这两个类就不应当直接发生相互作用，他们可以通过第三方转发这个调用（嗯，代理模式）</p>
-<p><strong>组合/聚合复用原则</strong>(Composite/Aggregate Reuse Principle,CARP) :在一个类里通过组合和聚合关系使用一些已有的对象A，使之成为对象B的一部分，然后，在B的方法中调用这些A的方法，达到复用已有功能的目的，也就是尽量不使用继承了。（继承复用，破坏了数据的封装性，不安全），在考虑继承和关联的时候，尽可能的使用关联（组合、聚合）。</p>
-<p>参考自：<a href="https://www.cnblogs.com/sunflower627/p/4718702.html" target="_blank" rel="noopener">https://www.cnblogs.com/sunflower627/p/4718702.html</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/10/设计模式之设计原则/" data-id="cjfklxgu0001zb0va5e6k3g81" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2018/03/11/java中的数组/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          java中的数组
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2018/03/10/Java中的重写和重载/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Java中的重写和重载</div>
-    </a>
-  
-</nav>
-
-  
-</article>
 
 
-</section>
+
+<div class="archive">
+	
+	
+		
+		
+			<h3 class="year">2018</h3>
+			
+		
+		<div class="archive_item">
+			<span class="date">2018-04-04</span>
+			<a class="title" href="/2018/04/04/Springboot的学习/">Springboot的学习</a>
+		</div>
+	
+	<div class="pagination">
+		
+	</div>
+</div></section>
 
         
           

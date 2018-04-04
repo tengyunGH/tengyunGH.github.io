@@ -67,6 +67,67 @@
 
     
     
+<article id="post-Springboot的学习" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/04/Springboot的学习/" class="article-date">
+  <time datetime="2018-04-04T00:49:12.000Z" itemprop="datePublished">2018-04-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/SpringBoot/">SpringBoot</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/04/Springboot的学习/">Springboot的学习</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          <p>首先简单学习了Spring的配置Bean的发展，XML配置到注解配置，再到现在的Java配置。<br>1、JDK1.5带来了<strong>注解支持</strong>，使得Spring2.x开始使用注解对Bean进行申明和注入。注解配置，大大减少了XML文件，也简化了项目的开发。只需要在使用Bean的地方写上注解就可以了。这时，我们遵循，应用的基本配置（数据源，资源文件）用xml，业务开发（Service注入Bean）用注解<br>2、Spring3.x开始提供了Java配置方式，这能更好的理解咱们配置的Bean。Spring4.x 和 SpringBoot都推荐使用java配置方式</p>
+<h3 id="那来学习一下Java配置长什么样子"><a href="#那来学习一下Java配置长什么样子" class="headerlink" title="那来学习一下Java配置长什么样子"></a>那来学习一下Java配置长什么样子</h3><p>1、注解：@Configuration 和 @Bean<br>    作用：  @Configuration作用于类上，表示这个类是一个java配置文件<br>            @Bean 作用于方法上，表示这个方法返回一个Bean<br>2、简单来个粒子<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//简单记录，所以都写在一起了，也省略一切import和package</span></span><br><span class="line"><span class="comment">//首先创建工程，pom.xml中引入所需的依赖,这里就不展示了</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//创建一个我们所需的实体类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> String username;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getUsername</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> username;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUsername</span><span class="params">(String username)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.username = username;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建一个和数据库交互的Dao，还应该有一个userDao.xml写相应的sql语句，这里不展开了</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserDao</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">queryUserByName</span><span class="params">(String name)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建一个我们所需的service类</span></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserService</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">	<span class="keyword">private</span> UserDao userDao;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">queryUserByName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> userDao.queryUserByName(name);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建我们的配置类</span></span><br><span class="line"><span class="meta">@Configuration</span>			<span class="comment">//作用于类上，表示这个类是一个java配置文件</span></span><br><span class="line"><span class="meta">@ComponentScan</span>(basePackages = <span class="string">"com.tengyun.zhy"</span>)		<span class="comment">//配置要扫描的包路径</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> class <span class="title">SpringConfig</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Bean</span> 			<span class="comment">//作用于方法上，表示这个方法返回一个Bean</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> UserDao <span class="title">getUserDao</span><span class="params">()</span> </span>&#123;		</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> UserDao();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 好了，来看下怎么运用的</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">//用刚才写的java配置文件的字节码来实例化一个context</span></span><br><span class="line">		AnnotationConfigApplicationContext context = <span class="keyword">new</span> AnnotationConfigApplicationContext(SpringConfig.class);</span><br><span class="line"></span><br><span class="line">		<span class="comment">//获取Bean，或者这里也可以注入的吧，使用@Autowired，因为使用了@Service</span></span><br><span class="line">		UserService userService = context.getBean(UserService.class);</span><br><span class="line"></span><br><span class="line">		User user = userService.queryUserByName(<span class="string">"tengyun"</span>);</span><br><span class="line"></span><br><span class="line">		<span class="comment">//销毁这个上下文</span></span><br><span class="line">		context.destory();</span><br><span class="line">	&#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>其实现在还是不太明白，配置到底是在配置什么，Spring的原理还是不太清楚。毕设在即，先速成一下吧。</p>
+<h3 id="读取外部的资源配置文件"><a href="#读取外部的资源配置文件" class="headerlink" title="读取外部的资源配置文件"></a>读取外部的资源配置文件</h3><p>使用的注解： @PropertySource 和 @Value<br>    @PropertySource 用于指定读取的配置文件<br>    @Value 用于获取值，就是value写上配置文件中的键，然后把值给某某某<br>比如说，我们把数据源的配置写在了application.properties里面，那么怎么写配置呢<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span> 			<span class="comment">//标明是个配置类</span></span><br><span class="line"><span class="meta">@ComponentScan</span>(basePackage = <span class="string">"com.tengyun.zhy"</span>)		<span class="comment">//扫描包的路径</span></span><br><span class="line"><span class="meta">@PropertySource</span>(value = &#123;<span class="string">"classpath:application.properties"</span>&#125;)		<span class="comment">//读取的外部资源文件的位置和名字</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringConfig</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Value</span>(<span class="string">"$&#123;spring.datasource.url&#125;"</span>)	<span class="comment">//读取资源文件中键是spring.datasource.url的值，赋予下面这个url变量</span></span><br><span class="line">	<span class="keyword">private</span> String url;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Bean</span> 	<span class="comment">//将我们的DataSource加入到spring的容器中，这里我们创造的是druidDataSource，默认这个方法名就是Bean的id，所以，我们要注意写法</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> DataSource <span class="title">dataSource</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		DruidDataSource druidDataSource = <span class="keyword">new</span> DruidDataSource();</span><br><span class="line">		druidDataSource.setUrl(url);</span><br><span class="line">		<span class="keyword">return</span> druidDataSource;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUrl</span><span class="params">(String url)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.url = url;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//application.properties是这样的</span></span><br><span class="line">spring.datasource.url = jdbc:mysql:<span class="comment">//localhost:3306/bookloud?useSSL=false</span></span><br></pre></td></tr></table></figure></p>
+<p>什么是动态语言，什么是静态语言？<br>静态语言是先编译后运行，动态语言是无需编译，直接运行。静态语言，比如Java、C，动态语言，比如Ruby、Groovy、Scala、Node.js、JS等等</p>
+<p>随着动态语言的流行，Java开发显得笨重，配置、效率、部署流程等等都存在很大的问题，SpringBoot的生成，就是为了克服这些，SpringBoot让我们很容易创建一个独立运行的准生产级别的<strong>基于Spring框架</strong>的项目，SpringBoot会提供默认的配置，会解决部分依赖问题，它还内嵌了容器，框架强大吧。</p>
+<h4 id="创建SpringBoot应用"><a href="#创建SpringBoot应用" class="headerlink" title="创建SpringBoot应用"></a>创建SpringBoot应用</h4><p>pom里面<br>首先 parent必须是 spring-boot-starter-parent,这里面的parent包含了大量的默认配置，大大简化了我们的开发（原来是在这里面）。<br>然后 添加web支持，是 spring-boot-starter-web<br>然后 添加springboot的插件 spring-boot-maven-plugin</p>
+<p>SpringBoot项目会有一个入口类 ****Application.java，这个文件里面，有一个main方法，是标准的java应用程序的入口方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TengyunApplication</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">//创建一个合适的ApplicationContext实例</span></span><br><span class="line">		<span class="comment">//SpringApplication application = new SpringApplication(SampleSimpleApplication.class);</span></span><br><span class="line">        <span class="comment">//application.setApplicationContextClass(AnnotationConfigApplicationContext.class);</span></span><br><span class="line">        <span class="comment">//SpringApplication.run(SampleSimpleApplication.class, args);</span></span><br><span class="line"></span><br><span class="line">		SpringApplication.run(TengyunApplication.class, args);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>SpringApplication用来从java main方法启动一个spring应用，默认的启动步骤如下：<br>1)创建一个合适的ApplicationContext实例,这个实例取决于classpath。<br>2)注册一个CommandLinePropertySource，以spring属性的形式来暴露命令行参数。<br>3)刷新ApplicationContext，加载所有的单例bean。<br>4)触发所有的命令行CommanLineRunner来执行bean。<br>大部分场景下，可以从你的application的main方法中直接调用它的run()静态方法。就是最后一句没有被注释掉的代码。其实这个人解释的这四部分，我不太理解，先放着。</p>
+<p>这是个入口类，还可以作为配置类，还能是一个controller<br>先讲一下@SpringBootApplication这个注解<br>@SpringBootApplication是SpringBoot的核心注解，是一个组合注解，咱么可以按ctrl打开看一下<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@java</span>.lang.annotation.Target(&#123;java.lang.annotation.ElementType.TYPE&#125;)</span><br><span class="line"><span class="meta">@java</span>.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@java</span>.lang.annotation.Documented</span><br><span class="line"><span class="meta">@java</span>.lang.annotation.Inherited</span><br><span class="line"><span class="meta">@org</span>.springframework.boot.SpringBootConfiguration</span><br><span class="line"><span class="meta">@org</span>.springframework.boot.autoconfigure.EnableAutoConfiguration</span><br><span class="line"><span class="meta">@org</span>.springframework.context.annotation.ComponentScan(excludeFilters = &#123;<span class="meta">@org</span>.springframework.context.annotation.ComponentScan.Filter(type = </span><br><span class="line">		org.springframework.context.annotation.FilterType.CUSTOM, classes = &#123;org.springframework.boot.context.TypeExcludeFilter.class&#125;), <span class="meta">@org</span>.springframework.context.annotation.ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.CUSTOM, classes = &#123;org.springframework.boot.autoconfigure.AutoConfigurationExcludeFilter.class&#125;)&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> SpringBootApplication &#123;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>@SpringBootApplication = @Target + @Retention + @Document + @Inherited + @SpringBootConfiguration + @EnableAutoConfiguratio + @ComponentScan<br>这里面 比较不基础的，有@SpringBootConfiguration、@EnableAutoConfiguration、@ComponentScan<br>1、@SpringBootConfiguration = @Target + @Retention + @Documented + @Configuration<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target</span>(ElementType.TYPE)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> SpringBootConfiguration &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>2、@EnableAutoConfiguration  表示开启自动配置，SpringBoot会根据你在pom中引入什么依赖，他就会智能的帮你配置这些引入的jar的配置</p>
+<p>3、@ComponentScan 默认扫描@SpringBootApplication所在类的同级目录以及它的子目录</p>
+<p>综合来说，@SpringBootApplication这个注解的作用就是开启自动配置的注解，如果，你不想让你的某个模块采用自动配置，就这样<br><code>@SpringBootApplication(exclude = {XXXX.class})</code></p>
+<p>好了，如果，你想修改默认配置，那么在全局配置文件中，修改，application.properties就是这个全局配置文件，往往，我们在这里采用“选择某个配置文件”的方式来写，就是说，在application.properties中指明你现在用的全局配置文件是什么，这么写<code>spring.profiles.active=dev</code>,然后，你就采用的是application-dev.properties这个配置文件，还可以是<code>spring.profiles.active=pro</code>，表示你用的是application-pro.properties，配置文件的类型，也可以是其他的，比如说yml类型的。全局配置文件中的键的意义有官方的标准。</p>
+<p>今天先写到这里吧。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/04/04/Springboot的学习/" data-id="cjfklxgnd0006b0va17hcuauu" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+    
+    
 <article id="post-Mysql命名规范" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/04/02/Mysql命名规范/" class="article-date">
@@ -102,7 +163,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/02/Mysql命名规范/" data-id="cjfi9sjpu00002wvaomqk0dym" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/02/Mysql命名规范/" data-id="cjfklxgn10005b0vazgaholgn" class="article-share-link">Share</a>
       
       
     </footer>
@@ -153,7 +214,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/02/Sql中的truncate、drop和delete/" data-id="cjfi9sjso00042wvacudyvdr6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/02/Sql中的truncate、drop和delete/" data-id="cjfklxgnt0009b0vaq6ekzo5k" class="article-share-link">Share</a>
       
       
     </footer>
@@ -202,7 +263,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/31/java中的Class类/" data-id="cjfi9sjtz000c2wva1b4jki4r" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/31/java中的Class类/" data-id="cjfklxgpd000ib0vacnn0vkv8" class="article-share-link">Share</a>
       
       
     </footer>
@@ -247,7 +308,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/31/MySql的运行原理及架构/" data-id="cjfi9sjt500062wvanqk02mec" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/31/MySql的运行原理及架构/" data-id="cjfklxgnn0008b0vawdxnt605" class="article-share-link">Share</a>
       
       
     </footer>
@@ -296,7 +357,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/30/Mysql权限控制/" data-id="cjfi9sjsx00052wvaky255it5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/30/Mysql权限控制/" data-id="cjfklxgmp0004b0va8l7ozmy1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -357,7 +418,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/27/各种排序/" data-id="cjfi9sjy700102wva4sb4nbbg" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/27/各种排序/" data-id="cjfklxgqt000yb0vajifa4326" class="article-share-link">Share</a>
       
       
     </footer>
@@ -407,7 +468,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/21/Linux的文件系统/" data-id="cjfi9sjtg00082wva9ippno83" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/21/Linux的文件系统/" data-id="cjfklxgo1000bb0vaqghs02rr" class="article-share-link">Share</a>
       
       
     </footer>
@@ -457,7 +518,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/19/算法和算法的评价/" data-id="cjfi9sjza001d2wvagot96bmk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/19/算法和算法的评价/" data-id="cjfklxgsn001jb0vaevbqxapy" class="article-share-link">Share</a>
       
       
     </footer>
@@ -509,52 +570,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/19/数据结构基础知识/" data-id="cjfi9sjz3001b2wvawbevdg92" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-
-    
-    
-<article id="post-计算机的主要组成部分" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/03/19/计算机的主要组成部分/" class="article-date">
-  <time datetime="2018-03-19T02:22:07.000Z" itemprop="datePublished">2018-03-19</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/计算机基础/">计算机基础</a>►<a class="article-category-link" href="/categories/计算机基础/计算机的组成部分/">计算机的组成部分</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/19/计算机的主要组成部分/">计算机的主要组成部分</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          <p>四个主要组成部分：</p>
-<h2 id="一、处理器"><a href="#一、处理器" class="headerlink" title="一、处理器"></a>一、处理器</h2><h2 id="二、内存"><a href="#二、内存" class="headerlink" title="二、内存"></a>二、内存</h2><h2 id="三、输入输出模块"><a href="#三、输入输出模块" class="headerlink" title="三、输入输出模块"></a>三、输入输出模块</h2><h2 id="四、操作系统总线"><a href="#四、操作系统总线" class="headerlink" title="四、操作系统总线"></a>四、操作系统总线</h2>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/19/计算机的主要组成部分/" data-id="cjfi9sjzn001e2wva7ltyh1i3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/19/数据结构基础知识/" data-id="cjfklxgs0001db0va5eb78l18" class="article-share-link">Share</a>
       
       
     </footer>
@@ -583,7 +599,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/">IDEA</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/SpringBoot/">SpringBoot</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/Tomcat/">Tomcat</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/基础知识/">基础知识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/文件系统/">文件系统</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySql/">MySql</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/MySql/权限控制/">权限控制</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySql/运行原理及架构/">运行原理及架构</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/delete-truncate-drop/">delete truncate drop</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/Class的学习/">Class的学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/java8/">java8</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/java8/Lambda表达式/">Lambda表达式</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/volatile/">volatile</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/包结构/">包结构</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/异常的使用/">异常的使用</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/数组/">数组</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/输入输出流/">输入输出流</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/重写和重载/">重写和重载</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/language/">language</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/language/MD语法/">MD语法</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统/">操作系统</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统/基本知识/">基本知识</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/">数据结构</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/基础知识/">基础知识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/算法概念/">算法概念</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/算法/排序算法/">排序算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/深度优先/">深度优先</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/编码规则/">编码规则</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/计算机的组成部分/">计算机的组成部分</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/代理模式/">代理模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/原型模式/">原型模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/外观模式/">外观模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/工厂方法模式/">工厂方法模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/建造者模式/">建造者模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/模板方法模式/">模板方法模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/策略模式/">策略模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/简单工厂模式/">简单工厂模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/装饰模式/">装饰模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/设计原则/">设计原则</a><span class="category-list-count">1</span></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/">IDEA</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/SpringBoot/">SpringBoot</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/Tomcat/">Tomcat</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/基础知识/">基础知识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/文件系统/">文件系统</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySql/">MySql</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/MySql/权限控制/">权限控制</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySql/运行原理及架构/">运行原理及架构</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/delete-truncate-drop/">delete truncate drop</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot/">SpringBoot</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/Class的学习/">Class的学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/java8/">java8</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/java8/Lambda表达式/">Lambda表达式</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/volatile/">volatile</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/包结构/">包结构</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/异常的使用/">异常的使用</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/数组/">数组</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/输入输出流/">输入输出流</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/重写和重载/">重写和重载</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/language/">language</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/language/MD语法/">MD语法</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统/">操作系统</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统/基本知识/">基本知识</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/">数据结构</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/基础知识/">基础知识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/算法概念/">算法概念</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/算法/排序算法/">排序算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/深度优先/">深度优先</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/编码规则/">编码规则</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/计算机的组成部分/">计算机的组成部分</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/代理模式/">代理模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/原型模式/">原型模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/外观模式/">外观模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/工厂方法模式/">工厂方法模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/建造者模式/">建造者模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/模板方法模式/">模板方法模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/策略模式/">策略模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/简单工厂模式/">简单工厂模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/装饰模式/">装饰模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/设计原则/">设计原则</a><span class="category-list-count">1</span></li></ul></li></ul>
     </div>
   </div>
 
@@ -612,7 +628,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">archive_a</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">34</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">34</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -623,6 +639,10 @@
     <h3 class="widget-title">recent_posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/04/04/Springboot的学习/">Springboot的学习</a>
+          </li>
         
           <li>
             <a href="/2018/04/02/Mysql命名规范/">Mysql命名规范</a>
@@ -638,10 +658,6 @@
         
           <li>
             <a href="/2018/03/31/MySql的运行原理及架构/">MySql的运行原理及架构</a>
-          </li>
-        
-          <li>
-            <a href="/2018/03/30/Mysql权限控制/">Mysql权限控制</a>
           </li>
         
       </ul>
