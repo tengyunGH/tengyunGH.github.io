@@ -7,16 +7,17 @@
   
   <title>The Marvellous World!</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这是我的个人网站，主要发布一些我的工作生活经历">
-<meta property="og:type" content="website">
-<meta property="og:title" content="The Marvellous World!">
-<meta property="og:url" content="http://yoursite.com/tags/java/index.html">
+  <meta name="description" content="强哥说过，看日志很重要，以前学过一点log4j，忘得差不多了，今天再来学一下。以前一直认为，大脑的记忆力很重要，昨天看别人的一句话，觉得很有道理，记录一下，“大脑是用来思考的，不是用来记忆的”，我们站在巨人的肩膀上，不用去知道巨人内部是怎么工作的， 我们要爬上肩膀想办法看就好了。 言归正传。日志是干嘛的，就是记录应用程序的运行情况的信息，比如程序执行的过程、调试信息、错误信息、我们想要输出来的信息">
+<meta property="og:type" content="article">
+<meta property="og:title" content="log4j的学习">
+<meta property="og:url" content="http://yoursite.com/2018/04/07/log4j的学习/index.html">
 <meta property="og:site_name" content="The Marvellous World!">
-<meta property="og:description" content="这是我的个人网站，主要发布一些我的工作生活经历">
+<meta property="og:description" content="强哥说过，看日志很重要，以前学过一点log4j，忘得差不多了，今天再来学一下。以前一直认为，大脑的记忆力很重要，昨天看别人的一句话，觉得很有道理，记录一下，“大脑是用来思考的，不是用来记忆的”，我们站在巨人的肩膀上，不用去知道巨人内部是怎么工作的， 我们要爬上肩膀想办法看就好了。 言归正传。日志是干嘛的，就是记录应用程序的运行情况的信息，比如程序执行的过程、调试信息、错误信息、我们想要输出来的信息">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-04-07T07:37:05.543Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="The Marvellous World!">
-<meta name="twitter:description" content="这是我的个人网站，主要发布一些我的工作生活经历">
+<meta name="twitter:title" content="log4j的学习">
+<meta name="twitter:description" content="强哥说过，看日志很重要，以前学过一点log4j，忘得差不多了，今天再来学一下。以前一直认为，大脑的记忆力很重要，昨天看别人的一句话，觉得很有道理，记录一下，“大脑是用来思考的，不是用来记忆的”，我们站在巨人的肩膀上，不用去知道巨人内部是怎么工作的， 我们要爬上肩膀想办法看就好了。 言归正传。日志是干嘛的，就是记录应用程序的运行情况的信息，比如程序执行的过程、调试信息、错误信息、我们想要输出来的信息">
   
     <link rel="alternate" href="/atom.xml" title="The Marvellous World!" type="application/atom+xml">
   
@@ -62,31 +63,66 @@
 
         <section id="main">
 
-<article id="-" class="article article-type-" itemscope itemprop="blogPost">
+<article id="post-log4j的学习" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/tags/java/index.html" class="article-date">
-  <time datetime="2018-04-07T07:38:09.322Z" itemprop="datePublished">2018-04-07</time>
+    <a href="/2018/04/07/log4j的学习/" class="article-date">
+  <time datetime="2018-04-07T02:02:38.000Z" itemprop="datePublished">2018-04-07</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/日志/">日志</a>►<a class="article-category-link" href="/categories/日志/log4j/">log4j</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      log4j的学习
+    </h1>
+  
+
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-          
+          <p>强哥说过，看日志很重要，以前学过一点log4j，忘得差不多了，今天再来学一下。以前一直认为，大脑的记忆力很重要，昨天看别人的一句话，觉得很有道理，记录一下，“大脑是用来思考的，不是用来记忆的”，我们站在巨人的肩膀上，不用去知道巨人内部是怎么工作的， 我们要爬上肩膀想办法看就好了。</p>
+<p>言归正传。日志是干嘛的，就是记录应用程序的运行情况的信息，比如程序执行的过程、调试信息、错误信息、我们想要输出来的信息。</p>
+<h3 id="Log4j由三部分组成"><a href="#Log4j由三部分组成" class="headerlink" title="Log4j由三部分组成"></a>Log4j由三部分组成</h3><p>一、Logger ，日志信息的优先级，表示了这条日志信息的重要程度，当设置一个记录器的优先级后，这个记录器只会输出比这个优先级高的日志，低的就不会输出来了。<br>fatal &gt; error &gt; warn &gt; info &gt; debug<br>fatal 表示致命错误，一旦出现就停止执行<br>error 表示一般错误，出现了程序还可继续执行<br>warn  警告，具有潜在的危害<br>info  指定能够突出在粗粒度级别的应用程序上运行情况的信息<br>debug 细粒度的最有用的应用程序调试信息</p>
+<p>除了这五个常用的还有all、trace、off，all表示所有级别，trace表示比debug更加细粒度的信息，off表示关闭日志记录<br>off &gt; fatal &gt; error &gt; warn &gt; info &gt; debug &gt; trace &gt; all</p>
+<p>二、Appender ，日志信息的输出目的地，文件或者控制台<br>日志信息可以输出到控制台、某个文件、每天产生一个的文件、或者将日志信息以流格式发送到某个指定的地方，而我们选择的目的地，决定我们使用哪个类<br>1、org.apache.log4j.RollingFileAppender<br>2、org.apache.log4j.ConsoleAppender (控制台)<br>3、org.apache.log4j.FileAppender (文件)<br>4、org.apache.log4j.DailyRollingFileAppender (每天产生一个日志文件)<br>5、org.apache.log4j.WriterAppender (将日志信息以流格式发送到指定地方)</p>
+<p>三、Layout ，日志信息的输出格式，日志信息的显示格式<br>%c{层数}    logger的名称<br>%d    日志事件的时间<br>%m    日志信息<br>%n    换行<br>%level    日志级别<br>%p 日志的名字 （debug、fatal这样子的）<br>%t    当前生成日志事件的线程<br>还有一些其他的</p>
+<h3 id="如何使用log4j"><a href="#如何使用log4j" class="headerlink" title="如何使用log4j"></a>如何使用log4j</h3><p>首先我们定义一下配置文件，在配置文件里规定上面的三个东西，Logger日志种类、Appender输出目的地、Layout输出格式。我们需要配置一个根Logger，根logger指明打印的日志级别，然后指明使用的appender的名字。在定义的appender中，要指明appender的名字和leyout的名字，根据使用的类不同，其他的配置也不一样，看下：<br>1、首先配置Root的Logger<br>    log4j.rootLogger = [ level ] , appenderName1, appenderName2, …<br>    log4j.additivity.org.apache=false; 表示Logger不会在父Logger的appender里输出，默认为true。<br>    level ：设定日志记录的最低级别，可设的值有OFF、FATAL、ERROR、WARN、INFO、DEBUG、ALL或者自定义的级别，Log4j建议只使用中间四个级别。通过在这里设定级别，可以控制应用程序中相应级别的日志信息的开关，比如在这里设定了INFO级别，则应用程序中所有DEBUG级别的日志信息将不会被打印出来。<br>    appenderName：就是指定日志信息要输出到哪里。可以同时指定多个输出目的地，用逗号隔开。<br>    例如：log4j.rootLogger＝INFO,A1,B2,C3</p>
+<p>2、再配置Appender<br>    log4j.appender.appenderName = className;<br>        appenderName：自定义appderName，在log4j.rootLogger设置中使用；<br>    className：可设值如下：<br>        (1)org.apache.log4j.ConsoleAppender（控制台）<br>        (2)org.apache.log4j.FileAppender（文件）<br>        (3)org.apache.log4j.DailyRollingFileAppender（每天产生一个日志文件）<br>        (4)org.apache.log4j.RollingFileAppender（文件大小到达指定尺寸的时候产生一个新的文件）<br>        (5)org.apache.log4j.WriterAppender（将日志信息以流格式发送到任意指定的地方）<br>    当选择的输出目的地不同的时候，配置也不相同<br>        (1)ConsoleAppender选项：控制台<br>            Threshold=WARN; 指定日志信息的最低输出级别，默认为DEBUG。<br>            ImmediateFlush=true; 表示所有消息都会被立即输出，设为false则不输出，默认值是true。<br>            Target=System.err; 默认值是System.out。<br>        (2)FileAppender选项：文件<br>            Threshold=WARN;<br>            ImmediateFlush=true;<br>            Append=false; true表示消息增加到指定文件中，false则将消息覆盖指定的文件内容，默认值是true。<br>            File=D:/logs/logging.log4j; 指定消息输出到logging.log4j文件中。<br>        (3)DailyRollingFileAppender选项：每天产生一个文件<br>            Threshold=WARN;<br>            ImmediateFlush=true;<br>            Append=false;<br>            File=D:/logs/logging.log4j;<br>            DatePattern=’.’yyyy-MM; 每月滚动一次日志文件，即每月产生一个新的日志文件。当前月的日志文件名为logging.log4j，前一个月的日志文件名为logging.log4j.yyyy-MM。<br>            另外，也可以指定按周、天、时、分等来滚动日志文件，对应的格式如下：<br>                1)’.’yyyy-MM：每月<br>                2)’.’yyyy-ww：每周<br>                3)’.’yyyy-MM-dd：每天<br>                4)’.’yyyy-MM-dd-a：每天两次<br>                5)’.’yyyy-MM-dd-HH：每小时<br>                6)’.’yyyy-MM-dd-HH-mm：每分钟<br>        (4)RollingFileAppender选项：文件大小达到某个值的时候产生一个新的文件<br>            Threshold=WARN;<br>            ImmediateFlush=true;<br>            Append=false;<br>            File=D:/logs/logging.log4j;<br>            MaxFileSize=100KB; 后缀可以是KB,MB或者GB。在日志文件到达该大小时，将会自动滚动，即将原来的内容移到logging.log4j.1文件中。<br>            MaxBackupIndex=2; 指定可以产生的滚动文件的最大数，例如，设为2则可以产生logging.log4j.1，logging.log4j.2两个滚动文件和一个logging.log4j文件。</p>
+<p>3、配置Layout<br>    log4j.appender.appenderName.layout=className<br>    className：可设值如下：<br>        (1)org.apache.log4j.HTMLLayout（以HTML表格形式布局）<br>        (2)org.apache.log4j.PatternLayout（可以灵活地指定布局模式）<br>        (3)org.apache.log4j.SimpleLayout（包含日志信息的级别和信息字符串）<br>        (4)org.apache.log4j.TTCCLayout（包含日志产生的时间、线程、类别等等信息）<br>    (1)HTMLLayout选项：<br>        LocationInfo=true：输出java文件名称和行号，默认值是false。<br>        Title=My Logging： 默认值是Log4J Log Messages。<br>    (2)PatternLayout选项：<br>        ConversionPattern=%m%n：设定以怎样的格式显示消息。</p>
+<p>参考自 <a href="http://www.cnblogs.com/ITtangtang/p/3926665.html" target="_blank" rel="noopener">http://www.cnblogs.com/ITtangtang/p/3926665.html</a> 这里面有更详细的各种appender的配置</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="" data-id="" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/07/log4j的学习/" data-id="cjfp2hffl000jcgvavtq50t0q" class="article-share-link">Share</a>
       
       
     </footer>
   </div>
   
     
+<nav id="article-nav">
+  
+  
+    <a href="/2018/04/04/Springboot的学习/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Springboot的学习</div>
+    </a>
+  
+</nav>
+
   
 </article>
+
 
 </section>
 
