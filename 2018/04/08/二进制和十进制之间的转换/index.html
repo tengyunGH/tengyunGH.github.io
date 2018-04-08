@@ -7,20 +7,20 @@
   
   <title>The Marvellous World!</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="今天突然想起面试官问过二进制和十进制之间的小数部分转换，那时候，只记得整数部分是除二取余，小数部分好像是要乘二的，面试官还问，计算机在对小数操作的时候，有时候是不准确的，我说的是因为计算机是二进制的，操作位有限，但是没有说到点子上，为什么不准确，是因为0.1的十进制在二进制中是无限循环的。在Java中，操作浮点数，要用BigDecimal类，这个是猛哥在讲Java基础的时候就说过的，但是我好像都没">
+  <meta name="description" content="今天突然想起面试官问过二进制和十进制之间的小数部分转换，那时候，只记得整数部分是除二取余，小数部分好像是要乘二的，面试官还问，计算机在对小数操作的时候，有时候是不准确的，我说的是因为计算机是二进制的，操作位有限，但是没有说到点子上，为什么不准确，是因为有些数在十进制中是有限位，但是在二进制中是无限的，比如0.1的十进制在二进制中是无限循环的。在Java中，操作浮点数，要用BigDecimal类，这">
 <meta property="og:type" content="article">
 <meta property="og:title" content="二进制和十进制之间的转换">
 <meta property="og:url" content="http://yoursite.com/2018/04/08/二进制和十进制之间的转换/index.html">
 <meta property="og:site_name" content="The Marvellous World!">
-<meta property="og:description" content="今天突然想起面试官问过二进制和十进制之间的小数部分转换，那时候，只记得整数部分是除二取余，小数部分好像是要乘二的，面试官还问，计算机在对小数操作的时候，有时候是不准确的，我说的是因为计算机是二进制的，操作位有限，但是没有说到点子上，为什么不准确，是因为0.1的十进制在二进制中是无限循环的。在Java中，操作浮点数，要用BigDecimal类，这个是猛哥在讲Java基础的时候就说过的，但是我好像都没">
+<meta property="og:description" content="今天突然想起面试官问过二进制和十进制之间的小数部分转换，那时候，只记得整数部分是除二取余，小数部分好像是要乘二的，面试官还问，计算机在对小数操作的时候，有时候是不准确的，我说的是因为计算机是二进制的，操作位有限，但是没有说到点子上，为什么不准确，是因为有些数在十进制中是有限位，但是在二进制中是无限的，比如0.1的十进制在二进制中是无限循环的。在Java中，操作浮点数，要用BigDecimal类，这">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://p3o1rymh9.bkt.clouddn.com/Computer-BinaryAndDecimal1.png">
 <meta property="og:image" content="http://p3o1rymh9.bkt.clouddn.com/Computer-BinaryAndDecimal2.png">
 <meta property="og:image" content="http://p3o1rymh9.bkt.clouddn.com/Computer-BinaryAndDecimal3.png">
-<meta property="og:updated_time" content="2018-04-08T10:35:29.296Z">
+<meta property="og:updated_time" content="2018-04-08T10:40:58.296Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="二进制和十进制之间的转换">
-<meta name="twitter:description" content="今天突然想起面试官问过二进制和十进制之间的小数部分转换，那时候，只记得整数部分是除二取余，小数部分好像是要乘二的，面试官还问，计算机在对小数操作的时候，有时候是不准确的，我说的是因为计算机是二进制的，操作位有限，但是没有说到点子上，为什么不准确，是因为0.1的十进制在二进制中是无限循环的。在Java中，操作浮点数，要用BigDecimal类，这个是猛哥在讲Java基础的时候就说过的，但是我好像都没">
+<meta name="twitter:description" content="今天突然想起面试官问过二进制和十进制之间的小数部分转换，那时候，只记得整数部分是除二取余，小数部分好像是要乘二的，面试官还问，计算机在对小数操作的时候，有时候是不准确的，我说的是因为计算机是二进制的，操作位有限，但是没有说到点子上，为什么不准确，是因为有些数在十进制中是有限位，但是在二进制中是无限的，比如0.1的十进制在二进制中是无限循环的。在Java中，操作浮点数，要用BigDecimal类，这">
 <meta name="twitter:image" content="http://p3o1rymh9.bkt.clouddn.com/Computer-BinaryAndDecimal1.png">
   
     <link rel="alternate" href="/atom.xml" title="The Marvellous World!" type="application/atom+xml">
@@ -93,7 +93,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-          <p>今天突然想起面试官问过二进制和十进制之间的小数部分转换，那时候，只记得整数部分是除二取余，小数部分好像是要乘二的，面试官还问，计算机在对小数操作的时候，有时候是不准确的，我说的是因为计算机是二进制的，操作位有限，但是没有说到点子上，为什么不准确，是因为0.1的十进制在二进制中是无限循环的。在Java中，操作浮点数，要用BigDecimal类，这个是猛哥在讲Java基础的时候就说过的，但是我好像都没有用过。<br><a id="more"></a></p>
+          <p>今天突然想起面试官问过二进制和十进制之间的小数部分转换，那时候，只记得整数部分是除二取余，小数部分好像是要乘二的，面试官还问，计算机在对小数操作的时候，有时候是不准确的，我说的是因为计算机是二进制的，操作位有限，但是没有说到点子上，为什么不准确，是因为有些数在十进制中是有限位，但是在二进制中是无限的，比如0.1的十进制在二进制中是无限循环的。在Java中，操作浮点数，要用BigDecimal类，这个是猛哥在讲Java基础的时候就说过的，但是我好像都没有用过。<br><a id="more"></a></p>
 <h3 id="整数部分"><a href="#整数部分" class="headerlink" title="整数部分"></a>整数部分</h3><p>  1、十进制转二进制  除二取余方法<br>      23 -&gt; 11101<br><img width="200px" height="260px" src="http://p3o1rymh9.bkt.clouddn.com/Computer-BinaryAndDecimal1.png"></p>
 <p>  2、二进制转十进制<br>      101011 -&gt; 1<em>2^5 + 0</em>2^4 + 1<em>2^3 + 0</em>2^2 + 1<em>2^1 + 1</em>2^0 = 43</p>
 <h3 id="小数部分"><a href="#小数部分" class="headerlink" title="小数部分"></a>小数部分</h3><pre><code>1、十进制转为二进制  乘二取整法
@@ -106,7 +106,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/08/二进制和十进制之间的转换/" data-id="cjfqo9yur0019j8vadxvcnfvw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/08/二进制和十进制之间的转换/" data-id="cjfqogzj6000x7wvaujesh992" class="article-share-link">Share</a>
       
       
     </footer>
