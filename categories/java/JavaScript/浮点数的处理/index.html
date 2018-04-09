@@ -7,23 +7,16 @@
   
   <title>The Marvellous World!</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="下面是简单的按照网上的教程建立的一个springboot的项目，过程简单，但是也有些地方需要注意，记录下来 1、新建项目的步骤，很简单，在网上搜下教程就有Spring Initializer -&amp;gt; web web -&amp;gt; mysql jdbc mybatis -&amp;gt;还有个thymeleafs这个选上 -&amp;gt; 然后就是一些命名 2、由于项目新建后就会引入maven，所以在IDEA中">
-<meta property="og:type" content="article">
-<meta property="og:title" content="使用IDEA建立一个SpringBoot的过程及注意问题">
-<meta property="og:url" content="http://yoursite.com/2018/03/04/使用IDEA建立一个SpringBoot的过程及注意问题/index.html">
+  <meta name="description" content="这是我的个人网站，主要发布一些我的工作生活经历">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Marvellous World!">
+<meta property="og:url" content="http://yoursite.com/categories/Java/JavaScript/浮点数的处理/index.html">
 <meta property="og:site_name" content="The Marvellous World!">
-<meta property="og:description" content="下面是简单的按照网上的教程建立的一个springboot的项目，过程简单，但是也有些地方需要注意，记录下来 1、新建项目的步骤，很简单，在网上搜下教程就有Spring Initializer -&amp;gt; web web -&amp;gt; mysql jdbc mybatis -&amp;gt;还有个thymeleafs这个选上 -&amp;gt; 然后就是一些命名 2、由于项目新建后就会引入maven，所以在IDEA中">
+<meta property="og:description" content="这是我的个人网站，主要发布一些我的工作生活经历">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://p3o1rymh9.bkt.clouddn.com/IDEA-SpringBoot1.png">
-<meta property="og:image" content="http://p3o1rymh9.bkt.clouddn.com/IDEA-SpringBoot2.png">
-<meta property="og:image" content="http://p3o1rymh9.bkt.clouddn.com/IDEA-SpringBoot3.png">
-<meta property="og:image" content="http://p3o1rymh9.bkt.clouddn.com/IDEA-SpringBoot4.png">
-<meta property="og:image" content="http://p3o1rymh9.bkt.clouddn.com/IDEA-SpringBoot5.png">
-<meta property="og:updated_time" content="2018-03-05T07:08:08.197Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用IDEA建立一个SpringBoot的过程及注意问题">
-<meta name="twitter:description" content="下面是简单的按照网上的教程建立的一个springboot的项目，过程简单，但是也有些地方需要注意，记录下来 1、新建项目的步骤，很简单，在网上搜下教程就有Spring Initializer -&amp;gt; web web -&amp;gt; mysql jdbc mybatis -&amp;gt;还有个thymeleafs这个选上 -&amp;gt; 然后就是一些命名 2、由于项目新建后就会引入maven，所以在IDEA中">
-<meta name="twitter:image" content="http://p3o1rymh9.bkt.clouddn.com/IDEA-SpringBoot1.png">
+<meta name="twitter:title" content="The Marvellous World!">
+<meta name="twitter:description" content="这是我的个人网站，主要发布一些我的工作生活经历">
   
     <link rel="alternate" href="/atom.xml" title="The Marvellous World!" type="application/atom+xml">
   
@@ -69,79 +62,26 @@
 
         <section id="main">
 
-<article id="post-使用IDEA建立一个SpringBoot的过程及注意问题" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/03/04/使用IDEA建立一个SpringBoot的过程及注意问题/" class="article-date">
-  <time datetime="2018-03-04T15:29:21.000Z" itemprop="datePublished">2018-03-04</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/IDEA/">IDEA</a>►<a class="article-category-link" href="/categories/IDEA/SpringBoot/">SpringBoot</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      使用IDEA建立一个SpringBoot的过程及注意问题
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          <p>下面是简单的按照网上的教程建立的一个springboot的项目，过程简单，但是也有些地方需要注意，记录下来</p>
-<p>1、新建项目的步骤，很简单，在网上搜下教程就有<br>Spring Initializer -&gt; web web -&gt; mysql jdbc mybatis -&gt;还有个thymeleafs这个选上 -&gt; 然后就是一些命名</p>
-<p>2、由于项目新建后就会引入maven，所以在IDEA中配置一下全局设置（default settings中设置maven），这样的话就不会下载到c盘了</p>
-<a id="more"></a>
-<p>3、最重要的设置modules里面，别忘了Web这个选项<br><img width="200px" height="150px" src="http://p3o1rymh9.bkt.clouddn.com/IDEA-SpringBoot1.png"><br><img width="400px" src="http://p3o1rymh9.bkt.clouddn.com/IDEA-SpringBoot2.png"><br>Web的设置很重要<br><img width="400px" src="http://p3o1rymh9.bkt.clouddn.com/IDEA-SpringBoot3.png"><br>这个里面设置的是项目文件的属性</p>
-<p>4、然后是Artifacts里面的设置<br><img width="400px" src="http://p3o1rymh9.bkt.clouddn.com/IDEA-SpringBoot4.png"><br>尤其要注意这个里面的部署的目录，如果上一步骤中的WEB没有配置正确的话，这里也不会正确的，那么tomcat不会正常运行（404错误页面），但是XXXXXApplication可以正常加载出来，能够访问</p>
-<p>5、除此之外，如果是用自己配置的tomcat来运行这个项目的话，有补救措施<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FifthtestApplication</span> <span class="keyword">extends</span> <span class="title">SpringBootServletInitializer</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> SpringApplicationBuilder <span class="title">configure</span><span class="params">(SpringApplicationBuilder application)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> application.sources(FifthtestApplication.class);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">       SpringApplication.run(FifthtestApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>注意啦，这里面多了一个SpringBootServletInitializer的继承实现，这样的话，就可以用自己配置的tomcat跑项目，如果不继承这个就不用写configure方法，但是就只能用IDEA自己的内置tomcat跑项目（不知道是不是tomcat）</p>
-<p>6、然后说下springboot的框架搭建<br>Src的目录<br><img width="400px" height="300px" src="http://p3o1rymh9.bkt.clouddn.com/IDEA-SpringBoot5.png"><br>这里面HelloController里面是controller的描写，尤其注意@RestController相当于@Controller和@ResponseBody的合体，今天在这里面捣鼓了半天，如果要返回一个页面，直接@Controller就OK了，这个类上面有无@RequestMapping（“/tengyun”）都可以，方法上面要有路径</p>
-<p>FifthtestApplication里面就是main方法和继承SpringBootServletInitializer的@Overrides的configure方法，继承的这个方法是为了让自己配置的tomcat能跑起来</p>
-<p>在applicaiton.properties中写上spring.thymeleaf.prefix=classpath:/templates/这样就可以返回templates文件夹中的页面了</p>
-<p>Templates文件夹中存放你所需的page，应该可以改的</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/04/使用IDEA建立一个SpringBoot的过程及注意问题/" data-id="cjfser49900222ovap63w5mjb" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2018/03/05/IDEA中的tomcat使用心得/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          IDEA中的tomcat使用心得
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2018/02/05/java类间的强制转换/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">java类间的强制转换</div>
-    </a>
-  
-</nav>
-
-  
-</article>
 
 
-</section>
+
+<div class="archive">
+	
+	
+		
+		
+			<h3 class="year">2018</h3>
+			
+		
+		<div class="archive_item">
+			<span class="date">2018-04-09</span>
+			<a class="title" href="/2018/04/09/浮点数在Java和JavaScript中的处理/">浮点数在Java和JavaScript中的处理</a>
+		</div>
+	
+	<div class="pagination">
+		
+	</div>
+</div></section>
 
         
           
