@@ -67,6 +67,66 @@
 
     
     
+<article id="post-mybatis对springboot的支持-注解取代xml" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/14/mybatis对springboot的支持-注解取代xml/" class="article-date">
+  <time datetime="2018-04-14T02:48:03.000Z" itemprop="datePublished">2018-04-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/mybatis/">mybatis</a>►<a class="article-category-link" href="/categories/mybatis/springboot/">springboot</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/14/mybatis对springboot的支持-注解取代xml/">mybatis对springboot的支持-注解取代xml</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          <p>随着springboot的兴起，mybatis也提供了对springboot的支持</p>
+<h3 id="首先，添加的依赖"><a href="#首先，添加的依赖" class="headerlink" title="首先，添加的依赖"></a>首先，添加的依赖</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">      &lt;groupId&gt; org.mybatis.spring.boot&lt;/groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;mybatis-spring-boot-starter&lt;/artifactId&gt;</span><br><span class="line">      &lt;version&gt;1.3.2&lt;/version&gt;</span><br><span class="line">  &lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="其次，在springboot中的配置"><a href="#其次，在springboot中的配置" class="headerlink" title="其次，在springboot中的配置"></a>其次，在springboot中的配置</h3><p>当开启springboot的自动配置之后，直接在application.properties中写上数据源的一些配置，springboot会自动帮我们加载这些配置，数据源就会自动注入到sqlSessionFactory中，sqlSessionFactory就会自动注入到Mapper中。也就是说，我们直接在application.properties里面写上就好了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">spring:</span><br><span class="line">  datasource:</span><br><span class="line">    url: jdbc:mysql://localhost:3306/bookCloud?useSSL=false</span><br><span class="line">    username: root</span><br><span class="line">    password: tengyun123</span><br><span class="line">    driverClassName: com.mysql.jdbc.Driver</span><br></pre></td></tr></table></figure></p>
+<p>我写在了application-dev.yml中，所以格式是这样的。</p>
+<h3 id="开启mapper的扫描"><a href="#开启mapper的扫描" class="headerlink" title="开启mapper的扫描"></a>开启mapper的扫描</h3><p>在启动类上面加上注解@MapperScan(“com.tengyun.bookCloud”)<br>或者在每个接口上加上@Mapper标签<br>（在IDEA中如果发现这个接口文件（UserDao）无法注入，查了一些办法，最终我在每个接口文件上面加了个注解@Repository之后解决了，关于问题的本质是什么还不能明白，大概就是IDEA的检查太严了？）</p>
+<h3 id="这个接口的写法"><a href="#这个接口的写法" class="headerlink" title="这个接口的写法"></a>这个接口的写法</h3><p>1、先总结下以前用xml来开发的规范,拿user来做例子吧</p>
+<pre><code>&gt; UserMapper.xml中的namespace一定要等于UserDao.java（我习惯写UserDao，而不是UserMapper）的路径，比如说我的就要写成namespace=&quot;com.tengyun.bookCloud.user.dao.UserDao&quot;
+&gt; UserMapper.xml中sql语句的id要和UserDao.java接口中的方法名一致
+&gt; UserMapper.xml中的parameterType要和UserDao.java接口中方法的输入参数一致
+&gt; UserMapper.xml中的resultType要和UserDao.java接口中方法的返回值类型一致
+</code></pre><p>参考 <a href="https://blog.csdn.net/eson_15/article/details/51601204" target="_blank" rel="noopener">https://blog.csdn.net/eson_15/article/details/51601204</a> </p>
+<p>2、现在来重点学习一下，不要这个UserMapper.xml了怎么直接在dao接口中用注解开发<br> 1)、基础注解：@Select、@Insert、@Update、@Delete<br>先看个例子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@Repository</span><br><span class="line">public interface UserDao &#123;</span><br><span class="line"> @Select(&quot;select * from bc_user&quot;)</span><br><span class="line"> List&lt;User&gt; list();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>大概就是在每个方法上面用注解表示sql语句，并规定参数类型这些东西。看这个查询语句，没有规定字段映射，那么是如何完成查询结果到实体类User的映射的呢？在数据库（我现在用的是mysql）的设计过程中，命名规范是库、表、字段等名称统一使用小写，单词间用_下划线分隔，例如说bc_user表格中的字段（user_id）,当咱们开启了驼峰式命名映射规则(<code>&lt;setting name=&quot;mapUnderscoreToCamelCase&quot; value=&quot;true&quot;/&gt;</code>)后，user_id（或者userId）会被映射为实体中的userId字段，springboot同样有这样的配置，所以我们不用映射也可以获得数据。如果说，数据库中的字段和实体类中的属性名不能依靠这个规则转换，那么如何映射呢？这个有映射注解来解决</p>
+<p>2)、映射注解： @Results、@Result、@ResultMap<br>用法：<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Results(&#123;</span><br><span class="line">   @Result(property = &quot;userPassword&quot;, column = &quot;user_password&quot;),</span><br><span class="line">   @Result(property = &quot;userMobileNum&quot;, column = &quot;user_phone_number&quot;)</span><br><span class="line"> &#125;)</span><br><span class="line"> @Select(&quot;select * from bc_user&quot;)</span><br><span class="line"> List&lt;User&gt; list();</span><br></pre></td></tr></table></figure></p>
+<p>3）、高级注解@SelectProvider、@InsertProvider、@UpdateProvider、@DeleteProvider<br>就是用一个指定一个工具类的方法返回sql语句的字符串，然后就是用这个sql语句<br>粒子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//type表示使用的工具类，method表示使用的方法名</span><br><span class="line">@Repository</span><br><span class="line">public interface UserMapper &#123;</span><br><span class="line"> @SelectProvider(type = UserSqlProvider.class, method = &quot;list222&quot;)</span><br><span class="line"> List&lt;User&gt; list2();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">工具类代码如下：</span><br><span class="line">public class UserSqlProvider &#123;</span><br><span class="line"> public String list222() &#123;</span><br><span class="line">  return &quot;select * from t_user ;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
+<p>参考自 <a href="http://www.jb51.net/article/127473.htm" target="_blank" rel="noopener">http://www.jb51.net/article/127473.htm</a> </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/04/14/mybatis对springboot的支持-注解取代xml/" data-id="cjfyvqh1x000wigvaqeyq0ki0" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+    
+    
 <article id="post-content-type的学习" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/04/13/content-type的学习/" class="article-date">
@@ -109,7 +169,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/13/content-type的学习/" data-id="cjfxxd6ju00045kva5gk8xzoc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/13/content-type的学习/" data-id="cjfyvqh0s000ligvaafhzs960" class="article-share-link">Share</a>
       
       
     </footer>
@@ -165,7 +225,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/13/RequestMapping的学习/" data-id="cjfxxd6ej00005kvalcfnibow" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/13/RequestMapping的学习/" data-id="cjfyvqh03000gigvaigfqr2aj" class="article-share-link">Share</a>
       
       
     </footer>
@@ -216,7 +276,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/09/浮点数在Java和JavaScript中的处理/" data-id="cjfxxcm48001j6svajnxsqvvz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/09/浮点数在Java和JavaScript中的处理/" data-id="cjfyvqh3i001jigvarbf2rtwz" class="article-share-link">Share</a>
       
       
     </footer>
@@ -265,7 +325,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/08/二进制和十进制之间的转换/" data-id="cjfxxcm2i000x6svaxtyov3kf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/08/二进制和十进制之间的转换/" data-id="cjfyvqh2a0011igvac9j6kl9n" class="article-share-link">Share</a>
       
       
     </footer>
@@ -309,7 +369,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/08/HttpServletRequest和HttpServletResponse的学习/" data-id="cjfxxclye00026svao0foq0r8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/08/HttpServletRequest和HttpServletResponse的学习/" data-id="cjfyvqgv80000igvacfaie2pu" class="article-share-link">Share</a>
       
       
     </footer>
@@ -359,7 +419,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/07/log4j的学习/" data-id="cjfxxcm2d000w6svacceekmed" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/07/log4j的学习/" data-id="cjfyvqh1p000uigvanz3ljfq8" class="article-share-link">Share</a>
       
       
     </footer>
@@ -420,7 +480,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/04/Springboot的学习/" data-id="cjfxxcm0o000f6svabfxgh658" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/04/Springboot的学习/" data-id="cjfyvqh0k000jigva6hdf6ltg" class="article-share-link">Share</a>
       
       
     </footer>
@@ -469,7 +529,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/02/Mysql命名规范/" data-id="cjfxxcm00000c6svakayab3bq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/02/Mysql命名规范/" data-id="cjfyvqgxr0008igvau9mjb3by" class="article-share-link">Share</a>
       
       
     </footer>
@@ -520,56 +580,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/02/Sql中的truncate、drop和delete/" data-id="cjfxxcm0w000h6svayjiry3sd" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-
-    
-    
-<article id="post-java中的Class类" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/03/31/java中的Class类/" class="article-date">
-  <time datetime="2018-03-31T07:26:08.000Z" itemprop="datePublished">2018-03-31</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/java/">java</a>►<a class="article-category-link" href="/categories/java/Class的学习/">Class的学习</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/31/java中的Class类/">java中的Class类</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>学一下子 Class<br>1、java有个类，名字是Class，是一个<strong>封装类型的类</strong>（好好体会这句话）<br>2、JVM在加载某一个类或者接口，比如是MyClass的时候，会<strong>自动创建</strong>一个Class类的对象（ClassLoader生成），这个Class的对象代表了MyClass类或接口的抽象表示（类型）<br>3、Class这个类的对象呢，是JVM根据咱们自己写的class（Myclass）的的字节码文件建立这个类的Class对象<br>就是说，Class和Myclass是平级的，Class的每个实例一一对应着咱们自己写的类，通过Class实例可以创建某个类的对象，也可以通过某个类的类名找到JVM创建的这个类的Class实例<br>
-        
-          <p class="article-more-link">
-            <a href="/2018/03/31/java中的Class类/#more">了解更多</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/31/java中的Class类/" data-id="cjfxxcm18000l6svawtqd20u7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/02/Sql中的truncate、drop和delete/" data-id="cjfyvqgzs000figva674yqkxg" class="article-share-link">Share</a>
       
       
     </footer>
@@ -598,7 +609,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/">IDEA</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/SpringBoot/">SpringBoot</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/Tomcat/">Tomcat</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/JavaScript/">JavaScript</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/JavaScript/浮点数的处理/">浮点数的处理</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/基础知识/">基础知识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/文件系统/">文件系统</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySql/">MySql</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/MySql/权限控制/">权限控制</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySql/运行原理及架构/">运行原理及架构</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/delete-truncate-drop/">delete truncate drop</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot/">SpringBoot</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringMvc/">SpringMvc</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/SpringMvc/标签/">标签</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/SpringMvc/标签/RequestMapping/">RequestMapping</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/Class的学习/">Class的学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/HttpServletRequest、HttpServletResponse/">HttpServletRequest、HttpServletResponse</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/java8/">java8</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/java8/Lambda表达式/">Lambda表达式</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/volatile/">volatile</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/包结构/">包结构</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/异常的使用/">异常的使用</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/数组/">数组</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/输入输出流/">输入输出流</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/重写和重载/">重写和重载</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/language/">language</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/language/MD语法/">MD语法</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统/">操作系统</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统/基本知识/">基本知识</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/">数据结构</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/基础知识/">基础知识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/算法概念/">算法概念</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/日志/">日志</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/日志/log4j/">log4j</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/算法/排序算法/">排序算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/深度优先/">深度优先</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/编码规则/">编码规则</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/计算机的组成部分/">计算机的组成部分</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/进制转换/">进制转换</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/代理模式/">代理模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/原型模式/">原型模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/外观模式/">外观模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/工厂方法模式/">工厂方法模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/建造者模式/">建造者模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/模板方法模式/">模板方法模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/策略模式/">策略模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/简单工厂模式/">简单工厂模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/装饰模式/">装饰模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/设计原则/">设计原则</a><span class="category-list-count">1</span></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/">IDEA</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/SpringBoot/">SpringBoot</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/Tomcat/">Tomcat</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/JavaScript/">JavaScript</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/JavaScript/浮点数的处理/">浮点数的处理</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/基础知识/">基础知识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/文件系统/">文件系统</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySql/">MySql</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/MySql/权限控制/">权限控制</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySql/运行原理及架构/">运行原理及架构</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/delete-truncate-drop/">delete truncate drop</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot/">SpringBoot</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringMvc/">SpringMvc</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/SpringMvc/标签/">标签</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/SpringMvc/标签/RequestMapping/">RequestMapping</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/Class的学习/">Class的学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/HttpServletRequest、HttpServletResponse/">HttpServletRequest、HttpServletResponse</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/java8/">java8</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/java8/Lambda表达式/">Lambda表达式</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/volatile/">volatile</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/包结构/">包结构</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/异常的使用/">异常的使用</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/数组/">数组</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/输入输出流/">输入输出流</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/重写和重载/">重写和重载</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/language/">language</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/language/MD语法/">MD语法</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/mybatis/">mybatis</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/mybatis/springboot/">springboot</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统/">操作系统</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统/基本知识/">基本知识</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/">数据结构</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/基础知识/">基础知识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/算法概念/">算法概念</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/日志/">日志</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/日志/log4j/">log4j</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/算法/排序算法/">排序算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/深度优先/">深度优先</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/编码规则/">编码规则</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/计算机的组成部分/">计算机的组成部分</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/进制转换/">进制转换</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/代理模式/">代理模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/原型模式/">原型模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/外观模式/">外观模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/工厂方法模式/">工厂方法模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/建造者模式/">建造者模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/模板方法模式/">模板方法模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/策略模式/">策略模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/简单工厂模式/">简单工厂模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/装饰模式/">装饰模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/设计原则/">设计原则</a><span class="category-list-count">1</span></li></ul></li></ul>
     </div>
   </div>
 
@@ -627,7 +638,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">archive_a</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">34</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">34</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -638,6 +649,10 @@
     <h3 class="widget-title">recent_posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/04/14/mybatis对springboot的支持-注解取代xml/">mybatis对springboot的支持-注解取代xml</a>
+          </li>
         
           <li>
             <a href="/2018/04/13/content-type的学习/">RequestMapping的学习</a>
@@ -653,10 +668,6 @@
         
           <li>
             <a href="/2018/04/08/二进制和十进制之间的转换/">二进制和十进制之间的转换</a>
-          </li>
-        
-          <li>
-            <a href="/2018/04/08/HttpServletRequest和HttpServletResponse的学习/">HttpServletRequest和HttpServletResponse的学习</a>
           </li>
         
       </ul>
