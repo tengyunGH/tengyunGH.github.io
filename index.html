@@ -67,6 +67,109 @@
 
     
     
+<article id="post-手机邮箱接口调用发送验证码" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/20/手机邮箱接口调用发送验证码/" class="article-date">
+  <time datetime="2018-04-20T11:53:01.000Z" itemprop="datePublished">2018-04-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/项目/">项目</a>►<a class="article-category-link" href="/categories/项目/验证码/">验证码</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/20/手机邮箱接口调用发送验证码/">手机邮箱接口调用发送验证码</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          <h3 id="手机发送验证码"><a href="#手机发送验证码" class="headerlink" title="手机发送验证码"></a>手机发送验证码</h3><p>使用了阿里大鱼的短信接口<br>先看一个第一次成功的<br><img width="400px" height="200px" src="http://p3o1rymh9.bkt.clouddn.com/Project-PhoneMessage1.png"><br>1、首先，让maven引入依赖<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--阿里大鱼短信依赖--&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;com.aliyun&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;aliyun-java-sdk-core&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;3.3.1&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;com.aliyun&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;aliyun-java-sdk-dysmsapi&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;1.0.0&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
+<p>2、然后要去阿里大鱼的短信控制平台注册，然后设置<strong>短信签名</strong>和<strong>短信模板</strong>，短信签名，用于标识我，就是发送者，短信模板，定义了我发送的短信的内容，这两个都是要审批的，大概一个小时不到就可以通过。<br>短信模板：<br><img width="1400px" height="400px" src="http://p3o1rymh9.bkt.clouddn.com/Project-PhoneMessage2.png"><br>短信签名：<br><img width="1400px" height="400px" src="http://p3o1rymh9.bkt.clouddn.com/Project-PhoneMessage3.png"></p>
+<p>3、业务逻辑<br>阿里大鱼提供了多种语言的接口，这里就以java为例了 参考官方文档：<a href="https://help.aliyun.com/document_detail/55284.html?spm=5176.10629532.106.1.31ea1cbedA7Fju" target="_blank" rel="noopener">https://help.aliyun.com/document_detail/55284.html?spm=5176.10629532.106.1.31ea1cbedA7Fju</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">  * 给某个手机号发送验证码</span><br><span class="line">  * @param phone</span><br><span class="line">  * @param verifyCode</span><br><span class="line">  * @return</span><br><span class="line">  */</span><br><span class="line"> public Boolean phoneSendVerifyCode(String phone, String verifyCode) throws ClientException &#123;</span><br><span class="line">     //给这个手机号发送验证码</span><br><span class="line">     //设置超时时间-可自行调整</span><br><span class="line">     System.setProperty(&quot;sun.net.client.defaultConnectTimeout&quot;, &quot;10000&quot;);    // 连接主机时间</span><br><span class="line">     System.setProperty(&quot;sun.net.client.defaultReadTimeout&quot;, &quot;10000&quot;);   //从服务器读取响应的超时时间</span><br><span class="line"></span><br><span class="line">     //初始化ascClient需要的几个参数</span><br><span class="line">     final String product = &quot;Dysmsapi&quot;;//短信API产品名称（短信产品名固定，无需修改）</span><br><span class="line">     final String domain = &quot;dysmsapi.aliyuncs.com&quot;;//短信API产品域名（接口地址固定，无需修改）</span><br><span class="line"></span><br><span class="line">     //替换成你的AK</span><br><span class="line">     final String accessKeyId = &quot;LTAI3zaPkBNomYWI&quot;;//你的accessKeyId,参考本文档步骤2</span><br><span class="line">     final String accessKeySecret = &quot;rAKv7NBtmzQOJSelI9HsVq7gSE1iKx&quot;;//你的accessKeySecret，参考本文档步骤2</span><br><span class="line"></span><br><span class="line">     //初始化ascClient,暂时不支持多region（请勿修改）</span><br><span class="line">     IClientProfile profile = DefaultProfile.getProfile(&quot;cn-hangzhou&quot;, accessKeyId, accessKeySecret);</span><br><span class="line">     DefaultProfile.addEndpoint(&quot;cn-hangzhou&quot;, &quot;cn-hangzhou&quot;, product, domain);</span><br><span class="line">     IAcsClient acsClient = new DefaultAcsClient(profile);</span><br><span class="line"></span><br><span class="line">     //组装请求对象</span><br><span class="line">     SendSmsRequest request = new SendSmsRequest();</span><br><span class="line">     //使用post提交</span><br><span class="line">     request.setMethod(MethodType.POST);</span><br><span class="line">     //必填:待发送手机号。支持以逗号分隔的形式进行批量调用，批量上限为1000个手机号码,批量调用相对于单条调用及时性稍有延迟,验证码类型的短信推荐使用单条调用的方式</span><br><span class="line">     request.setPhoneNumbers(phone);</span><br><span class="line">     //必填:短信签名-可在短信控制台中找到</span><br><span class="line">     request.setSignName(&quot;bookcloud滕云&quot;);</span><br><span class="line">     //必填:短信模板-可在短信控制台中找到</span><br><span class="line">     request.setTemplateCode(&quot;SMS_132395896&quot;);</span><br><span class="line">     //可选:模板中的变量替换JSON串,如模板内容为&quot;亲爱的$&#123;name&#125;,您的验证码为$&#123;code&#125;&quot;时,此处的值为</span><br><span class="line">     //友情提示:如果JSON中需要带换行符,请参照标准的JSON协议对换行符的要求,比如短信内容中包含\r\n的情况在JSON中需要表示成\\r\\n,否则会导致JSON在服务端解析失败</span><br><span class="line">     request.setTemplateParam(&quot;&#123;\&quot;code\&quot;:&quot; + verifyCode + &quot;&#125;&quot;);</span><br><span class="line">     //可选-上行短信扩展码(扩展码字段控制在7位或以下，无特殊需求用户请忽略此字段)</span><br><span class="line">     //request.setSmsUpExtendCode(&quot;90997&quot;);</span><br><span class="line">     //可选:outId为提供给业务方扩展字段,最终在短信回执消息中将此值带回给调用者</span><br><span class="line">     //request.setOutId(&quot;myOutId&quot;);</span><br><span class="line"></span><br><span class="line">     //请求失败这里会抛ClientException异常</span><br><span class="line">     SendSmsResponse sendSmsResponse = acsClient.getAcsResponse(request);</span><br><span class="line">     if (sendSmsResponse.getCode() != null &amp;&amp; sendSmsResponse.getCode().equals(&quot;OK&quot;)) &#123;</span><br><span class="line">         return true;</span><br><span class="line">     &#125; else &#123;</span><br><span class="line">         return false;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="邮件发送验证码"><a href="#邮件发送验证码" class="headerlink" title="邮件发送验证码"></a>邮件发送验证码</h3><p>1、先选一个发送邮件的邮箱号码，比如我用qq邮箱发送的，那么就去开通qq邮箱的smtp服务，获取授权码，这个授权码，就是第三方登录你的qq邮箱要用的。</p>
+<p>2、引入发送邮件要用的依赖<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--发送邮件的依赖--&gt;</span><br><span class="line">      &lt;dependency&gt;</span><br><span class="line">          &lt;groupId&gt;javax.mail&lt;/groupId&gt;</span><br><span class="line">          &lt;artifactId&gt;javax.mail-api&lt;/artifactId&gt;</span><br><span class="line">          &lt;version&gt;1.5.2&lt;/version&gt;</span><br><span class="line">          &lt;type&gt;jar&lt;/type&gt;</span><br><span class="line">          &lt;scope&gt;compile&lt;/scope&gt;</span><br><span class="line">      &lt;/dependency&gt;</span><br><span class="line">      &lt;dependency&gt; </span><br><span class="line">          &lt;groupId&gt;com.sun.mail&lt;/groupId&gt;</span><br><span class="line">          &lt;artifactId&gt;javax.mail&lt;/artifactId&gt;</span><br><span class="line">          &lt;version&gt;1.5.2&lt;/version&gt;</span><br><span class="line">      &lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
+<p>3、java代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">   /**</span><br><span class="line">     * 给某个邮箱号发送验证码</span><br><span class="line">     * @param mail</span><br><span class="line">     * @param verifyCode 要发送的验证码</span><br><span class="line">     * @return 验证码</span><br><span class="line">     */</span><br><span class="line">    public Boolean mailSendVerifyCode(String mail, String verifyCode) throws MessagingException &#123;</span><br><span class="line">        String subject = &quot;书云邮箱验证码&quot;;</span><br><span class="line">        String content = &quot;您的验证码是：&quot; + verifyCode + &quot;，请尽快完成验证！&quot;;</span><br><span class="line">        //给这个邮箱号发送验证码，收件人地址，主题，发送内容</span><br><span class="line">        return sendMail(mail, subject, content);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 发邮件的方法</span><br><span class="line">     * @param mailAdr 收件人地址</span><br><span class="line">     * @param subject 邮件标题</span><br><span class="line">     * @param content 邮件文本内容</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    public Boolean sendMail(String mailAdr, String subject, String content) throws MessagingException, AddressException &#123;</span><br><span class="line">        Boolean result;</span><br><span class="line">        //配置发送邮件的环境属性</span><br><span class="line">        final Properties props = new Properties();</span><br><span class="line">        // 表示SMTP发送邮件，需要进行身份验证</span><br><span class="line">        props.put(&quot;mail.smtp.auth&quot;, &quot;true&quot;);</span><br><span class="line">        props.put(&quot;mail.smtp.host&quot;, &quot;smtp.qq.com&quot;);</span><br><span class="line">        //smtp登陆的账号、密码 ；需开启smtp登陆</span><br><span class="line">        props.put(&quot;mail.user&quot;, &quot;1591092672@qq.com&quot;);</span><br><span class="line">        // 访问SMTP服务时需要提供的密码,不是邮箱登陆密码，一般都有独立smtp的登陆密码</span><br><span class="line">        props.put(&quot;mail.password&quot;, &quot;ekaifjueklmuggfh&quot;);//授权码</span><br><span class="line"></span><br><span class="line">        props.put(&quot;mail.smtp.port&quot;, &quot;465&quot;);</span><br><span class="line">        props.setProperty(&quot;mail.smtp.socketFactory.class&quot;, &quot;javax.net.ssl.SSLSocketFactory&quot;);</span><br><span class="line">        props.setProperty(&quot;mail.smtp.socketFactory.port&quot;, &quot;465&quot;);</span><br><span class="line">        props.put(&quot;mail.transport.protocol&quot;, &quot;smtp&quot;);</span><br><span class="line">        props.put(&quot;mail.smtp.starttls.enable&quot;, &quot;true&quot;);</span><br><span class="line"></span><br><span class="line">        // 构建授权信息，用于进行SMTP进行身份验证</span><br><span class="line">        Authenticator authenticator = new Authenticator() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            protected PasswordAuthentication getPasswordAuthentication() &#123;</span><br><span class="line">                // 用户名、密码</span><br><span class="line">                String userName = props.getProperty(&quot;mail.user&quot;);</span><br><span class="line">                String password = props.getProperty(&quot;mail.password&quot;);</span><br><span class="line">                return new PasswordAuthentication(userName, password);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        // 使用环境属性和授权信息，创建邮件会话</span><br><span class="line">        Session mailSession = Session.getInstance(props, authenticator);</span><br><span class="line">        // 创建邮件消息</span><br><span class="line">        MimeMessage message = new MimeMessage(mailSession);</span><br><span class="line">        // 设置发件人</span><br><span class="line">        InternetAddress form = new InternetAddress(props.getProperty(&quot;mail.user&quot;));</span><br><span class="line">        message.setFrom(form);</span><br><span class="line">        // 设置收件人</span><br><span class="line">        InternetAddress to = new InternetAddress(mailAdr);</span><br><span class="line">        message.setRecipient(Message.RecipientType.TO, to);</span><br><span class="line">        // 设置邮件标题</span><br><span class="line">        message.setSubject(subject);</span><br><span class="line">        // 设置邮件的内容体</span><br><span class="line">        message.setContent(content, &quot;text/html;charset=UTF-8&quot;);</span><br><span class="line">        // 发送邮件</span><br><span class="line">        Transport.send(message);</span><br><span class="line">        result = true;</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>最近碰到的小坑，记录一下：<br>1、在一个form里面的button，如果点击他的话，默认就执行表单的submit，所以，如果想让这个按钮的点击事件是别的，要么禁用提交行为，将button的type设置为“button”，要么就将button定义到form的外面，再定义点击事件。</p>
+<p>2、js里面的return，只能退出一个闭包，而不是退出一个方法，这点和之前接触的语言不太一样，所以在ajax，或者if-else里面return的话，只能退出那个小闭包。虽然还不太理解闭包的准确含义，但是还是大概能明白一点，先记住。</p>
+<p>3、radio元素比按钮啊下拉框什么的要好看</p>
+<p>4、animation做动画</p>
+<p>5、让一个整数转型为字符串  12345 + “”</p>
+<p>6、产生一个随机数： system.currentTimeMills() % 10000</p>
+<p>7、每个会话的session的id会存放在cookie中，通过cookie找到用户的唯一的session。ServletContext，一个应用拥有唯一个对象。</p>
+<p>8、图片验证码，在验证一次后，就应该让他失效，避免了恶意的暴力的重复使用同一张验证码多次访问</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/04/20/手机邮箱接口调用发送验证码/" data-id="cjg7zzi27001at4vay5nji8gs" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+    
+    
+<article id="post-面向切面编程AOP" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/15/面向切面编程AOP/" class="article-date">
+  <time datetime="2018-04-15T11:33:49.000Z" itemprop="datePublished">2018-04-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程思想/">编程思想</a>►<a class="article-category-link" href="/categories/编程思想/AOP/">AOP</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/15/面向切面编程AOP/">面向切面编程AOP</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          <p>面向切面编程 AOP（Aspect Oriented Programming），和常说的面向对象编程OOP（Object Oriented Programming）是一个级别的，都是一种编程思想。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/04/15/面向切面编程AOP/" data-id="cjg7zzicm005jt4vawsfazc2r" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+    
+    
 <article id="post-mybatis对springboot的支持-注解取代xml" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/04/14/mybatis对springboot的支持-注解取代xml/" class="article-date">
@@ -113,63 +216,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/14/mybatis对springboot的支持-注解取代xml/" data-id="cjfyvqh1x000wigvaqeyq0ki0" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-
-    
-    
-<article id="post-content-type的学习" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/13/content-type的学习/" class="article-date">
-  <time datetime="2018-04-13T09:46:15.000Z" itemprop="datePublished">2018-04-13</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/SpringMvc/">SpringMvc</a>►<a class="article-category-link" href="/categories/SpringMvc/标签/">标签</a>►<a class="article-category-link" href="/categories/SpringMvc/标签/RequestMapping/">RequestMapping</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/13/content-type的学习/">RequestMapping的学习</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          <p>首先我们要明白一个，这个标签作用于处理器上，是一个匹配请求和设置返回值的一个规则，请求是浏览器发出的。我是这么理解的。</p>
-<h4 id="一、-RequestMapping作用的地方"><a href="#一、-RequestMapping作用的地方" class="headerlink" title="一、@RequestMapping作用的地方"></a>一、@RequestMapping作用的地方</h4><p>1、可以作用于类上，表示访问这个类的规则<br>2、作用于方法上，表示访问这个方法的规则</p>
-<h4 id="二、-RequestMapping有哪些参数"><a href="#二、-RequestMapping有哪些参数" class="headerlink" title="二、@RequestMapping有哪些参数"></a>二、@RequestMapping有哪些参数</h4><p>有六个参数 value、method、consumes、produces、params、headers<br>1、value：表示路径<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(value=&quot;/test&quot;)</span><br></pre></td></tr></table></figure></p>
-<p>2、method：表示浏览器请求的method类型，可以是POST、GET等等。如果你的表单请求是POST，那么你想访问的这里也要是POST才能匹配上。你在浏览器的一个a标签里请求一个方法，a标签的href默认是GET请求，那么请求的方法的这里只有设置为GET才能匹配成功，才能访问。</p>
-<p>3、consumes：表示浏览器这次的请求提交的数据的内容类型（content-type），就是说我这个方法我接受的数据的内容类型，可以是application/json、text/html，比如说在页面中提交一个表单，content-type会默认为application/x-www-form-urlencoded，那么你在这边的方法中要是说你只接受<code>@RequestMapping(consumes=&quot;application/json&quot;)</code>，那就会出现415错误（由于媒介类型不被支持，服务器不会接受请求）。</p>
-<p>4、produces：表示这个方法返回给浏览器的数据是以什么格式返回的，也就是告诉浏览器以这种格式去解析数据。只有当请求头（request header）中的accept包含这个类型时才能返回<br><img width="500px" height="200px" src="http://p3o1rymh9.bkt.clouddn.com/标签-RequestMapping1.png"><br>再比如说这个请求头的accept： text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8<br>这里面*/*;q=0.8，表明可以接收任何类型的，权重系数0.8表明如果前面几种类型不能正常接收，则使用该项进行自动分析。application/json 几种主流浏览器都可以自动解析。</p>
-<p>5、params：表示这个请求中一定要包含的参数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(value = &quot;testParamsAndHeaders&quot;, params = &#123; &quot;username&quot;,&quot;age!=10&quot; &#125;)</span><br></pre></td></tr></table></figure></p>
-<p>这样的话，就表明，请求过来的必须要有username和age这两个参数，并且age不能为10</p>
-<p>6、headers：表示请求中一定要包含指定的header值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(value = &quot;testParamsAndHeaders&quot;, headers = &#123; &quot;Accept-Language=US,zh;q=0.8&quot; &#125;)</span><br></pre></td></tr></table></figure></p>
-<p>这个就是说，你的请求头中的accept-language这个参数的第一语言是US（这里有点没转过弯来）。</p>
-<p>请求会先根据url找路径，这时就会根据请求头做出一系列的判断，匹配不通过，也就是找不到，就会返回404.找到了若果不能正常处理就会返回5XX的错误。</p>
-<p>参考自 <a href="https://blog.csdn.net/J080624/article/details/55193269" target="_blank" rel="noopener">https://blog.csdn.net/J080624/article/details/55193269</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/13/content-type的学习/" data-id="cjfyvqh0s000ligvaafhzs960" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/14/mybatis对springboot的支持-注解取代xml/" data-id="cjg7zzi1r0010t4va28m9d7fk" class="article-share-link">Share</a>
       
       
     </footer>
@@ -225,7 +272,63 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/13/RequestMapping的学习/" data-id="cjfyvqh03000gigvaigfqr2aj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/13/RequestMapping的学习/" data-id="cjg7zzhxv0008t4va1efp6unk" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+    
+    
+<article id="post-content-type的学习" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/13/content-type的学习/" class="article-date">
+  <time datetime="2018-04-13T09:46:15.000Z" itemprop="datePublished">2018-04-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/SpringMvc/">SpringMvc</a>►<a class="article-category-link" href="/categories/SpringMvc/标签/">标签</a>►<a class="article-category-link" href="/categories/SpringMvc/标签/RequestMapping/">RequestMapping</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/13/content-type的学习/">RequestMapping的学习</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          <p>首先我们要明白一个，这个标签作用于处理器上，是一个匹配请求和设置返回值的一个规则，请求是浏览器发出的。我是这么理解的。</p>
+<h4 id="一、-RequestMapping作用的地方"><a href="#一、-RequestMapping作用的地方" class="headerlink" title="一、@RequestMapping作用的地方"></a>一、@RequestMapping作用的地方</h4><p>1、可以作用于类上，表示访问这个类的规则<br>2、作用于方法上，表示访问这个方法的规则</p>
+<h4 id="二、-RequestMapping有哪些参数"><a href="#二、-RequestMapping有哪些参数" class="headerlink" title="二、@RequestMapping有哪些参数"></a>二、@RequestMapping有哪些参数</h4><p>有六个参数 value、method、consumes、produces、params、headers<br>1、value：表示路径<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(value=&quot;/test&quot;)</span><br></pre></td></tr></table></figure></p>
+<p>2、method：表示浏览器请求的method类型，可以是POST、GET等等。如果你的表单请求是POST，那么你想访问的这里也要是POST才能匹配上。你在浏览器的一个a标签里请求一个方法，a标签的href默认是GET请求，那么请求的方法的这里只有设置为GET才能匹配成功，才能访问。</p>
+<p>3、consumes：表示浏览器这次的请求提交的数据的内容类型（content-type），就是说我这个方法我接受的数据的内容类型，可以是application/json、text/html，比如说在页面中提交一个表单，content-type会默认为application/x-www-form-urlencoded，那么你在这边的方法中要是说你只接受<code>@RequestMapping(consumes=&quot;application/json&quot;)</code>，那就会出现415错误（由于媒介类型不被支持，服务器不会接受请求）。</p>
+<p>4、produces：表示这个方法返回给浏览器的数据是以什么格式返回的，也就是告诉浏览器以这种格式去解析数据。只有当请求头（request header）中的accept包含这个类型时才能返回<br><img width="500px" height="200px" src="http://p3o1rymh9.bkt.clouddn.com/标签-RequestMapping1.png"><br>再比如说这个请求头的accept： text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8<br>这里面*/*;q=0.8，表明可以接收任何类型的，权重系数0.8表明如果前面几种类型不能正常接收，则使用该项进行自动分析。application/json 几种主流浏览器都可以自动解析。</p>
+<p>5、params：表示这个请求中一定要包含的参数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(value = &quot;testParamsAndHeaders&quot;, params = &#123; &quot;username&quot;,&quot;age!=10&quot; &#125;)</span><br></pre></td></tr></table></figure></p>
+<p>这样的话，就表明，请求过来的必须要有username和age这两个参数，并且age不能为10</p>
+<p>6、headers：表示请求中一定要包含指定的header值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(value = &quot;testParamsAndHeaders&quot;, headers = &#123; &quot;Accept-Language=US,zh;q=0.8&quot; &#125;)</span><br></pre></td></tr></table></figure></p>
+<p>这个就是说，你的请求头中的accept-language这个参数的第一语言是US（这里有点没转过弯来）。</p>
+<p>请求会先根据url找路径，这时就会根据请求头做出一系列的判断，匹配不通过，也就是找不到，就会返回404.找到了若果不能正常处理就会返回5XX的错误。</p>
+<p>参考自 <a href="https://blog.csdn.net/J080624/article/details/55193269" target="_blank" rel="noopener">https://blog.csdn.net/J080624/article/details/55193269</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/04/13/content-type的学习/" data-id="cjg7zzhzl000ft4vavnd3ytjm" class="article-share-link">Share</a>
       
       
     </footer>
@@ -276,7 +379,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/09/浮点数在Java和JavaScript中的处理/" data-id="cjfyvqh3i001jigvarbf2rtwz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/09/浮点数在Java和JavaScript中的处理/" data-id="cjg7zzi32001mt4varchcml4u" class="article-share-link">Share</a>
       
       
     </footer>
@@ -325,7 +428,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/08/二进制和十进制之间的转换/" data-id="cjfyvqh2a0011igvac9j6kl9n" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/08/二进制和十进制之间的转换/" data-id="cjg7zzi32001lt4vay6zsg08d" class="article-share-link">Share</a>
       
       
     </footer>
@@ -369,7 +472,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/08/HttpServletRequest和HttpServletResponse的学习/" data-id="cjfyvqgv80000igvacfaie2pu" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/08/HttpServletRequest和HttpServletResponse的学习/" data-id="cjg7zzhv90001t4vah5h9wubw" class="article-share-link">Share</a>
       
       
     </footer>
@@ -419,7 +522,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/07/log4j的学习/" data-id="cjfyvqh1p000uigvanz3ljfq8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/07/log4j的学习/" data-id="cjg7zzi1c000wt4va1leu0va3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -480,107 +583,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/04/Springboot的学习/" data-id="cjfyvqh0k000jigva6hdf6ltg" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-
-    
-    
-<article id="post-Mysql命名规范" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/02/Mysql命名规范/" class="article-date">
-  <time datetime="2018-04-02T11:54:29.000Z" itemprop="datePublished">2018-04-02</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/MySql/">MySql</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/02/Mysql命名规范/">Mysql命名规范</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>设计表格过程中的规范，先积累一点，以后遇到了再来补充<br>1、大小写是有区分的<br>2、名字不能超过30个字符，字符只有63中 26大写 + 26小写 + 10数字 + ‘_‘ = 63个<br>3、数据库名、数据表名：使用小写英文字母和下划线组成，名字起得应该有意义，使用前缀，前缀不超过5个字母。备份数据库的名字，用数据库的名字加上备份时间组成。<br>
-        
-          <p class="article-more-link">
-            <a href="/2018/04/02/Mysql命名规范/#more">了解更多</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/02/Mysql命名规范/" data-id="cjfyvqgxr0008igvau9mjb3by" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-
-    
-    
-<article id="post-Sql中的truncate、drop和delete" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/02/Sql中的truncate、drop和delete/" class="article-date">
-  <time datetime="2018-04-02T02:24:46.000Z" itemprop="datePublished">2018-04-02</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/SQL/">SQL</a>►<a class="article-category-link" href="/categories/SQL/delete-truncate-drop/">delete truncate drop</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/02/Sql中的truncate、drop和delete/">Sql中的truncate、drop和delete</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><p>1、delete 根据某个条件语句删除表格中符合条件的行<br>delete from 表名 where 条件语句;</p>
-<p>2、truncate  删除某个表中的全部记录（表还在）<br>truncate 表名;</p>
-<p>3、drop  删除某个表（表不在了）<br>drop 表名;<br>
-        
-          <p class="article-more-link">
-            <a href="/2018/04/02/Sql中的truncate、drop和delete/#more">了解更多</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/02/Sql中的truncate、drop和delete/" data-id="cjfyvqgzs000figva674yqkxg" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/04/Springboot的学习/" data-id="cjg7zzhz6000ct4vad549x0jt" class="article-share-link">Share</a>
       
       
     </footer>
@@ -609,7 +612,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/">IDEA</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/SpringBoot/">SpringBoot</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/Tomcat/">Tomcat</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/JavaScript/">JavaScript</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/JavaScript/浮点数的处理/">浮点数的处理</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/基础知识/">基础知识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/文件系统/">文件系统</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySql/">MySql</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/MySql/权限控制/">权限控制</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySql/运行原理及架构/">运行原理及架构</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/delete-truncate-drop/">delete truncate drop</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot/">SpringBoot</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringMvc/">SpringMvc</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/SpringMvc/标签/">标签</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/SpringMvc/标签/RequestMapping/">RequestMapping</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/Class的学习/">Class的学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/HttpServletRequest、HttpServletResponse/">HttpServletRequest、HttpServletResponse</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/java8/">java8</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/java8/Lambda表达式/">Lambda表达式</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/volatile/">volatile</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/包结构/">包结构</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/异常的使用/">异常的使用</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/数组/">数组</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/输入输出流/">输入输出流</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/重写和重载/">重写和重载</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/language/">language</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/language/MD语法/">MD语法</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/mybatis/">mybatis</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/mybatis/springboot/">springboot</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统/">操作系统</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统/基本知识/">基本知识</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/">数据结构</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/基础知识/">基础知识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/算法概念/">算法概念</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/日志/">日志</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/日志/log4j/">log4j</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/算法/排序算法/">排序算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/深度优先/">深度优先</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/编码规则/">编码规则</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/计算机的组成部分/">计算机的组成部分</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/进制转换/">进制转换</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/代理模式/">代理模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/原型模式/">原型模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/外观模式/">外观模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/工厂方法模式/">工厂方法模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/建造者模式/">建造者模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/模板方法模式/">模板方法模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/策略模式/">策略模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/简单工厂模式/">简单工厂模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/装饰模式/">装饰模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/设计原则/">设计原则</a><span class="category-list-count">1</span></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/">IDEA</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/SpringBoot/">SpringBoot</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/Tomcat/">Tomcat</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/JavaScript/">JavaScript</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/JavaScript/浮点数的处理/">浮点数的处理</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/基础知识/">基础知识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/文件系统/">文件系统</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySql/">MySql</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/MySql/权限控制/">权限控制</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySql/运行原理及架构/">运行原理及架构</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/delete-truncate-drop/">delete truncate drop</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot/">SpringBoot</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringMvc/">SpringMvc</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/SpringMvc/标签/">标签</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/SpringMvc/标签/RequestMapping/">RequestMapping</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/Class的学习/">Class的学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/HttpServletRequest、HttpServletResponse/">HttpServletRequest、HttpServletResponse</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/java8/">java8</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/java8/Lambda表达式/">Lambda表达式</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/volatile/">volatile</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/包结构/">包结构</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/异常的使用/">异常的使用</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/数组/">数组</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/输入输出流/">输入输出流</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/重写和重载/">重写和重载</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/language/">language</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/language/MD语法/">MD语法</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/mybatis/">mybatis</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/mybatis/springboot/">springboot</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统/">操作系统</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统/基本知识/">基本知识</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/">数据结构</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/基础知识/">基础知识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/算法概念/">算法概念</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/日志/">日志</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/日志/log4j/">log4j</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/算法/排序算法/">排序算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/深度优先/">深度优先</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程思想/">编程思想</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/编程思想/AOP/">AOP</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/编码规则/">编码规则</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/计算机的组成部分/">计算机的组成部分</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/进制转换/">进制转换</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/代理模式/">代理模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/原型模式/">原型模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/外观模式/">外观模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/工厂方法模式/">工厂方法模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/建造者模式/">建造者模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/模板方法模式/">模板方法模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/策略模式/">策略模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/简单工厂模式/">简单工厂模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/装饰模式/">装饰模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/设计原则/">设计原则</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/项目/">项目</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/项目/验证码/">验证码</a><span class="category-list-count">1</span></li></ul></li></ul>
     </div>
   </div>
 
@@ -638,7 +641,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">archive_a</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">34</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">34</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -651,11 +654,15 @@
       <ul>
         
           <li>
-            <a href="/2018/04/14/mybatis对springboot的支持-注解取代xml/">mybatis对springboot的支持-注解取代xml</a>
+            <a href="/2018/04/20/手机邮箱接口调用发送验证码/">手机邮箱接口调用发送验证码</a>
           </li>
         
           <li>
-            <a href="/2018/04/13/content-type的学习/">RequestMapping的学习</a>
+            <a href="/2018/04/15/面向切面编程AOP/">面向切面编程AOP</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/14/mybatis对springboot的支持-注解取代xml/">mybatis对springboot的支持-注解取代xml</a>
           </li>
         
           <li>
@@ -663,11 +670,7 @@
           </li>
         
           <li>
-            <a href="/2018/04/09/浮点数在Java和JavaScript中的处理/">浮点数在Java和JavaScript中的处理</a>
-          </li>
-        
-          <li>
-            <a href="/2018/04/08/二进制和十进制之间的转换/">二进制和十进制之间的转换</a>
+            <a href="/2018/04/13/content-type的学习/">RequestMapping的学习</a>
           </li>
         
       </ul>
