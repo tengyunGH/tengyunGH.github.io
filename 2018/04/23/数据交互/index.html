@@ -7,16 +7,18 @@
   
   <title>The Marvellous World!</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这是我的个人网站，主要发布一些我的工作生活经历">
-<meta property="og:type" content="website">
-<meta property="og:title" content="The Marvellous World!">
-<meta property="og:url" content="http://yoursite.com/categories/计算机基础/index.html">
+  <meta name="description" content="1、当后台的接受参数是一个实体，实体的变量又是一个实体，那么前台该如何用json传递参数呢？假设后台的实体是这样的12345678910111213141516171819202122232425262728293031323334353637public Class EntityOne &amp;#123;	private EntityTwo entityTwo;	private String name">
+<meta name="keywords" content="java,json">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据交互">
+<meta property="og:url" content="http://yoursite.com/2018/04/23/数据交互/index.html">
 <meta property="og:site_name" content="The Marvellous World!">
-<meta property="og:description" content="这是我的个人网站，主要发布一些我的工作生活经历">
+<meta property="og:description" content="1、当后台的接受参数是一个实体，实体的变量又是一个实体，那么前台该如何用json传递参数呢？假设后台的实体是这样的12345678910111213141516171819202122232425262728293031323334353637public Class EntityOne &amp;#123;	private EntityTwo entityTwo;	private String name">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-04-23T12:10:50.704Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="The Marvellous World!">
-<meta name="twitter:description" content="这是我的个人网站，主要发布一些我的工作生活经历">
+<meta name="twitter:title" content="数据交互">
+<meta name="twitter:description" content="1、当后台的接受参数是一个实体，实体的变量又是一个实体，那么前台该如何用json传递参数呢？假设后台的实体是这样的12345678910111213141516171819202122232425262728293031323334353637public Class EntityOne &amp;#123;	private EntityTwo entityTwo;	private String name">
   
     <link rel="alternate" href="/atom.xml" title="The Marvellous World!" type="application/atom+xml">
   
@@ -62,40 +64,62 @@
 
         <section id="main">
 
+<article id="post-数据交互" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/23/数据交互/" class="article-date">
+  <time datetime="2018-04-23T07:47:26.000Z" itemprop="datePublished">2018-04-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      数据交互
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          <h5 id="1、当后台的接受参数是一个实体，实体的变量又是一个实体，那么前台该如何用json传递参数呢？"><a href="#1、当后台的接受参数是一个实体，实体的变量又是一个实体，那么前台该如何用json传递参数呢？" class="headerlink" title="1、当后台的接受参数是一个实体，实体的变量又是一个实体，那么前台该如何用json传递参数呢？"></a>1、当后台的接受参数是一个实体，实体的变量又是一个实体，那么前台该如何用json传递参数呢？</h5><p>假设后台的实体是这样的<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Class EntityOne &#123;</span><br><span class="line">	<span class="keyword">private</span> EntityTwo entityTwo;</span><br><span class="line">	<span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">setEntityTwo</span><span class="params">(EntityTwo entityTwo)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.entityTwo = entityTwo;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">getEntityTwo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> entityTwo;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> name;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">EntityTwo</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> age;</span><br><span class="line">	String gender;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.age = age;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> age;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setGender</span><span class="params">(String gender)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.gender = gender;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getGender</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> gender;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>那么前台的ajax的data部分的json数据就这么写<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">data = &#123;</span><br><span class="line">	'entityTwo': &#123;'age':'20', 'gender':'0'&#125;,</span><br><span class="line">	'name': 'tengyun'</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>ok,以后记住了</p>
+<h5 id="2、后台传递一个实体到前台的时候，前台如何访问呢？"><a href="#2、后台传递一个实体到前台的时候，前台如何访问呢？" class="headerlink" title="2、后台传递一个实体到前台的时候，前台如何访问呢？"></a>2、后台传递一个实体到前台的时候，前台如何访问呢？</h5><p>假设后台传递的实体是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public class ResponseEntity &#123;</span><br><span class="line">	private Object data;</span><br><span class="line">	private String status;</span><br><span class="line"></span><br><span class="line">	public ResponseEntity() &#123;&#125;</span><br><span class="line"></span><br><span class="line">	public ResponseEntity(Object data) &#123;</span><br><span class="line">		this.data = data;</span><br><span class="line">	&#125;</span><br><span class="line">	public String getData() &#123;</span><br><span class="line">		return data;</span><br><span class="line">	&#125;</span><br><span class="line">	public void setData(Object data) &#123;</span><br><span class="line">		this.data = data;</span><br><span class="line">	&#125;</span><br><span class="line">	public String getStatus() &#123;</span><br><span class="line">		return status;</span><br><span class="line">	&#125;</span><br><span class="line">	public void setStatus(String status) &#123;</span><br><span class="line">		this.status = status;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如果我在后台中给这个ResponseEntity这样设置,假设entityOne，是上面EntityOne的一个对象<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">List&lt;EntityOne&gt; entityOnes;</span><br><span class="line">ResponseEntity responseEntity = <span class="keyword">new</span> ResponseEntity(entityOnes);</span><br><span class="line">responseEntity.setStatus(<span class="string">"success"</span>);</span><br><span class="line"><span class="keyword">return</span> responseEntity;</span><br></pre></td></tr></table></figure></p>
+<p>好了，现在后台呢把数据返回给前台，那么前台如何获取数据呢<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//写一部分ajax</span></span><br><span class="line">success: <span class="function"><span class="keyword">function</span>(<span class="params">result</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(result != <span class="literal">undefined</span> &amp;&amp; result.data != <span class="literal">undefined</span>) &#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>;i &lt; result.date.length; i++) &#123;</span><br><span class="line">			alert(result.data[i].entityTwo.age);</span><br><span class="line">			alert(result.data[i].entityTwo.gender);</span><br><span class="line">			alert(result.data[i].name);</span><br><span class="line">		&#125;</span><br><span class="line">		alert(result.status);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/04/23/数据交互/" data-id="cjgc7puk7001hn0valtvmyjbh" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/json/">json</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/04/20/手机邮箱接口调用发送验证码/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">手机邮箱接口调用发送验证码</div>
+    </a>
+  
+</nav>
+
+  
+</article>
 
 
-
-<div class="archive">
-	
-	
-		
-		
-			<h3 class="year">2018</h3>
-			
-		
-		<div class="archive_item">
-			<span class="date">2018-04-08</span>
-			<a class="title" href="/2018/04/08/二进制和十进制之间的转换/">二进制和十进制之间的转换</a>
-		</div>
-	
-		
-		
-		<div class="archive_item">
-			<span class="date">2018-03-19</span>
-			<a class="title" href="/2018/03/19/计算机的主要组成部分/">计算机的主要组成部分</a>
-		</div>
-	
-		
-		
-		<div class="archive_item">
-			<span class="date">2018-03-17</span>
-			<a class="title" href="/2018/03/17/字符编码规则的学习/">字符编码规则的学习</a>
-		</div>
-	
-	<div class="pagination">
-		
-	</div>
-</div></section>
+</section>
 
         
           
