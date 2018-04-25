@@ -67,6 +67,68 @@
 
     
     
+<article id="post-前端模块化" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/25/前端模块化/" class="article-date">
+  <time datetime="2018-04-25T03:00:00.000Z" itemprop="datePublished">2018-04-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端/">前端</a>►<a class="article-category-link" href="/categories/前端/require/">require</a>►<a class="article-category-link" href="/categories/前端/require/define/">define</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/25/前端模块化/">前端模块化</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          <p>参考 <a href="https://www.ibm.com/developerworks/cn/web/1209_shiwei_requirejs/" target="_blank" rel="noopener">https://www.ibm.com/developerworks/cn/web/1209_shiwei_requirejs/</a></p>
+<p>第一次见define和require，感叹一下！<br>大概就是以前我们开发script的时候，都是引入js文件，定义一堆function来指定功能代码，并且一个function，比如functionA调用（依赖）另一个functionB的时候，functionB必须已完成加载才行，这时候，若两者不在同一js文件中，那我们必须手动指定这两个文件的加载顺序来解决这个问题。当前端模块越来越复杂，手动效率就低下了。<br>这是别人说的弊端，我觉得好像有点道理。</p>
+<p>先记录一下require和define的用法吧！</p>
+<p>还是先记录AMD规范。全称 Asynchronous Module Definition  异步模块定义，AMD规范是CommonJS组织提出的JavaScript的架构方案和标准。js是一门语言，使用js构建的框架比如jQuery、Dojo、ExtJs、requireJs、NodeJs。那么像AMD这种规范，就是那些框架按照规范的指引去实现。AMD规范，完整的描述了模块的定义、依赖、引用和加载。</p>
+<h3 id="define"><a href="#define" class="headerlink" title="define"></a>define</h3><p>AMD规范只有一个API，就是define，接口长这样<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">define(moduleId,dependencyModules,moudleFactoryOrObject);</span><br></pre></td></tr></table></figure></p>
+<p>这样就定义了一个模块<br>1、第一个 moduleId，标识这个模块的名字，可省略。省略的话，这个模块在哪个文件里面定义，就以哪个文件名作为模块名。这样的模块，称为匿名模块，匿名模块，就可以在多个文件中高度重用。大家推荐不写moduleId。这个以后慢慢体会。</p>
+<p>2、第二个 dependencyModules，表示我定义的这个模块，依赖了哪些模块，可以依赖多个，用字符串的Array来表示，比如说[‘require’,’exports’,’beta’]，也可以省略。<strong>实现AMD规范的框架会提供默认的三个依赖，就是[‘require’,’exports’,’module’].</strong></p>
+<p>3、第三个，就是这个模块的实现，或者是一个js对象。<br>&nbsp;&nbsp;&nbsp;模块的实现，就是你这个模块的功能代码了，模块的实现方法的参数就可以是那些依赖的名字，按顺序写。比如说 <code>define([&#39;require&#39;,&#39;exports&#39;,&#39;beta&#39;], function(require,exports,beta) {......});</code>这样子定义了一个匿名模块，他依赖require,exports,beta这三个模块，在模块实现中，就可以使用所依赖的模块中的所有变量了。调用，就通过<code>模块名.变量名</code>来调用了。<br>&nbsp;&nbsp;&nbsp;一个js对象呢，可以是包含功能方法的对象，也可以是只有数据的对象。</p>
+<p>所以使用define有三种方式，一种三个参数都有，一种省略moduleId，一种省略moduleId和dependencyModules。</p>
+<h3 id="require"><a href="#require" class="headerlink" title="require"></a>require</h3><p>require是RequireJs框架的。RequireJS是一个非常小巧的JavaScript模块载入框架，是AMD规范最好的实现者之一。<br>1、使用RequireJs框架，先引入require.js文件<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">'./js/require.js'</span>&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>2、然后，使用RequireJs框架加载js文件，写js脚本<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">	<span class="built_in">require</span>([<span class="string">'./js/a.js'</span>,<span class="string">'./js/b.js'</span>], <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="comment">//这里面就可以使用a和b里面的所有变量（方法名也是变量）</span></span><br><span class="line">		<span class="comment">//这里面也就是你这个js代码的功能区了</span></span><br><span class="line">		&#125;);</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>这里面，并不能保证页面加载完了才来执行这里的功能代码，若需要这样的保证，RequireJs提供了domReady模块，可以去RequireJs官网下载，然后这样使用<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">	<span class="built_in">require</span>([<span class="string">'domReady!'</span>,<span class="string">'./js/a.js'</span>,<span class="string">'./js/b.js'</span>], <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="comment">//这里面就可以使用a和b里面的所有变量（方法名也是变量）</span></span><br><span class="line">		<span class="comment">//这里面也就是你这个js代码的功能区了</span></span><br><span class="line">		&#125;);</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>这样就能保证页面加载完之后再来执行你这个脚本<br>摘抄：require 方法里的那个字符串数组参数可以允许不同的值，当字符串是以”.js”结尾，或者以”/”开头，或者就是一个URL时，RequireJS会认为用户是在直接加载一个JavaScript文件，否则，当字符串是类似”my/module”的时候，它会认为这是一个模块</p>
+<p>3、require的配置<br>如果我们这样引入require.js<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script data-main=<span class="string">'./js/main'</span> src=<span class="string">'scripts/require.js'</span>&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>摘抄：data-main指定了一个在当前页面（就是引入require.js的页面）<strong>并行</strong>的文件夹下的/js/main.js作为程序入口，而/js目录也将作为baseUrl在其他<strong>模块</strong>定义时候使用，注意是模块，模块模块。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">	<span class="built_in">require</span>([<span class="string">'domReady!'</span>,<span class="string">'./js/myModule1'</span>,<span class="string">'./js/myModule2'</span>], <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">		&#125;);</span><br><span class="line"></span><br><span class="line">就可以这么写</span><br><span class="line">	<span class="built_in">require</span>([<span class="string">'domReady!'</span>,<span class="string">'myModule1'</span>,<span class="string">'myModule2'</span>], <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">		&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>或者不在data-main里面定义<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line"> <span class="built_in">require</span>.config(&#123; </span><br><span class="line">   baseUrl: <span class="string">"./js"</span>, </span><br><span class="line">   paths: &#123; </span><br><span class="line">       <span class="string">"some"</span>: <span class="string">"some/v1"</span></span><br><span class="line">   &#125;, </span><br><span class="line">waitSeconds: <span class="number">10</span> </span><br><span class="line">&#125;); </span><br><span class="line"> <span class="built_in">require</span>( [<span class="string">"some/module"</span>, <span class="string">"my/module"</span>, <span class="string">"./js/a.js"</span>], </span><br><span class="line">   <span class="function"><span class="keyword">function</span>(<span class="params">someModule,    myModule</span>) </span>&#123;&#125; </span><br><span class="line"> ); </span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>这里面，所有的some，就相当于some/v1，就像spring里面的资源映射一样。<br>摘抄：以.js结尾的文件加载时不会使用该baseUrl，它们仍然会使用当前index.html所在的相对路径来加载，所以仍然要加上”./js/”。如果 baseUrl没有指定，那么就会使用data-main中指定的路径。<br>注意，只有模块才会使用上面的这个配置。</p>
+<p>4、将jQuery作为一个模块给RequireJs使用：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span>.config(&#123; </span><br><span class="line">	paths: &#123; </span><br><span class="line">		<span class="string">"jquery"</span>: <span class="string">"./js/jquery"</span></span><br><span class="line">	&#125; </span><br><span class="line">&#125;); </span><br><span class="line"><span class="built_in">require</span>([<span class="string">"jquery"</span>],<span class="function"><span class="keyword">function</span>(<span class="params">jQ</span>)</span>&#123; </span><br><span class="line">	<span class="comment">//可以使用jquery了</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/04/25/前端模块化/" data-id="cjgemkiju000xhkvata6p2jx0" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+    
+    
 <article id="post-数据交互" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/04/23/数据交互/" class="article-date">
@@ -99,7 +161,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/23/数据交互/" data-id="cjgc7puk7001hn0valtvmyjbh" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/23/数据交互/" data-id="cjgemkikh001xhkva3t003prl" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/json/">json</a></li></ul>
@@ -159,7 +221,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/20/手机邮箱接口调用发送验证码/" data-id="cjgc7puko001nn0va7ggjzrzx" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/20/手机邮箱接口调用发送验证码/" data-id="cjgemkika001mhkva7b6sm9zr" class="article-share-link">Share</a>
       
       
     </footer>
@@ -204,7 +266,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/15/面向切面编程AOP/" data-id="cjgc7puns002en0va4dw5c1x6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/15/面向切面编程AOP/" data-id="cjgemkikt002jhkvabnm5gjqy" class="article-share-link">Share</a>
       
       
     </footer>
@@ -264,7 +326,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/14/mybatis对springboot的支持-注解取代xml/" data-id="cjgc7puih0011n0vabmasko2v" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/14/mybatis对springboot的支持-注解取代xml/" data-id="cjgemkijy0011hkvafrzoh3yj" class="article-share-link">Share</a>
       
       
     </footer>
@@ -320,7 +382,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/13/RequestMapping的学习/" data-id="cjgc7pueh000en0va1pos0h9n" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/13/RequestMapping的学习/" data-id="cjgemkigt000bhkva676famh4" class="article-share-link">Share</a>
       
       
     </footer>
@@ -376,7 +438,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/13/content-type的学习/" data-id="cjgc7pugd000nn0vai0iin0sw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/13/content-type的学习/" data-id="cjgemkija000ehkva5c8vg3bi" class="article-share-link">Share</a>
       
       
     </footer>
@@ -427,7 +489,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/09/浮点数在Java和JavaScript中的处理/" data-id="cjgc7puln001tn0vaa44oqb6n" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/09/浮点数在Java和JavaScript中的处理/" data-id="cjgemkika001phkvawvf0c2dt" class="article-share-link">Share</a>
       
       
     </footer>
@@ -476,7 +538,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/08/二进制和十进制之间的转换/" data-id="cjgc7pujh0019n0vaksvxbryw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/08/二进制和十进制之间的转换/" data-id="cjgemkik20017hkvabugscczo" class="article-share-link">Share</a>
       
       
     </footer>
@@ -520,57 +582,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/08/HttpServletRequest和HttpServletResponse的学习/" data-id="cjgc7pu6t0000n0vaa4oldpjq" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-
-    
-    
-<article id="post-log4j的学习" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/07/log4j的学习/" class="article-date">
-  <time datetime="2018-04-07T02:02:38.000Z" itemprop="datePublished">2018-04-07</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/日志/">日志</a>►<a class="article-category-link" href="/categories/日志/log4j/">log4j</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/07/log4j的学习/">log4j的学习</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>强哥说过，看日志很重要，以前学过一点log4j，忘得差不多了，今天再来学一下。以前一直认为，大脑的记忆力很重要，昨天看别人的一句话，觉得很有道理，记录一下，“大脑是用来思考的，不是用来记忆的”，我们站在巨人的肩膀上，不用去知道巨人内部是怎么工作的， 我们要爬上肩膀想办法看就好了。</p>
-<p>言归正传。日志是干嘛的，就是记录应用程序的运行情况的信息，比如程序执行的过程、调试信息、错误信息、我们想要输出来的信息。<br>
-        
-          <p class="article-more-link">
-            <a href="/2018/04/07/log4j的学习/#more">了解更多</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/07/log4j的学习/" data-id="cjgc7puh0000tn0vakppjb8ca" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/08/HttpServletRequest和HttpServletResponse的学习/" data-id="cjgemkieu0001hkva0svguhkr" class="article-share-link">Share</a>
       
       
     </footer>
@@ -599,7 +611,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/">IDEA</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/SpringBoot/">SpringBoot</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/Tomcat/">Tomcat</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/JavaScript/">JavaScript</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/JavaScript/浮点数的处理/">浮点数的处理</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/基础知识/">基础知识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/文件系统/">文件系统</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySql/">MySql</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/MySql/权限控制/">权限控制</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySql/运行原理及架构/">运行原理及架构</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/delete-truncate-drop/">delete truncate drop</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot/">SpringBoot</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringMvc/">SpringMvc</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/SpringMvc/标签/">标签</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/SpringMvc/标签/RequestMapping/">RequestMapping</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/Class的学习/">Class的学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/HttpServletRequest、HttpServletResponse/">HttpServletRequest、HttpServletResponse</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/java8/">java8</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/java8/Lambda表达式/">Lambda表达式</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/volatile/">volatile</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/包结构/">包结构</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/异常的使用/">异常的使用</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/数组/">数组</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/输入输出流/">输入输出流</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/重写和重载/">重写和重载</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/language/">language</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/language/MD语法/">MD语法</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/mybatis/">mybatis</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/mybatis/springboot/">springboot</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统/">操作系统</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统/基本知识/">基本知识</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/">数据结构</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/基础知识/">基础知识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/算法概念/">算法概念</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/日志/">日志</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/日志/log4j/">log4j</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/算法/排序算法/">排序算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/深度优先/">深度优先</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程思想/">编程思想</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/编程思想/AOP/">AOP</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/编码规则/">编码规则</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/计算机的组成部分/">计算机的组成部分</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/进制转换/">进制转换</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/代理模式/">代理模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/原型模式/">原型模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/外观模式/">外观模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/工厂方法模式/">工厂方法模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/建造者模式/">建造者模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/模板方法模式/">模板方法模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/策略模式/">策略模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/简单工厂模式/">简单工厂模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/装饰模式/">装饰模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/设计原则/">设计原则</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/项目/">项目</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/项目/验证码/">验证码</a><span class="category-list-count">1</span></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/">IDEA</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/SpringBoot/">SpringBoot</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/Tomcat/">Tomcat</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/JavaScript/">JavaScript</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/JavaScript/浮点数的处理/">浮点数的处理</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/基础知识/">基础知识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/文件系统/">文件系统</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySql/">MySql</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/MySql/权限控制/">权限控制</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySql/运行原理及架构/">运行原理及架构</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/delete-truncate-drop/">delete truncate drop</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot/">SpringBoot</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringMvc/">SpringMvc</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/SpringMvc/标签/">标签</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/SpringMvc/标签/RequestMapping/">RequestMapping</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/Class的学习/">Class的学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/HttpServletRequest、HttpServletResponse/">HttpServletRequest、HttpServletResponse</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/java8/">java8</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/java8/Lambda表达式/">Lambda表达式</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/volatile/">volatile</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/包结构/">包结构</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/异常的使用/">异常的使用</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/数组/">数组</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/输入输出流/">输入输出流</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/重写和重载/">重写和重载</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/language/">language</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/language/MD语法/">MD语法</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/mybatis/">mybatis</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/mybatis/springboot/">springboot</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/require/">require</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/require/define/">define</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统/">操作系统</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统/基本知识/">基本知识</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/">数据结构</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/基础知识/">基础知识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/算法概念/">算法概念</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/日志/">日志</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/日志/log4j/">log4j</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/算法/排序算法/">排序算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/深度优先/">深度优先</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程思想/">编程思想</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/编程思想/AOP/">AOP</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/编码规则/">编码规则</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/计算机的组成部分/">计算机的组成部分</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/进制转换/">进制转换</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/代理模式/">代理模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/原型模式/">原型模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/外观模式/">外观模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/工厂方法模式/">工厂方法模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/建造者模式/">建造者模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/模板方法模式/">模板方法模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/策略模式/">策略模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/简单工厂模式/">简单工厂模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/装饰模式/">装饰模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/设计原则/">设计原则</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/项目/">项目</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/项目/验证码/">验证码</a><span class="category-list-count">1</span></li></ul></li></ul>
     </div>
   </div>
 
@@ -628,7 +640,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">archive_a</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">34</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">34</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -639,6 +651,10 @@
     <h3 class="widget-title">recent_posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/04/25/前端模块化/">前端模块化</a>
+          </li>
         
           <li>
             <a href="/2018/04/23/数据交互/">数据交互</a>
@@ -654,10 +670,6 @@
         
           <li>
             <a href="/2018/04/14/mybatis对springboot的支持-注解取代xml/">mybatis对springboot的支持-注解取代xml</a>
-          </li>
-        
-          <li>
-            <a href="/2018/04/13/RequestMapping的学习/">content-type的学习</a>
           </li>
         
       </ul>
