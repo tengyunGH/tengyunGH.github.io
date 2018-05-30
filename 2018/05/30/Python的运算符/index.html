@@ -7,16 +7,19 @@
   
   <title>The Marvellous World!</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这是我的个人网站，主要发布一些我的工作生活经历">
-<meta property="og:type" content="website">
-<meta property="og:title" content="The Marvellous World!">
-<meta property="og:url" content="http://yoursite.com/categories/java/java8/Lambda表达式/index.html">
+  <meta name="description" content="一、Python解释器有好几种(1)CPython 用C语言开发，官方标准实现(2)IPython 在CPython的基础之上在交互式方面得到增强(3)Jython  为Java设计，把Python代码编译成Java字节码(4)PyPy 是Python（2.7.13和3.5.5）的一种快速兼容的替代实现，速度快 二、算术运算符1、+2、-3、4、/   除  得到浮点数，就算能整除，也是浮点数5、">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python的运算符">
+<meta property="og:url" content="http://yoursite.com/2018/05/30/Python的运算符/index.html">
 <meta property="og:site_name" content="The Marvellous World!">
-<meta property="og:description" content="这是我的个人网站，主要发布一些我的工作生活经历">
+<meta property="og:description" content="一、Python解释器有好几种(1)CPython 用C语言开发，官方标准实现(2)IPython 在CPython的基础之上在交互式方面得到增强(3)Jython  为Java设计，把Python代码编译成Java字节码(4)PyPy 是Python（2.7.13和3.5.5）的一种快速兼容的替代实现，速度快 二、算术运算符1、+2、-3、4、/   除  得到浮点数，就算能整除，也是浮点数5、">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://p3o1rymh9.bkt.clouddn.com/Python-youxianji.png">
+<meta property="og:updated_time" content="2018-05-30T04:37:00.934Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="The Marvellous World!">
-<meta name="twitter:description" content="这是我的个人网站，主要发布一些我的工作生活经历">
+<meta name="twitter:title" content="Python的运算符">
+<meta name="twitter:description" content="一、Python解释器有好几种(1)CPython 用C语言开发，官方标准实现(2)IPython 在CPython的基础之上在交互式方面得到增强(3)Jython  为Java设计，把Python代码编译成Java字节码(4)PyPy 是Python（2.7.13和3.5.5）的一种快速兼容的替代实现，速度快 二、算术运算符1、+2、-3、4、/   除  得到浮点数，就算能整除，也是浮点数5、">
+<meta name="twitter:image" content="http://p3o1rymh9.bkt.clouddn.com/Python-youxianji.png">
   
     <link rel="alternate" href="/atom.xml" title="The Marvellous World!" type="application/atom+xml">
   
@@ -62,26 +65,67 @@
 
         <section id="main">
 
+<article id="post-Python的运算符" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/30/Python的运算符/" class="article-date">
+  <time datetime="2018-05-30T04:33:36.000Z" itemprop="datePublished">2018-05-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Python/">Python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Python的运算符
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          <h3 id="一、Python解释器有好几种"><a href="#一、Python解释器有好几种" class="headerlink" title="一、Python解释器有好几种"></a>一、Python解释器有好几种</h3><p>(1)CPython 用C语言开发，官方标准实现<br>(2)IPython 在CPython的基础之上在交互式方面得到增强<br>(3)Jython  为Java设计，把Python代码编译成Java字节码<br>(4)PyPy 是Python（2.7.13和3.5.5）的一种快速兼容的替代实现，速度快</p>
+<h3 id="二、算术运算符"><a href="#二、算术运算符" class="headerlink" title="二、算术运算符"></a>二、算术运算符</h3><p>1、+<br>2、-<br>3、<em><br>4、/   除  得到浮点数，就算能整除，也是浮点数<br>5、%   求余，模运算，如果有一个是浮点数，就算能余整数，结果也是浮点数，余浮点数，那就是浮点数。结果的符号和第二个操作数相同。当有一个为负数的时候，第二个操作数的整数倍大于且最接近第一个操作数的那个，然后减去第一个操作数。当操作数是浮点数，除了是0.5的其他都不精确。print(3.9%1.3) == 1.2999999999999998<br>6、**  幂次方  可以是小数 4\</em>*1.5 == 8<br>7、//  除  不要小数部分了   和Java的/相似，但是Java里面，<br>1/0.1 == 10.0 但是Python里面1//0.1 == 9.0    2//0.2 == 9.0<br>3//0.3 == 10.0     4//0.4 == 9.0     6//0.6 == 10.0</p>
+<h3 id="三、比较运算符"><a href="#三、比较运算符" class="headerlink" title="三、比较运算符"></a>三、比较运算符</h3><p>1、==  比较的是内容，只要内容一模一样，不管嵌套多少层地址不一样的都返回True。若元素内容一模一样，对于元素的顺序，String和Tuple和List中若顺序不一致，会返回False，Set、Dictionary只要元素内容一模一样就行，对元素的顺序没有任何要求。<br>2、!=  和==是相反的<br>3、&gt;  数值就是大小  字符就是unicode码 字符串就是第一个不同的字符的unicode码比较，剩下的都不比了。 Tuple、List和字符串一样，只比较第一个不同的元素的大小。Dictionary不能参与这个比较的运算，&gt;&lt;&gt;=&lt;=都不行。set的所有比较，除了元素全部相等的话，&gt;= 和 &lt;= 会返回True，其他的比较操作，其他的只要两者元素不等，都返回False<br>4、&lt;<br>5、&gt;=<br>6、&lt;=</p>
+<h3 id="四、赋值运算符"><a href="#四、赋值运算符" class="headerlink" title="四、赋值运算符"></a>四、赋值运算符</h3><p>1、= 赋值过程很重要<br>2、+=<br>3、-=<br>4、*=<br>5、/=  注意/得到的总是浮点数<br>6、%=<br>7、**=<br>8、//=</p>
+<h3 id="五、位运算符-当成二进制来计算"><a href="#五、位运算符-当成二进制来计算" class="headerlink" title="五、位运算符   当成二进制来计算"></a>五、位运算符   当成二进制来计算</h3><p>1、&amp;<br>2、|<br>3、^<br>4、~<br>5、&lt;&lt;<br>6、&gt;&gt;</p>
+<h3 id="六、逻辑运算符"><a href="#六、逻辑运算符" class="headerlink" title="六、逻辑运算符"></a>六、逻辑运算符</h3><p>1、and  布尔与<br>2、or   布尔或<br>3、not  布尔非<br>那么这里就牵涉到了对象值和布尔值的等效了。<br>（1）和False等效的： Number的0和0.0和0+0j和0j还有-0、-0.0、-0j这样的、String的长度为0的空串””、Dictionary的内容为空的{}、Set内容为空的set()和set(“”)、Tuple的内容为空的()和(“”) 、List的[]  还有 None这个关键字，比如{1,2,3}.clear()的结果就是None<br>（2）Number的一切非0，Set的{“”}和非空的、Dictionary的{“”:””}还有其他的非空的、String长度不为0（包括空格）、List的[“”]还有一切非空的都等效于True<br>（3）可能还有一些，我还没有发现</p>
+<h3 id="七、成员运算符-是否在某个容器中"><a href="#七、成员运算符-是否在某个容器中" class="headerlink" title="七、成员运算符 是否在某个容器中"></a>七、成员运算符 是否在某个容器中</h3><p>1、当用==比较后有一个元素成立，那就是in。记住双等号成立的：String、Tuple、List要求元素值和顺序完全一样，Set和Dictionary要求元素值一样就OK！<br>2、判断Dictionary里面的时候，是在判断Dictionary里面的key是否有一个，而Key的取值只能是不变类型：Number、String、Tuple，所以只能判断Number、String、Tuple这些的对象是否在Dictionary对象的Key里面。虽然Set也是元素不可变，但是感觉他的顺序没有固定。<br>1、in<br>2、not in</p>
+<h3 id="八、身份运算符-判断两个变量所指向的对象是不是同一个，说白了就是看两个变量关联的地址是否一样"><a href="#八、身份运算符-判断两个变量所指向的对象是不是同一个，说白了就是看两个变量关联的地址是否一样" class="headerlink" title="八、身份运算符 判断两个变量所指向的对象是不是同一个，说白了就是看两个变量关联的地址是否一样"></a>八、身份运算符 判断两个变量所指向的对象是不是同一个，说白了就是看两个变量关联的地址是否一样</h3><p>1、is<br>2、is not</p>
+<h3 id="九、运算符优先级"><a href="#九、运算符优先级" class="headerlink" title="九、运算符优先级"></a>九、运算符优先级</h3><p><img width="600px" height="400px" src="http://p3o1rymh9.bkt.clouddn.com/Python-youxianji.png"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/05/30/Python的运算符/" data-id="cjhsmdfni000f9gva4eib7c46" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/05/29/Python的赋值/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Python的赋值</div>
+    </a>
+  
+</nav>
+
+  
+</article>
 
 
-
-<div class="archive">
-	
-	
-		
-		
-			<h3 class="year">2018</h3>
-			
-		
-		<div class="archive_item">
-			<span class="date">2018-03-07</span>
-			<a class="title" href="/2018/03/07/第一次用lambda表达式/">第一次用lambda表达式</a>
-		</div>
-	
-	<div class="pagination">
-		
-	</div>
-</div></section>
+</section>
 
         
           

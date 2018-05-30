@@ -67,6 +67,59 @@
 
     
     
+<article id="post-Python的运算符" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/30/Python的运算符/" class="article-date">
+  <time datetime="2018-05-30T04:33:36.000Z" itemprop="datePublished">2018-05-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Python/">Python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/30/Python的运算符/">Python的运算符</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          <h3 id="一、Python解释器有好几种"><a href="#一、Python解释器有好几种" class="headerlink" title="一、Python解释器有好几种"></a>一、Python解释器有好几种</h3><p>(1)CPython 用C语言开发，官方标准实现<br>(2)IPython 在CPython的基础之上在交互式方面得到增强<br>(3)Jython  为Java设计，把Python代码编译成Java字节码<br>(4)PyPy 是Python（2.7.13和3.5.5）的一种快速兼容的替代实现，速度快</p>
+<h3 id="二、算术运算符"><a href="#二、算术运算符" class="headerlink" title="二、算术运算符"></a>二、算术运算符</h3><p>1、+<br>2、-<br>3、<em><br>4、/   除  得到浮点数，就算能整除，也是浮点数<br>5、%   求余，模运算，如果有一个是浮点数，就算能余整数，结果也是浮点数，余浮点数，那就是浮点数。结果的符号和第二个操作数相同。当有一个为负数的时候，第二个操作数的整数倍大于且最接近第一个操作数的那个，然后减去第一个操作数。当操作数是浮点数，除了是0.5的其他都不精确。print(3.9%1.3) == 1.2999999999999998<br>6、**  幂次方  可以是小数 4\</em>*1.5 == 8<br>7、//  除  不要小数部分了   和Java的/相似，但是Java里面，<br>1/0.1 == 10.0 但是Python里面1//0.1 == 9.0    2//0.2 == 9.0<br>3//0.3 == 10.0     4//0.4 == 9.0     6//0.6 == 10.0</p>
+<h3 id="三、比较运算符"><a href="#三、比较运算符" class="headerlink" title="三、比较运算符"></a>三、比较运算符</h3><p>1、==  比较的是内容，只要内容一模一样，不管嵌套多少层地址不一样的都返回True。若元素内容一模一样，对于元素的顺序，String和Tuple和List中若顺序不一致，会返回False，Set、Dictionary只要元素内容一模一样就行，对元素的顺序没有任何要求。<br>2、!=  和==是相反的<br>3、&gt;  数值就是大小  字符就是unicode码 字符串就是第一个不同的字符的unicode码比较，剩下的都不比了。 Tuple、List和字符串一样，只比较第一个不同的元素的大小。Dictionary不能参与这个比较的运算，&gt;&lt;&gt;=&lt;=都不行。set的所有比较，除了元素全部相等的话，&gt;= 和 &lt;= 会返回True，其他的比较操作，其他的只要两者元素不等，都返回False<br>4、&lt;<br>5、&gt;=<br>6、&lt;=</p>
+<h3 id="四、赋值运算符"><a href="#四、赋值运算符" class="headerlink" title="四、赋值运算符"></a>四、赋值运算符</h3><p>1、= 赋值过程很重要<br>2、+=<br>3、-=<br>4、*=<br>5、/=  注意/得到的总是浮点数<br>6、%=<br>7、**=<br>8、//=</p>
+<h3 id="五、位运算符-当成二进制来计算"><a href="#五、位运算符-当成二进制来计算" class="headerlink" title="五、位运算符   当成二进制来计算"></a>五、位运算符   当成二进制来计算</h3><p>1、&amp;<br>2、|<br>3、^<br>4、~<br>5、&lt;&lt;<br>6、&gt;&gt;</p>
+<h3 id="六、逻辑运算符"><a href="#六、逻辑运算符" class="headerlink" title="六、逻辑运算符"></a>六、逻辑运算符</h3><p>1、and  布尔与<br>2、or   布尔或<br>3、not  布尔非<br>那么这里就牵涉到了对象值和布尔值的等效了。<br>（1）和False等效的： Number的0和0.0和0+0j和0j还有-0、-0.0、-0j这样的、String的长度为0的空串””、Dictionary的内容为空的{}、Set内容为空的set()和set(“”)、Tuple的内容为空的()和(“”) 、List的[]  还有 None这个关键字，比如{1,2,3}.clear()的结果就是None<br>（2）Number的一切非0，Set的{“”}和非空的、Dictionary的{“”:””}还有其他的非空的、String长度不为0（包括空格）、List的[“”]还有一切非空的都等效于True<br>（3）可能还有一些，我还没有发现</p>
+<h3 id="七、成员运算符-是否在某个容器中"><a href="#七、成员运算符-是否在某个容器中" class="headerlink" title="七、成员运算符 是否在某个容器中"></a>七、成员运算符 是否在某个容器中</h3><p>1、当用==比较后有一个元素成立，那就是in。记住双等号成立的：String、Tuple、List要求元素值和顺序完全一样，Set和Dictionary要求元素值一样就OK！<br>2、判断Dictionary里面的时候，是在判断Dictionary里面的key是否有一个，而Key的取值只能是不变类型：Number、String、Tuple，所以只能判断Number、String、Tuple这些的对象是否在Dictionary对象的Key里面。虽然Set也是元素不可变，但是感觉他的顺序没有固定。<br>1、in<br>2、not in</p>
+<h3 id="八、身份运算符-判断两个变量所指向的对象是不是同一个，说白了就是看两个变量关联的地址是否一样"><a href="#八、身份运算符-判断两个变量所指向的对象是不是同一个，说白了就是看两个变量关联的地址是否一样" class="headerlink" title="八、身份运算符 判断两个变量所指向的对象是不是同一个，说白了就是看两个变量关联的地址是否一样"></a>八、身份运算符 判断两个变量所指向的对象是不是同一个，说白了就是看两个变量关联的地址是否一样</h3><p>1、is<br>2、is not</p>
+<h3 id="九、运算符优先级"><a href="#九、运算符优先级" class="headerlink" title="九、运算符优先级"></a>九、运算符优先级</h3><p><img width="600px" height="400px" src="http://p3o1rymh9.bkt.clouddn.com/Python-youxianji.png"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/05/30/Python的运算符/" data-id="cjhsmdfni000f9gva4eib7c46" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+    
+    
 <article id="post-Python的赋值" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/05/29/Python的赋值/" class="article-date">
@@ -94,12 +147,17 @@
     <div class="article-entry" itemprop="articleBody">
       
           <p>热血回归</p>
-<h4 id="首先要牢记，六类数据，分成两种，一种是原子型，Number和String，String又可以分解为字符。一种是容器型Set、Tuple、List、Dictionary。在赋值过程当中："><a href="#首先要牢记，六类数据，分成两种，一种是原子型，Number和String，String又可以分解为字符。一种是容器型Set、Tuple、List、Dictionary。在赋值过程当中：" class="headerlink" title="首先要牢记，六类数据，分成两种，一种是原子型，Number和String，String又可以分解为字符。一种是容器型Set、Tuple、List、Dictionary。在赋值过程当中："></a>首先要牢记，六类数据，分成两种，一种是原子型，Number和String，String又可以分解为字符。一种是容器型Set、Tuple、List、Dictionary。在赋值过程当中：</h4><p>1、当值是原子型的，会先在内存中寻找是否有这个值，有的话就将这个值的地址直接赋给变量，没有的话，就开辟一个内存空间，将值放进去，再把地址赋给变量。甚至是单个字符也是这么做的。<br>2、通过多组实验，我认为，String、Set、Tuple、List、DIctionary，这些对象，每个对象会存储除了数据还有一些以外的东西，例如String对象的地址，和String里面每个元素的地址都是不一样，并且杂乱无章。<br><img width="600px" height="400px" src="http://p3o1rymh9.bkt.clouddn.com/Python-fuzhi1.png"><br>字符串一样的，首地址一样，字符一样的，地址是一样。字符串首地址和第一个字符地址不一样。字符串的字符地址杂乱无章。首地址应该是这个字符串对象的地址，这个对象存储了一些东西。<br><img width="600px" height="400px" src="http://p3o1rymh9.bkt.clouddn.com/Python-fuzhi2.png"><br>对于Tuple，如果内部仅包含Number、String、Tuple并且完全一样，那么Tuple的首地址是一样的（指向相同的对象），而且，内部每个元素地址也都一样，但是要是包含Set、List、Dictionary，那么首地址不一样<br><img width="600px" height="400px" src="http://p3o1rymh9.bkt.clouddn.com/Python-fuzhi3.png"><br>对于Set，即使内部元素完全相同，首地址也不一样，说明是两个完全不同的对象<br><img width="600px" height="400px" src="http://p3o1rymh9.bkt.clouddn.com/Python-fuzhi4.png"><br>对于List，无论怎样，都会重新开辟内存分配空间创建新对象，但是对象内部的值的创建，还是和前面发现的一样。并且，当我改变一个元素的时候，系统会按照相应的原则去分配空间。例如这里面，系统就分配空间，值为9，在将地址给list2[0]，注意，地址改变了！以前的那个元素就找不到了！注意List不能扩增<br>同样的对于Dictionary来说，可以指定没有的key来增加键值对，当为存在的key指定值的时候， 会遵循前面那些规律来分配</p>
+<h4 id="首先要牢记，六类数据，分成两种，一种是原子型，Number和String，String又可以分解为字符。一种是容器型Set、Tuple、List、Dictionary。在赋值过程当中："><a href="#首先要牢记，六类数据，分成两种，一种是原子型，Number和String，String又可以分解为字符。一种是容器型Set、Tuple、List、Dictionary。在赋值过程当中：" class="headerlink" title="首先要牢记，六类数据，分成两种，一种是原子型，Number和String，String又可以分解为字符。一种是容器型Set、Tuple、List、Dictionary。在赋值过程当中："></a>首先要牢记，六类数据，分成两种，一种是原子型，Number和String，String又可以分解为字符。一种是容器型Set、Tuple、List、Dictionary。在赋值过程当中：</h4><p>1、当值是原子型的，会先在内存中寻找是否有这个值，有的话就将这个值的地址直接赋给变量，没有的话，就开辟一个内存空间，将值放进去，再把地址赋给变量。甚至是单个字符也是这么做的。<br>2、通过多组实验，我认为，String、Set、Tuple、List、DIctionary，这些对象，每个对象会存储除了数据还有一些以外的东西，例如String对象的地址，和String里面每个元素的地址都是不一样，并且杂乱无章。</p>
+<p><img width="600px" height="400px" src="http://p3o1rymh9.bkt.clouddn.com/Python-fuzhi1.png"><br>字符串一样的，首地址一样，字符一样的，地址是一样。字符串首地址和第一个字符地址不一样。字符串的字符地址杂乱无章。首地址应该是这个字符串对象的地址，这个对象存储了一些东西。</p>
+<p><img width="600px" height="400px" src="http://p3o1rymh9.bkt.clouddn.com/Python-fuzhi2.png"><br>对于Tuple，如果内部仅包含Number、String、Tuple并且完全一样，那么Tuple的首地址是一样的（指向相同的对象），而且，内部每个元素地址也都一样，但是要是包含Set、List、Dictionary，那么首地址不一样</p>
+<p><img width="600px" height="400px" src="http://p3o1rymh9.bkt.clouddn.com/Python-fuzhi3.png"><br>对于Set，即使内部元素完全相同，首地址也不一样，说明是两个完全不同的对象。要记得，Set的元素只能是Number、String、Tuple这三种类型的对象</p>
+<p><img width="600px" height="400px" src="http://p3o1rymh9.bkt.clouddn.com/Python-fuzhi4.png"><br>对于List，无论怎样，都会重新开辟内存分配空间创建新对象，但是对象内部的值的创建，还是和前面发现的一样。并且，当我改变一个元素的时候，系统会按照相应的原则去分配空间。例如这里面，系统就分配空间，值为9，在将地址给list2[0]，注意，地址改变了！以前的那个元素就找不到了！</p>
+<p>同样的对于Dictionary来说，可以指定没有的key来增加键值对，当为存在的key指定值的时候，会遵循前面那些规律来分配！</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/29/Python的赋值/" data-id="cjhsfjl6p000a6cvab4tbrbwx" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/05/29/Python的赋值/" data-id="cjhsmdfml000c9gvayav064pj" class="article-share-link">Share</a>
       
       
     </footer>
@@ -139,7 +197,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/27/GET和POST/" data-id="cjhsfjl6900006cvay2hurqe7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/27/GET和POST/" data-id="cjhsmdflq00029gva5cvqn073" class="article-share-link">Share</a>
       
       
     </footer>
@@ -201,7 +259,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/25/前端模块化/" data-id="cjhsfjl8f001q6cvadlf7x3ph" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/25/前端模块化/" data-id="cjhsmdfp9001d9gvat9dooyhx" class="article-share-link">Share</a>
       
       
     </footer>
@@ -257,7 +315,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/23/数据交互/" data-id="cjhsfjl8f001w6cvakvjiqiys" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/23/数据交互/" data-id="cjhsmdfpz001v9gva7ulyytif" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/json/">json</a></li></ul>
@@ -317,7 +375,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/20/手机邮箱接口调用发送验证码/" data-id="cjhsfjl8f001t6cvacuxfb978" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/20/手机邮箱接口调用发送验证码/" data-id="cjhsmdfpp001o9gvayd37uu7r" class="article-share-link">Share</a>
       
       
     </footer>
@@ -362,7 +420,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/15/面向切面编程AOP/" data-id="cjhsfjl9b002r6cval7ipelac" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/15/面向切面编程AOP/" data-id="cjhsmdfqw002p9gvau66zoi9i" class="article-share-link">Share</a>
       
       
     </footer>
@@ -422,63 +480,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/14/mybatis对springboot的支持-注解取代xml/" data-id="cjhsfjl8000196cva9heei74l" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-
-    
-    
-<article id="post-RequestMapping的学习" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/13/RequestMapping的学习/" class="article-date">
-  <time datetime="2018-04-13T09:46:15.000Z" itemprop="datePublished">2018-04-13</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/SpringMvc/">SpringMvc</a>►<a class="article-category-link" href="/categories/SpringMvc/标签/">标签</a>►<a class="article-category-link" href="/categories/SpringMvc/标签/RequestMapping/">RequestMapping</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/13/RequestMapping的学习/">content-type的学习</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          <p>首先我们要明白一个，这个标签作用于处理器上，是一个匹配请求和设置返回值的一个规则，请求是浏览器发出的。我是这么理解的。</p>
-<h4 id="一、-RequestMapping作用的地方"><a href="#一、-RequestMapping作用的地方" class="headerlink" title="一、@RequestMapping作用的地方"></a>一、@RequestMapping作用的地方</h4><p>1、可以作用于类上，表示访问这个类的规则<br>2、作用于方法上，表示访问这个方法的规则</p>
-<h4 id="二、-RequestMapping有哪些参数"><a href="#二、-RequestMapping有哪些参数" class="headerlink" title="二、@RequestMapping有哪些参数"></a>二、@RequestMapping有哪些参数</h4><p>有六个参数 value、method、consumes、produces、params、headers<br>1、value：表示路径<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(value=&quot;/test&quot;)</span><br></pre></td></tr></table></figure></p>
-<p>2、method：表示浏览器请求的method类型，可以是POST、GET等等。如果你的表单请求是POST，那么你想访问的这里也要是POST才能匹配上。你在浏览器的一个a标签里请求一个方法，a标签的href默认是GET请求，那么请求的方法的这里只有设置为GET才能匹配成功，才能访问。</p>
-<p>3、consumes：表示浏览器这次的请求提交的数据的内容类型（content-type），就是说我这个方法我接受的数据的内容类型，可以是application/json、text/html，比如说在页面中提交一个表单，content-type会默认为application/x-www-form-urlencoded，那么你在这边的方法中要是说你只接受<code>@RequestMapping(consumes=&quot;application/json&quot;)</code>，那就会出现415错误（由于媒介类型不被支持，服务器不会接受请求）。</p>
-<p>4、produces：表示这个方法返回给浏览器的数据是以什么格式返回的，也就是告诉浏览器以这种格式去解析数据。只有当请求头（request header）中的accept包含这个类型时才能返回<br><img width="500px" height="200px" src="http://p3o1rymh9.bkt.clouddn.com/标签-RequestMapping1.png"><br>再比如说这个请求头的accept： text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8<br>这里面*/*;q=0.8，表明可以接收任何类型的，权重系数0.8表明如果前面几种类型不能正常接收，则使用该项进行自动分析。application/json 几种主流浏览器都可以自动解析。</p>
-<p>5、params：表示这个请求中一定要包含的参数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(value = &quot;testParamsAndHeaders&quot;, params = &#123; &quot;username&quot;,&quot;age!=10&quot; &#125;)</span><br></pre></td></tr></table></figure></p>
-<p>这样的话，就表明，请求过来的必须要有username和age这两个参数，并且age不能为10</p>
-<p>6、headers：表示请求中一定要包含指定的header值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(value = &quot;testParamsAndHeaders&quot;, headers = &#123; &quot;Accept-Language=US,zh;q=0.8&quot; &#125;)</span><br></pre></td></tr></table></figure></p>
-<p>这个就是说，你的请求头中的accept-language这个参数的第一语言是US（这里有点没转过弯来）。</p>
-<p>请求会先根据url找路径，这时就会根据请求头做出一系列的判断，匹配不通过，也就是找不到，就会返回404.找到了若果不能正常处理就会返回5XX的错误。</p>
-<p>参考自 <a href="https://blog.csdn.net/J080624/article/details/55193269" target="_blank" rel="noopener">https://blog.csdn.net/J080624/article/details/55193269</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/13/RequestMapping的学习/" data-id="cjhsfjl75000d6cvaj6q48681" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/14/mybatis对springboot的支持-注解取代xml/" data-id="cjhsmdfp100169gvae3n5nl36" class="article-share-link">Share</a>
       
       
     </footer>
@@ -534,7 +536,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/13/content-type的学习/" data-id="cjhsfjl75000k6cvazhs5ogsk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/13/content-type的学习/" data-id="cjhsmdfnu000m9gvapp80a7oc" class="article-share-link">Share</a>
       
       
     </footer>
@@ -548,14 +550,14 @@
 
     
     
-<article id="post-浮点数在Java和JavaScript中的处理" class="article article-type-post" itemscope itemprop="blogPost">
+<article id="post-RequestMapping的学习" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/04/09/浮点数在Java和JavaScript中的处理/" class="article-date">
-  <time datetime="2018-04-09T14:31:34.000Z" itemprop="datePublished">2018-04-09</time>
+    <a href="/2018/04/13/RequestMapping的学习/" class="article-date">
+  <time datetime="2018-04-13T09:46:15.000Z" itemprop="datePublished">2018-04-13</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Java/">Java</a>►<a class="article-category-link" href="/categories/Java/JavaScript/">JavaScript</a>►<a class="article-category-link" href="/categories/Java/JavaScript/浮点数的处理/">浮点数的处理</a>
+    <a class="article-category-link" href="/categories/SpringMvc/">SpringMvc</a>►<a class="article-category-link" href="/categories/SpringMvc/标签/">标签</a>►<a class="article-category-link" href="/categories/SpringMvc/标签/RequestMapping/">RequestMapping</a>
   </div>
 
   </div>
@@ -566,7 +568,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/09/浮点数在Java和JavaScript中的处理/">浮点数在Java和JavaScript中的处理</a>
+      <a class="article-title" href="/2018/04/13/RequestMapping的学习/">content-type的学习</a>
     </h1>
   
 
@@ -574,18 +576,23 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-          <p>由于计算机的世界是二进制的，有些十进制的小数在二进制中是无限位的小数，因此，当我们将屏幕中的小数投入计算机的二进制进行计算时，那些无法转换完成的，就会造成误差了<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DoubleComputeTest</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="number">2.0</span> - <span class="number">1.1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>运行结果：<br><img width="400px" height="350px" src="http://p3o1rymh9.bkt.clouddn.com/DoubleComputeTest1.png"></p>
-<p>详情可以参考<a href="https://blog.csdn.net/jackiehff/article/details/8582449" target="_blank" rel="noopener">https://blog.csdn.net/jackiehff/article/details/8582449</a> </p>
-<h3 id="浮点数在Java中的运算"><a href="#浮点数在Java中的运算" class="headerlink" title="浮点数在Java中的运算"></a>浮点数在Java中的运算</h3><p>Java提供了java.math.BigDecimal类用于浮点数的高精度计算（Java还提供了java.math.BigInteger用于超大的数的计算）float和double只能用于科学计算或者工程计算，在商业计算中，对数字的精度要求较高，必须使用BigInteger和BigDecimal来计算。后者的实现用到了前者。这里就先讲讲BigDecimal吧。所有的计算不再通过操作符来完成，而是由BigDecimal对象调用方法来完成。</p>
-<p>1、首先构造一个BigDecimal的对象，两种获取方法<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 有两种常用的方法</span></span><br><span class="line"><span class="comment">*  &gt; 1、使用构造方法，传入字符串（数字组成）</span></span><br><span class="line"><span class="comment">*  &gt; 2、使用BigDecimal的一个静态方法,传入一个double</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">BigDecimal b1 = <span class="keyword">new</span> BigDecimal(<span class="string">"89"</span>);</span><br><span class="line">BigDecimal b2 = BigDecimal.valueOf(<span class="number">67.89</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//第二种的静态方法，他的内部是调用构造方法，将这个double转为字符串传入，看下源码</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> BigDecimal <span class="title">valueOf</span><span class="params">(<span class="keyword">double</span> val)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> BigDecimal(Double.toString(val));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>2、常用的方法<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//先定义两个对象用于下面的计算</span></span><br><span class="line">BigDecimal bd1 = <span class="keyword">new</span> BigDecimal(<span class="string">"78.96"</span>);</span><br><span class="line">BigDecimal bd2 = <span class="keyword">new</span> BigDecimal(<span class="string">"23.51"</span>);</span><br><span class="line"><span class="comment">//1、加法</span></span><br><span class="line">BigDecimal add = bd1.add(bd2);</span><br><span class="line"><span class="keyword">double</span> addResult = add.doubleValue();</span><br><span class="line"></span><br><span class="line"><span class="comment">//2、减法</span></span><br><span class="line">BigDecimal sub = bd1.subtract(bd2);</span><br><span class="line"><span class="keyword">double</span> subResult = sub.doubleValue();</span><br><span class="line"></span><br><span class="line"><span class="comment">//3、乘法</span></span><br><span class="line">BigDecimal mul = bd1.multiply(bd2);</span><br><span class="line"><span class="keyword">double</span> mulResult = mul.doubleValue();</span><br><span class="line"></span><br><span class="line"><span class="comment">//4、除法  传入的第二个参数是精确度，精确度不能小于0，要不然会抛异常IllegalAccessException</span></span><br><span class="line">BigDecimal div = bd1.divide(bd2, <span class="number">10</span>, BigDecimal.ROUND_HALF_up);</span><br><span class="line"><span class="keyword">double</span> divResult = div.doubleValue();</span><br><span class="line"></span><br><span class="line"><span class="comment">//5、比较大小 注意两者都不能为空</span></span><br><span class="line"><span class="keyword">int</span> result = bd1.compareTo(bd2); <span class="comment">//大 等于 小 分别对应返回值 1 0 -1</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="JavaScript中的浮点数的计算"><a href="#JavaScript中的浮点数的计算" class="headerlink" title="JavaScript中的浮点数的计算"></a>JavaScript中的浮点数的计算</h3><p><a href="https://blog.csdn.net/zhutulang/article/details/6844834" target="_blank" rel="noopener">https://blog.csdn.net/zhutulang/article/details/6844834</a> 先放着 明天写</p>
+          <p>首先我们要明白一个，这个标签作用于处理器上，是一个匹配请求和设置返回值的一个规则，请求是浏览器发出的。我是这么理解的。</p>
+<h4 id="一、-RequestMapping作用的地方"><a href="#一、-RequestMapping作用的地方" class="headerlink" title="一、@RequestMapping作用的地方"></a>一、@RequestMapping作用的地方</h4><p>1、可以作用于类上，表示访问这个类的规则<br>2、作用于方法上，表示访问这个方法的规则</p>
+<h4 id="二、-RequestMapping有哪些参数"><a href="#二、-RequestMapping有哪些参数" class="headerlink" title="二、@RequestMapping有哪些参数"></a>二、@RequestMapping有哪些参数</h4><p>有六个参数 value、method、consumes、produces、params、headers<br>1、value：表示路径<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(value=&quot;/test&quot;)</span><br></pre></td></tr></table></figure></p>
+<p>2、method：表示浏览器请求的method类型，可以是POST、GET等等。如果你的表单请求是POST，那么你想访问的这里也要是POST才能匹配上。你在浏览器的一个a标签里请求一个方法，a标签的href默认是GET请求，那么请求的方法的这里只有设置为GET才能匹配成功，才能访问。</p>
+<p>3、consumes：表示浏览器这次的请求提交的数据的内容类型（content-type），就是说我这个方法我接受的数据的内容类型，可以是application/json、text/html，比如说在页面中提交一个表单，content-type会默认为application/x-www-form-urlencoded，那么你在这边的方法中要是说你只接受<code>@RequestMapping(consumes=&quot;application/json&quot;)</code>，那就会出现415错误（由于媒介类型不被支持，服务器不会接受请求）。</p>
+<p>4、produces：表示这个方法返回给浏览器的数据是以什么格式返回的，也就是告诉浏览器以这种格式去解析数据。只有当请求头（request header）中的accept包含这个类型时才能返回<br><img width="500px" height="200px" src="http://p3o1rymh9.bkt.clouddn.com/标签-RequestMapping1.png"><br>再比如说这个请求头的accept： text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8<br>这里面*/*;q=0.8，表明可以接收任何类型的，权重系数0.8表明如果前面几种类型不能正常接收，则使用该项进行自动分析。application/json 几种主流浏览器都可以自动解析。</p>
+<p>5、params：表示这个请求中一定要包含的参数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(value = &quot;testParamsAndHeaders&quot;, params = &#123; &quot;username&quot;,&quot;age!=10&quot; &#125;)</span><br></pre></td></tr></table></figure></p>
+<p>这样的话，就表明，请求过来的必须要有username和age这两个参数，并且age不能为10</p>
+<p>6、headers：表示请求中一定要包含指定的header值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(value = &quot;testParamsAndHeaders&quot;, headers = &#123; &quot;Accept-Language=US,zh;q=0.8&quot; &#125;)</span><br></pre></td></tr></table></figure></p>
+<p>这个就是说，你的请求头中的accept-language这个参数的第一语言是US（这里有点没转过弯来）。</p>
+<p>请求会先根据url找路径，这时就会根据请求头做出一系列的判断，匹配不通过，也就是找不到，就会返回404.找到了若果不能正常处理就会返回5XX的错误。</p>
+<p>参考自 <a href="https://blog.csdn.net/J080624/article/details/55193269" target="_blank" rel="noopener">https://blog.csdn.net/J080624/article/details/55193269</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/09/浮点数在Java和JavaScript中的处理/" data-id="cjhsfjl8f00216cvanwzvtol1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/13/RequestMapping的学习/" data-id="cjhsmdfnr000j9gva33gcmhv0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -614,7 +621,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/">IDEA</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/SpringBoot/">SpringBoot</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/Tomcat/">Tomcat</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/JavaScript/">JavaScript</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/JavaScript/浮点数的处理/">浮点数的处理</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/基础知识/">基础知识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/文件系统/">文件系统</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySql/">MySql</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/MySql/权限控制/">权限控制</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySql/运行原理及架构/">运行原理及架构</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/delete-truncate-drop/">delete truncate drop</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot/">SpringBoot</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringMvc/">SpringMvc</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/SpringMvc/标签/">标签</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/SpringMvc/标签/RequestMapping/">RequestMapping</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/Class的学习/">Class的学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/HttpServletRequest、HttpServletResponse/">HttpServletRequest、HttpServletResponse</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/java8/">java8</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/java8/Lambda表达式/">Lambda表达式</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/volatile/">volatile</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/包结构/">包结构</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/异常的使用/">异常的使用</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/数组/">数组</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/输入输出流/">输入输出流</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/重写和重载/">重写和重载</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/language/">language</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/language/MD语法/">MD语法</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/mybatis/">mybatis</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/mybatis/springboot/">springboot</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/require/">require</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/require/define/">define</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统/">操作系统</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统/基本知识/">基本知识</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/">数据结构</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/基础知识/">基础知识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/算法概念/">算法概念</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/日志/">日志</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/日志/log4j/">log4j</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/算法/排序算法/">排序算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/深度优先/">深度优先</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程思想/">编程思想</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/编程思想/AOP/">AOP</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/编码规则/">编码规则</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/计算机的组成部分/">计算机的组成部分</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/进制转换/">进制转换</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/代理模式/">代理模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/原型模式/">原型模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/外观模式/">外观模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/工厂方法模式/">工厂方法模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/建造者模式/">建造者模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/模板方法模式/">模板方法模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/策略模式/">策略模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/简单工厂模式/">简单工厂模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/装饰模式/">装饰模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/设计原则/">设计原则</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/项目/">项目</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/项目/验证码/">验证码</a><span class="category-list-count">1</span></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/">IDEA</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/SpringBoot/">SpringBoot</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/IDEA/Tomcat/">Tomcat</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/JavaScript/">JavaScript</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/JavaScript/浮点数的处理/">浮点数的处理</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/基础知识/">基础知识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/文件系统/">文件系统</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySql/">MySql</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/MySql/权限控制/">权限控制</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySql/运行原理及架构/">运行原理及架构</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/delete-truncate-drop/">delete truncate drop</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot/">SpringBoot</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringMvc/">SpringMvc</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/SpringMvc/标签/">标签</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/SpringMvc/标签/RequestMapping/">RequestMapping</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/Class的学习/">Class的学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/HttpServletRequest、HttpServletResponse/">HttpServletRequest、HttpServletResponse</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/java8/">java8</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/java/java8/Lambda表达式/">Lambda表达式</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/volatile/">volatile</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/包结构/">包结构</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/异常的使用/">异常的使用</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/数组/">数组</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/输入输出流/">输入输出流</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/重写和重载/">重写和重载</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/language/">language</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/language/MD语法/">MD语法</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/mybatis/">mybatis</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/mybatis/springboot/">springboot</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/require/">require</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/require/define/">define</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统/">操作系统</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统/基本知识/">基本知识</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/">数据结构</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/基础知识/">基础知识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/算法概念/">算法概念</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/日志/">日志</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/日志/log4j/">log4j</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/算法/排序算法/">排序算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/深度优先/">深度优先</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程思想/">编程思想</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/编程思想/AOP/">AOP</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/编码规则/">编码规则</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/计算机的组成部分/">计算机的组成部分</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/进制转换/">进制转换</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/代理模式/">代理模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/原型模式/">原型模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/外观模式/">外观模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/工厂方法模式/">工厂方法模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/建造者模式/">建造者模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/模板方法模式/">模板方法模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/策略模式/">策略模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/简单工厂模式/">简单工厂模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/装饰模式/">装饰模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/设计原则/">设计原则</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/项目/">项目</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/项目/验证码/">验证码</a><span class="category-list-count">1</span></li></ul></li></ul>
     </div>
   </div>
 
@@ -643,7 +650,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">archive_a</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">34</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">34</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -654,6 +661,10 @@
     <h3 class="widget-title">recent_posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/05/30/Python的运算符/">Python的运算符</a>
+          </li>
         
           <li>
             <a href="/2018/05/29/Python的赋值/">Python的赋值</a>
@@ -669,10 +680,6 @@
         
           <li>
             <a href="/2018/04/23/数据交互/">数据交互</a>
-          </li>
-        
-          <li>
-            <a href="/2018/04/20/手机邮箱接口调用发送验证码/">手机邮箱接口调用发送验证码</a>
           </li>
         
       </ul>
