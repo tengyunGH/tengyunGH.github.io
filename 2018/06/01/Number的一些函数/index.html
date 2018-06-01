@@ -7,16 +7,17 @@
   
   <title>The Marvellous World!</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这是我的个人网站，主要发布一些我的工作生活经历">
-<meta property="og:type" content="website">
-<meta property="og:title" content="The Marvellous World!">
-<meta property="og:url" content="http://yoursite.com/categories/Java/JavaScript/index.html">
+  <meta name="description" content="1、    注意赋值过程，要记住，只要改了值，变量指向的地址就会改变了，尤其是那些复合的赋值运算符 2、    del 删除变量的引用，那么这时候，这个变量就变成没有定义了。例如 int1 = 10; del int1; print(id(int1)) 就会报错说int1没有定义。 也可以同时删除多个对象的引用 del list1, int1 3、    int bool float comple">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Number的一些函数">
+<meta property="og:url" content="http://yoursite.com/2018/06/01/Number的一些函数/index.html">
 <meta property="og:site_name" content="The Marvellous World!">
-<meta property="og:description" content="这是我的个人网站，主要发布一些我的工作生活经历">
+<meta property="og:description" content="1、    注意赋值过程，要记住，只要改了值，变量指向的地址就会改变了，尤其是那些复合的赋值运算符 2、    del 删除变量的引用，那么这时候，这个变量就变成没有定义了。例如 int1 = 10; del int1; print(id(int1)) 就会报错说int1没有定义。 也可以同时删除多个对象的引用 del list1, int1 3、    int bool float comple">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-06-01T02:57:48.625Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="The Marvellous World!">
-<meta name="twitter:description" content="这是我的个人网站，主要发布一些我的工作生活经历">
+<meta name="twitter:title" content="Number的一些函数">
+<meta name="twitter:description" content="1、    注意赋值过程，要记住，只要改了值，变量指向的地址就会改变了，尤其是那些复合的赋值运算符 2、    del 删除变量的引用，那么这时候，这个变量就变成没有定义了。例如 int1 = 10; del int1; print(id(int1)) 就会报错说int1没有定义。 也可以同时删除多个对象的引用 del list1, int1 3、    int bool float comple">
   
     <link rel="alternate" href="/atom.xml" title="The Marvellous World!" type="application/atom+xml">
   
@@ -62,26 +63,86 @@
 
         <section id="main">
 
+<article id="post-Number的一些函数" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/01/Number的一些函数/" class="article-date">
+  <time datetime="2018-06-01T02:54:35.000Z" itemprop="datePublished">2018-06-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Python/">Python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Number的一些函数
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          <p>1、    注意赋值过程，要记住，只要改了值，变量指向的地址就会改变了，尤其是那些复合的赋值运算符</p>
+<p>2、    del 删除变量的引用，那么这时候，这个变量就变成没有定义了。例如 int1 = 10; del int1; print(id(int1)) 就会报错说int1没有定义。 也可以同时删除多个对象的引用 del list1, int1</p>
+<p>3、    int bool float complex str tuple list set dict  数据类型和具体的类名 type() 和 isinstance() 都是检测类的 检测某个对象的类 型  比如 type(False)就是&lt;\class ‘bool’&gt;, isinstance(4,int) 注意第二个参数是那些类的名字，不是那六大标准数据类型。<br><a id="more"></a><br>4、    int型   Python3中没有限制大小，多大都能行</p>
+<p>5、    float型 </p>
+<p>6、    complex型  a + bj，complex(a,b)创造一个复数，若只有一个参数，那就是complex(3) == 3+0j。a和b都是浮点型，真的，type(complex(2 + 4j).real) == ‘float’</p>
+<p>7、    int型 还可以用十六进制或者八进制来表示 0x6ed5 0o67325</p>
+<p>8、    int(x) x只能是三种类型：bool float 仅包含数字的string（String的最前面和最后面可以有空白符），可以有第二个参数，表示这个数的进制，最终得到的结果是十进制的。</p>
+<p>9、    float(x) x只能是float和int的字符串（String的最前面和最后面可以有空白符）或者int和bool型，最终结果就是float，注意，字符串可以以小数点开头或结尾，但是只能有一个小数点。</p>
+<h4 id="10、数字的操控"><a href="#10、数字的操控" class="headerlink" title="10、数字的操控"></a>10、数字的操控</h4><pre><code>1.    abs(x)  绝对值
+2.    math.ceil(x) 上取整  天花板
+3.    math.exp(x) e的x次幂(ex) math.e = 2.718281828459045
+4.    math.fabs(x) 绝对值，和abs(x)不同的是，如果x是整数，abs返回的也是整数，但是math.fabs(x)一定返回的是浮点数
+5.    math.floor(x)  下取整，地板
+6.    math.log(x,y) 当只有一个x的时候，就表示logex。当有了x,y的时候，表示logyx,也就是说y的默认值是math.e，返回的一定是浮点数
+7.    math.log10(x)   log10x 返回的一定是浮点数
+8.    max(x,y,z,a,…)参数可以是容器（set、List、Tuple、Dictionary），比较遵循原则，容器中的元素是同一种物质，（容器内部元素不能是Dictionary），才可以比较，比较遵循那个大于号的规则（数值就是大小，字符就是unicode码，字符串就是第一个不同的字符的unicode码比较，剩下的都不比了。 Tuple、List和字符串一样，只比较第一个不同的元素的大小。Dictionary不能参与这个比较的运算，&gt;&lt;&gt;=&lt;=都不行。set的所有比较，除了元素全部相等的话，&gt;= 和 &lt;= 会返回True，其他的比较操作，其他的只要两者元素不等，都返回False），如果容器是Dictionary的话，就把所有的key都拿来比较，所以所有的key得是同一种元素。否则的话，都会报错。
+9.    min(…) 同max
+10.    pow(x,y)
+11.    roun d(x,n) n可以不传，表示四舍五入，保留n为小数。注意round(12.345, 0) == 12.0；n不传，返回整数，n大于小数位数，返回本身；n只能为整数；n为负数的时候，表示x的小数点左边从右往左第正n位做四舍五入，保留一位小数0，若x是整数，就不保留了。round(-62.6, -2) == -100.0,还有round(-679, -2) == -700。。。。因为浮点数的表示在计算机中并不正确，round(11.5) == 12….. round(12.5) == 12….总之，感觉是往偶数靠近。
+12.    math.sqrt(x) x 不能是负数，可以是0，所有结果都是float型，即使是整的。
+</code></pre><h4 id="数字的随机函数-import-random"><a href="#数字的随机函数-import-random" class="headerlink" title="数字的随机函数  import random"></a>数字的随机函数  import random</h4><pre><code>1.    random.choice(seq)  从seq中随机挑选一个元素，seq可以是str、tuple、List，因为这个底层是返回seq[index]，这个index是随机选择的，Number没有len()，set和dictionary没有index。所以只能是那三种。
+2.    randrange([start,]stop[,step])    start、stop、step必须是整数或者小数部分为0，否则报错
+3.    random.random() 生成一个[0,1)的数值
+4.    seed([x]) 改变随机数生成的种子seed。 不了解原理就不要设定了，python会帮我们设置的。
+5.    shuffle(lst) 将序列的所有元素随机排列  这个没有理解明白
+6.    uniform(x,y) 在[x,y]内随机生成一个实数
+</code></pre><p>三角函数  用的时候来查吧<br> <a href="http://www.runoob.com/python3/python3-number.html" target="_blank" rel="noopener">http://www.runoob.com/python3/python3-number.html</a></p>
+<p>math.pi  圆周率 3.141592653589793<br>math.e   自然常数 2.718281828459045</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/06/01/Number的一些函数/" data-id="cjhvdp53l0009mkvalrdjrpf8" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/05/30/Python的运算符/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Python的运算符</div>
+    </a>
+  
+</nav>
+
+  
+</article>
 
 
-
-<div class="archive">
-	
-	
-		
-		
-			<h3 class="year">2018</h3>
-			
-		
-		<div class="archive_item">
-			<span class="date">2018-04-09</span>
-			<a class="title" href="/2018/04/09/浮点数在Java和JavaScript中的处理/">浮点数在Java和JavaScript中的处理</a>
-		</div>
-	
-	<div class="pagination">
-		
-	</div>
-</div></section>
+</section>
 
         
           
