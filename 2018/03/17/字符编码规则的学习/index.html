@@ -15,7 +15,7 @@
 <meta property="og:description" content="什么是字符编码？计算机的世界是二进制的，8bit也就是我们常说的一个字节，一般用两位十六进制数表示。那么计算机如何存储从键盘或者从文件等其他地方读取的字符呢，字符编码就是解决这个问题。我们将字符编码，字符一一映射为一个数值，然后计算机将值存储，当要显示在屏幕时按规则映射为对应的字符。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://p3o1rymh9.bkt.clouddn.com/Computer-Encoded1.png">
-<meta property="og:updated_time" content="2018-05-28T06:07:26.340Z">
+<meta property="og:updated_time" content="2018-06-05T09:10:48.323Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="字符编码规则的学习">
 <meta name="twitter:description" content="什么是字符编码？计算机的世界是二进制的，8bit也就是我们常说的一个字节，一般用两位十六进制数表示。那么计算机如何存储从键盘或者从文件等其他地方读取的字符呢，字符编码就是解决这个问题。我们将字符编码，字符一一映射为一个数值，然后计算机将值存储，当要显示在屏幕时按规则映射为对应的字符。">
@@ -101,6 +101,7 @@
 <p>Unicode编码规则只是定义了每个字符他的编码是多少，但是却没有定义字符对应的编码应该怎样存储在计算机中。如果Unicode统一规定，每个字符要用三或四个字节表示，但是常用的很多字符都是一字节就可以搞定的，那么对于存储来说，是极大的浪费，这样呢，也就形成了Unicode码的多种存储方式。<br>这种存储方式在互联网上有UTF-8、UTF-16、UTF-32，其中UTF-8是互联网上使用最广泛的Unicode编码的存储实现方式。注意，这里，UTF-8只是Unicode码存储的一种方式。<br>Unicode码的大小和存储的数据的大小(UTF-8)的对应关系：<br><img width="600px" height="400px" src="http://p3o1rymh9.bkt.clouddn.com/Computer-Encoded1.png"><br>比如说，某个字符的Unicode码表示为15678(1 0101 0110 0111 1000)，大小在上图的第四行，那么转换为UTF-8的存储数据之后，就是(11110<strong>000</strong> 10<strong>010101</strong> 10<strong>011001</strong> 10<strong>111000</strong>),就是按照数据的大小根据UTF-8的规则将二进制逐位补充进去，Unicode编码最多是能表示21bit的字符。</p>
 <p>UTF-8编码有一个额外的好处，就是ASCII编码实际上可以被看成是UTF-8编码的一部分，所以，大量只支持ASCII编码的历史遗留软件可以在UTF-8编码下继续工作</p>
 <p>我们常见的编码选项：<br>1、ANSI，对英文文件是ASCII编码，对简体中文是GB2312编码，繁体中文是Big5码<br>2、Unicode编码，是UCS-2编码方式，指直接用两个字节存入字符的Unicode码<br>3、UTF-8等等</p>
+<p>在计算机内存中，统一使用Unicode编码，当需要保存到硬盘或者需要传输的时候，就转换为了UTF-8编码。从文件中读取到内存的时候，就会将UTF-8转换会Unicode编码。</p>
 <h4 id="中文字符编码标准"><a href="#中文字符编码标准" class="headerlink" title="中文字符编码标准"></a>中文字符编码标准</h4><p>GB2312  GB13000  GBK  GB18030<br>1、GB2312 1980年由中国自己制定，收录6763个汉字和682个其他符号；<br>2、GB13000 1993年是中国制定的等同于Unicode1.1的编码；<br>3、GBK 是<strong>微软</strong>对GB2312的扩展，利用未编码的空间，将GB13000中的全部汉字和字符也添加进来，还扩充了日语等一些文字，制定了GBK编码，所以GBK完全兼容GB2312，但是和GB13000比较，只是内容上GBK包含了GB13000<br>4、GB18030 2000年，国家出了GB18030标准，兼容GBK，取代GBK1.0，成为国家正式标准，该标准扩充了收录了汉字还有其他少数民族的文字。</p>
 <p>ASCII =&gt; GB2312 =&gt; GBK =&gt; GB18030  后者兼容前者，在这些编码中，相同的字符的编码是同样的值，后面的标准支持更多的字符</p>
 <p>GB2312、GBK、GB18030都属于双字节字符集</p>
@@ -109,7 +110,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/17/字符编码规则的学习/" data-id="cjhvdp550001mmkvazjwl6v95" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/17/字符编码规则的学习/" data-id="cjpryg241001b2ol9l0ga45s8" class="article-share-link">Share</a>
       
       
     </footer>
@@ -178,7 +179,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">archive_a</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">34</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">34</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -189,6 +190,10 @@
     <h3 class="widget-title">recent_posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/12/12/hello-world/">Hello World</a>
+          </li>
         
           <li>
             <a href="/2018/06/01/Number的一些函数/">Number的一些函数</a>
@@ -204,10 +209,6 @@
         
           <li>
             <a href="/2018/04/27/GET和POST/">GET和POST</a>
-          </li>
-        
-          <li>
-            <a href="/2018/04/25/前端模块化/">前端模块化</a>
           </li>
         
       </ul>

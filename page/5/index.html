@@ -67,6 +67,56 @@
 
     
     
+<article id="post-Java中的重写和重载" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/10/Java中的重写和重载/" class="article-date">
+  <time datetime="2018-03-10T12:45:16.000Z" itemprop="datePublished">2018-03-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>►<a class="article-category-link" href="/categories/java/重写和重载/">重写和重载</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/10/Java中的重写和重载/">Java中的重写和重载</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>做题目的时候碰到重写和重载，以为自己搞清楚了，其实还有些问题，这里再来详细并清晰的记录一下</p>
+<h3 id="重写"><a href="#重写" class="headerlink" title="重写"></a>重写</h3><p>子类和基类或者实现类和接口之间的关系，那么重写的时候，子类/实现类中重写的方法与基类/接口中的方法要遵循的规则：<br>1、方法名、参数列表一定要一致(一模一样)<br>2、访问权限，子类要比父类中的广 public &gt; protected &gt; friendly(省略) &gt; private<br>3、返回值，子类要与父类中的相同或相容(此处的相容指的是，<strong>子类返回类型是父类返回类型的子类型</strong>，要是基本类型的话，就要相同了)<br>4、抛出的异常：子类抛出的异常一定是父类的异常的子集（子集的定义是：若集合A的任一元素都是B的元素，那么A是B的子集，所以A也是A本身的子集）<br>注：在子类重写父类方法或者实现类实现接口的方法时，可以使用<strong>@Override</strong>注解，来检查咱们是否符合重写规范<br>
+        
+          <p class="article-more-link">
+            <a href="/2018/03/10/Java中的重写和重载/#more">了解更多</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/03/10/Java中的重写和重载/" data-id="cjpryg23200072ol9hf3a3dwc" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+    
+    
 <article id="post-设计模式之工厂方法模式" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/03/10/设计模式之工厂方法模式/" class="article-date">
@@ -103,7 +153,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/10/设计模式之工厂方法模式/" data-id="cjhvdp57q005ymkva4eqwlnqi" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/10/设计模式之工厂方法模式/" data-id="cjpryg24l00262ol9a0uvcbij" class="article-share-link">Share</a>
       
       
     </footer>
@@ -152,7 +202,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/10/设计模式之代理模式/" data-id="cjhvdp55l002bmkvap5d1tjev" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/10/设计模式之代理模式/" data-id="cjpryg24h00212ol9380knmuv" class="article-share-link">Share</a>
       
       
     </footer>
@@ -201,7 +251,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/09/设计模式之装饰模式/" data-id="cjhvdp57y0063mkvaw2pjbeiq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/09/设计模式之装饰模式/" data-id="cjpryg24r002d2ol9c8ccr2wz" class="article-share-link">Share</a>
       
       
     </footer>
@@ -250,7 +300,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/08/异常的使用/" data-id="cjhvdp557001wmkvawhqbpqk0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/08/异常的使用/" data-id="cjpryg243001f2ol9va5zqz0e" class="article-share-link">Share</a>
       
       
     </footer>
@@ -299,7 +349,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/08/设计模式之策略模式/" data-id="cjhvdp57z0064mkva2g1s0jt1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/08/设计模式之策略模式/" data-id="cjpryg24n00282ol963sny6bj" class="article-share-link">Share</a>
       
       
     </footer>
@@ -349,7 +399,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/07/第一次用lambda表达式/" data-id="cjhvdp55i0027mkva5ufhg1bn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/07/第一次用lambda表达式/" data-id="cjpryg24c001t2ol9zw78bstp" class="article-share-link">Share</a>
       
       
     </footer>
@@ -398,7 +448,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/07/设计模式之简单工厂模式/" data-id="cjhvdp57t0060mkvaizlzwooj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/07/设计模式之简单工厂模式/" data-id="cjpryg24p002a2ol9izkglf4m" class="article-share-link">Share</a>
       
       
     </footer>
@@ -448,7 +498,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/06/hexo搭建网站步骤/" data-id="cjhvdp54r0019mkvaeib6y6vz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/06/hexo搭建网站步骤/" data-id="cjpryg26t006b2ol9ltdb9efb" class="article-share-link">Share</a>
       
       
     </footer>
@@ -499,56 +549,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/06/IDEA的一些使用经验/" data-id="cjhvdp53d0004mkvat7gxmgsd" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-
-    
-    
-<article id="post-MD常用语法总结" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/03/05/MD常用语法总结/" class="article-date">
-  <time datetime="2018-03-05T02:43:23.000Z" itemprop="datePublished">2018-03-05</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/language/">language</a>►<a class="article-category-link" href="/categories/language/MD语法/">MD语法</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/05/MD常用语法总结/">MD常用语法总结</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>有三种方法，最常用的是#，一级标题一个井号，最大，一直可持续到六个井号，和html的hX一一对应，共六个</p>
-        
-          <p class="article-more-link">
-            <a href="/2018/03/05/MD常用语法总结/#more">了解更多</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/05/MD常用语法总结/" data-id="cjhvdp53t000cmkvam8n03m8a" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/06/IDEA的一些使用经验/" data-id="cjpryg22z00052ol9ld2426ct" class="article-share-link">Share</a>
       
       
     </footer>
@@ -606,7 +607,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">archive_a</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">34</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">34</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -617,6 +618,10 @@
     <h3 class="widget-title">recent_posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/12/12/hello-world/">Hello World</a>
+          </li>
         
           <li>
             <a href="/2018/06/01/Number的一些函数/">Number的一些函数</a>
@@ -632,10 +637,6 @@
         
           <li>
             <a href="/2018/04/27/GET和POST/">GET和POST</a>
-          </li>
-        
-          <li>
-            <a href="/2018/04/25/前端模块化/">前端模块化</a>
           </li>
         
       </ul>

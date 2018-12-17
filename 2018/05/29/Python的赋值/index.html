@@ -16,9 +16,10 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://p3o1rymh9.bkt.clouddn.com/Python-fuzhi1.png">
 <meta property="og:image" content="http://p3o1rymh9.bkt.clouddn.com/Python-fuzhi2.png">
+<meta property="og:image" content="http://p3o1rymh9.bkt.clouddn.com/Python-fuzhi5.png">
 <meta property="og:image" content="http://p3o1rymh9.bkt.clouddn.com/Python-fuzhi3.png">
 <meta property="og:image" content="http://p3o1rymh9.bkt.clouddn.com/Python-fuzhi4.png">
-<meta property="og:updated_time" content="2018-05-30T01:55:02.585Z">
+<meta property="og:updated_time" content="2018-06-01T03:38:07.998Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python的赋值">
 <meta name="twitter:description" content="热血回归 首先要牢记，六类数据，分成两种，一种是原子型，Number和String，String又可以分解为字符。一种是容器型Set、Tuple、List、Dictionary。在赋值过程当中：1、当值是原子型的，会先在内存中寻找是否有这个值，有的话就将这个值的地址直接赋给变量，没有的话，就开辟一个内存空间，将值放进去，再把地址赋给变量。甚至是单个字符也是这么做的。2、通过多组实验，我认为，Str">
@@ -97,7 +98,8 @@
           <p>热血回归</p>
 <h4 id="首先要牢记，六类数据，分成两种，一种是原子型，Number和String，String又可以分解为字符。一种是容器型Set、Tuple、List、Dictionary。在赋值过程当中："><a href="#首先要牢记，六类数据，分成两种，一种是原子型，Number和String，String又可以分解为字符。一种是容器型Set、Tuple、List、Dictionary。在赋值过程当中：" class="headerlink" title="首先要牢记，六类数据，分成两种，一种是原子型，Number和String，String又可以分解为字符。一种是容器型Set、Tuple、List、Dictionary。在赋值过程当中："></a>首先要牢记，六类数据，分成两种，一种是原子型，Number和String，String又可以分解为字符。一种是容器型Set、Tuple、List、Dictionary。在赋值过程当中：</h4><p>1、当值是原子型的，会先在内存中寻找是否有这个值，有的话就将这个值的地址直接赋给变量，没有的话，就开辟一个内存空间，将值放进去，再把地址赋给变量。甚至是单个字符也是这么做的。<br>2、通过多组实验，我认为，String、Set、Tuple、List、DIctionary，这些对象，每个对象会存储除了数据还有一些以外的东西，例如String对象的地址，和String里面每个元素的地址都是不一样，并且杂乱无章。</p>
 <p><img width="600px" height="400px" src="http://p3o1rymh9.bkt.clouddn.com/Python-fuzhi1.png"><br>字符串一样的，首地址一样，字符一样的，地址是一样。字符串首地址和第一个字符地址不一样。字符串的字符地址杂乱无章。首地址应该是这个字符串对象的地址，这个对象存储了一些东西。</p>
-<p><img width="600px" height="400px" src="http://p3o1rymh9.bkt.clouddn.com/Python-fuzhi2.png"><br>对于Tuple，如果内部仅包含Number、String、Tuple并且完全一样，那么Tuple的首地址是一样的（指向相同的对象），而且，内部每个元素地址也都一样，但是要是包含Set、List、Dictionary，那么首地址不一样</p>
+<p><img width="600px" height="400px" src="http://p3o1rymh9.bkt.clouddn.com/Python-fuzhi2.png"><br>对于Tuple，如果内部仅包含Number、String、Tuple并且完全一样，那么Tuple的首地址是一样的（指向相同的对象），而且，内部每个元素地址也都一样，但是要是包含Set、List、Dictionary，那么首地址不一样.</p>
+<p><img width="600px" height="400px" src="http://p3o1rymh9.bkt.clouddn.com/Python-fuzhi5.png"><br>。。。。。。重大发现，我要是在命令行窗口敲代码，两个tuple即使都是Number，他们的首地址也不会一样，是两个不一样的tuple对象，但是各个元素的地址还是一样的。。。。。。。。。好奇怪啊</p>
 <p><img width="600px" height="400px" src="http://p3o1rymh9.bkt.clouddn.com/Python-fuzhi3.png"><br>对于Set，即使内部元素完全相同，首地址也不一样，说明是两个完全不同的对象。要记得，Set的元素只能是Number、String、Tuple这三种类型的对象</p>
 <p><img width="600px" height="400px" src="http://p3o1rymh9.bkt.clouddn.com/Python-fuzhi4.png"><br>对于List，无论怎样，都会重新开辟内存分配空间创建新对象，但是对象内部的值的创建，还是和前面发现的一样。并且，当我改变一个元素的时候，系统会按照相应的原则去分配空间。例如这里面，系统就分配空间，值为9，在将地址给list2[0]，注意，地址改变了！以前的那个元素就找不到了！</p>
 <p>同样的对于Dictionary来说，可以指定没有的key来增加键值对，当为存在的key指定值的时候，会遵循前面那些规律来分配！</p>
@@ -105,7 +107,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/29/Python的赋值/" data-id="cjhvdp53y000fmkvai9rjv1tz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/05/29/Python的赋值/" data-id="cjpryg23g000f2ol9tgpctw48" class="article-share-link">Share</a>
       
       
     </footer>
@@ -174,7 +176,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">archive_a</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">34</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">34</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -185,6 +187,10 @@
     <h3 class="widget-title">recent_posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/12/12/hello-world/">Hello World</a>
+          </li>
         
           <li>
             <a href="/2018/06/01/Number的一些函数/">Number的一些函数</a>
@@ -200,10 +206,6 @@
         
           <li>
             <a href="/2018/04/27/GET和POST/">GET和POST</a>
-          </li>
-        
-          <li>
-            <a href="/2018/04/25/前端模块化/">前端模块化</a>
           </li>
         
       </ul>
