@@ -67,6 +67,54 @@
 
     
     
+<article id="w-mysql安装教程" class="article article-type-w" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/17/mysql安装教程/" class="article-date">
+  <time datetime="2018-12-17T07:01:55.000Z" itemprop="datePublished">2018-12-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/17/mysql安装教程/">mysql安装教程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          <p>下载安装解压缩版MySql</p>
+<h4 id="1、下载"><a href="#1、下载" class="headerlink" title="1、下载"></a>1、下载</h4><p>访问网址<a href="https://dev.mysql.com/downloads/mysql/" target="_blank" rel="noopener">https://dev.mysql.com/downloads/mysql/</a> 下载相应版本的.zip文件<br><img width="600px" height="400px" src="http://p3o1rymh9.bkt.clouddn.com/mysql-install-1.png"><br>解压到要安装的文件夹下，例如D:\Tools\develop\mysql</p>
+<h4 id="2、写配置文件"><a href="#2、写配置文件" class="headerlink" title="2、写配置文件"></a>2、写配置文件</h4><p>在安装目录下新建my.ini文件，用编辑器打开,书写配置文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[默认的mysql客户端使用的字符集]</span><br><span class="line">default-character-set=utf8</span><br><span class="line">[mysql服务使用的端口号]</span><br><span class="line">port=3306</span><br><span class="line">[mysql的安装路径]</span><br><span class="line">basedir=D:\Tools\develop\mysql\mysql-5.7.23-winx64       </span><br><span class="line">[数据路径，就是上面新建的data文件夹]</span><br><span class="line">datadir=D:\Tools\develop\mysql\mysql-5.7.23-winx64\data</span><br><span class="line">[最大连接数]</span><br><span class="line">max_connections=200</span><br><span class="line">[mysql服务使用的字符集]</span><br><span class="line">character-set-server=utf8</span><br><span class="line">[默认数据库引擎]</span><br><span class="line">default-storage-engine=INNODB</span><br><span class="line">[登录时跳过验证，这一句等安装完了会去掉]</span><br><span class="line">skip_grant_tables</span><br></pre></td></tr></table></figure></p>
+<h4 id="3、配置环境变量"><a href="#3、配置环境变量" class="headerlink" title="3、配置环境变量"></a>3、配置环境变量</h4><p>在环境变量的系统变量中，双击系统变量中的Path，在这后面添加mysql安装目录的bin目录，例如添加D:\Tools\develop\mysql\mysql-5.7.23-winx64\bin，点击保存就好了。</p>
+<h4 id="4、安装和初始化"><a href="#4、安装和初始化" class="headerlink" title="4、安装和初始化"></a>4、安装和初始化</h4><p>1）在cmd命令行，切换到mysql的bin目录下<br><img width="600px" height="400px" src="http://p3o1rymh9.bkt.clouddn.com/mysql-install-2.png"><br>2）输入 mysqld -install   回车后出现安装成功的字样<br>3）输入 mysqld –initialize  （注意这里是两个短横杠）<br>4) 输入 net start mysql   （启动mysql服务）<br>5）输入 mysql -u root -p   进入mysql服务命令行模式更改root用户的密码。<br>6）输入 user mysql;  (注意输入分号后回车)<br>7）输入update user set authentication_string =password(“tengyun”) where user=”root”;</p>
+<h4 id="5、重新开启mysql服务"><a href="#5、重新开启mysql服务" class="headerlink" title="5、重新开启mysql服务"></a>5、重新开启mysql服务</h4><p>1）在控制面板中搜索服务，找到mysql服务，点击关闭服务<br>2）打开安装目录的my.ini文件，将最后一句<code>skip_grant_tables</code>用中括号括起来，表示注释掉<br>3）在CMD命令行，输入 net start mysql，重新启动mysql</p>
+<p>结束！</p>
+<p>PS：<br>若重启服务失败，删除安装目录的data文件夹，重新输入命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysqld --initialize</span><br><span class="line">net start mysql</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/12/17/mysql安装教程/" data-id="cjps1fogi0012k8l9c6xkuz01" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+    
+    
 <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/12/12/hello-world/" class="article-date">
@@ -102,7 +150,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/12/12/hello-world/" data-id="cjpryg272006k2ol9vbmyan0m" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/12/12/hello-world/" data-id="cjps1fog1000mk8l9gy0l9hej" class="article-share-link">Share</a>
       
       
     </footer>
@@ -153,7 +201,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/06/01/Number的一些函数/" data-id="cjpryg23e000d2ol9c64mt0db" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/06/01/Number的一些函数/" data-id="cjps1fofo000dk8l9mycy91ey" class="article-share-link">Share</a>
       
       
     </footer>
@@ -214,7 +262,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/30/Python的运算符/" data-id="cjpryg23j000j2ol9h7n2nmn7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/05/30/Python的运算符/" data-id="cjps1fohz002ok8l981agvd8k" class="article-share-link">Share</a>
       
       
     </footer>
@@ -254,8 +302,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-          <p>热血回归</p>
-<h4 id="首先要牢记，六类数据，分成两种，一种是原子型，Number和String，String又可以分解为字符。一种是容器型Set、Tuple、List、Dictionary。在赋值过程当中："><a href="#首先要牢记，六类数据，分成两种，一种是原子型，Number和String，String又可以分解为字符。一种是容器型Set、Tuple、List、Dictionary。在赋值过程当中：" class="headerlink" title="首先要牢记，六类数据，分成两种，一种是原子型，Number和String，String又可以分解为字符。一种是容器型Set、Tuple、List、Dictionary。在赋值过程当中："></a>首先要牢记，六类数据，分成两种，一种是原子型，Number和String，String又可以分解为字符。一种是容器型Set、Tuple、List、Dictionary。在赋值过程当中：</h4><p>1、当值是原子型的，会先在内存中寻找是否有这个值，有的话就将这个值的地址直接赋给变量，没有的话，就开辟一个内存空间，将值放进去，再把地址赋给变量。甚至是单个字符也是这么做的。<br>2、通过多组实验，我认为，String、Set、Tuple、List、DIctionary，这些对象，每个对象会存储除了数据还有一些以外的东西，例如String对象的地址，和String里面每个元素的地址都是不一样，并且杂乱无章。</p>
+          <h4 id="首先要牢记，六类数据，分成两种，一种是原子型，Number和String，String又可以分解为字符。一种是容器型Set、Tuple、List、Dictionary。在赋值过程当中："><a href="#首先要牢记，六类数据，分成两种，一种是原子型，Number和String，String又可以分解为字符。一种是容器型Set、Tuple、List、Dictionary。在赋值过程当中：" class="headerlink" title="首先要牢记，六类数据，分成两种，一种是原子型，Number和String，String又可以分解为字符。一种是容器型Set、Tuple、List、Dictionary。在赋值过程当中："></a>首先要牢记，六类数据，分成两种，一种是原子型，Number和String，String又可以分解为字符。一种是容器型Set、Tuple、List、Dictionary。在赋值过程当中：</h4><p>1、当值是原子型的，会先在内存中寻找是否有这个值，有的话就将这个值的地址直接赋给变量，没有的话，就开辟一个内存空间，将值放进去，再把地址赋给变量。甚至是单个字符也是这么做的。<br>2、通过多组实验，我认为，String、Set、Tuple、List、DIctionary，这些对象，每个对象会存储除了数据还有一些以外的东西，例如String对象的地址，和String里面每个元素的地址都是不一样，并且杂乱无章。</p>
 <p><img width="600px" height="400px" src="http://p3o1rymh9.bkt.clouddn.com/Python-fuzhi1.png"><br>字符串一样的，首地址一样，字符一样的，地址是一样。字符串首地址和第一个字符地址不一样。字符串的字符地址杂乱无章。首地址应该是这个字符串对象的地址，这个对象存储了一些东西。</p>
 <p><img width="600px" height="400px" src="http://p3o1rymh9.bkt.clouddn.com/Python-fuzhi2.png"><br>对于Tuple，如果内部仅包含Number、String、Tuple并且完全一样，那么Tuple的首地址是一样的（指向相同的对象），而且，内部每个元素地址也都一样，但是要是包含Set、List、Dictionary，那么首地址不一样.</p>
 <p><img width="600px" height="400px" src="http://p3o1rymh9.bkt.clouddn.com/Python-fuzhi5.png"><br>。。。。。。重大发现，我要是在命令行窗口敲代码，两个tuple即使都是Number，他们的首地址也不会一样，是两个不一样的tuple对象，但是各个元素的地址还是一样的。。。。。。。。。好奇怪啊</p>
@@ -266,7 +313,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/29/Python的赋值/" data-id="cjpryg23g000f2ol9tgpctw48" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/05/29/Python的赋值/" data-id="cjps1fofq000fk8l90ru5508w" class="article-share-link">Share</a>
       
       
     </footer>
@@ -306,7 +353,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/27/GET和POST/" data-id="cjpryg22i00002ol9fw5mevs8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/27/GET和POST/" data-id="cjps1foeh0000k8l932f8jde6" class="article-share-link">Share</a>
       
       
     </footer>
@@ -368,7 +415,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/25/前端模块化/" data-id="cjpryg24000182ol9tx82p0fy" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/25/前端模块化/" data-id="cjps1fogp001bk8l9n3a1nias" class="article-share-link">Share</a>
       
       
     </footer>
@@ -424,7 +471,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/23/数据交互/" data-id="cjpryg245001i2ol9muz1nhh2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/23/数据交互/" data-id="cjps1fogy001ok8l9lw27p6i6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/json/">json</a></li></ul>
@@ -484,7 +531,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/20/手机邮箱接口调用发送验证码/" data-id="cjpryg271006h2ol9u07iz3t3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/20/手机邮箱接口调用发送验证码/" data-id="cjps1fokz006hk8l967pff2y1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -529,67 +576,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/15/面向切面编程AOP/" data-id="cjpryg24u002i2ol92s6zvwhc" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-
-    
-    
-<article id="post-mybatis对springboot的支持-注解取代xml" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/14/mybatis对springboot的支持-注解取代xml/" class="article-date">
-  <time datetime="2018-04-14T02:48:03.000Z" itemprop="datePublished">2018-04-14</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/mybatis/">mybatis</a>►<a class="article-category-link" href="/categories/mybatis/springboot/">springboot</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/14/mybatis对springboot的支持-注解取代xml/">mybatis对springboot的支持-注解取代xml</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          <p>随着springboot的兴起，mybatis也提供了对springboot的支持</p>
-<h3 id="首先，添加的依赖"><a href="#首先，添加的依赖" class="headerlink" title="首先，添加的依赖"></a>首先，添加的依赖</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">      &lt;groupId&gt; org.mybatis.spring.boot&lt;/groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;mybatis-spring-boot-starter&lt;/artifactId&gt;</span><br><span class="line">      &lt;version&gt;1.3.2&lt;/version&gt;</span><br><span class="line">  &lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="其次，在springboot中的配置"><a href="#其次，在springboot中的配置" class="headerlink" title="其次，在springboot中的配置"></a>其次，在springboot中的配置</h3><p>当开启springboot的自动配置之后，直接在application.properties中写上数据源的一些配置，springboot会自动帮我们加载这些配置，数据源就会自动注入到sqlSessionFactory中，sqlSessionFactory就会自动注入到Mapper中。也就是说，我们直接在application.properties里面写上就好了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">spring:</span><br><span class="line">  datasource:</span><br><span class="line">    url: jdbc:mysql://localhost:3306/bookCloud?useSSL=false</span><br><span class="line">    username: root</span><br><span class="line">    password: tengyun123</span><br><span class="line">    driverClassName: com.mysql.jdbc.Driver</span><br></pre></td></tr></table></figure></p>
-<p>我写在了application-dev.yml中，所以格式是这样的。</p>
-<h3 id="开启mapper的扫描"><a href="#开启mapper的扫描" class="headerlink" title="开启mapper的扫描"></a>开启mapper的扫描</h3><p>在启动类上面加上注解@MapperScan(“com.tengyun.bookCloud”)<br>或者在每个接口上加上@Mapper标签<br>（在IDEA中如果发现这个接口文件（UserDao）无法注入，查了一些办法，最终我在每个接口文件上面加了个注解@Repository之后解决了，关于问题的本质是什么还不能明白，大概就是IDEA的检查太严了？）</p>
-<h3 id="这个接口的写法"><a href="#这个接口的写法" class="headerlink" title="这个接口的写法"></a>这个接口的写法</h3><p>1、先总结下以前用xml来开发的规范,拿user来做例子吧</p>
-<pre><code>&gt; UserMapper.xml中的namespace一定要等于UserDao.java（我习惯写UserDao，而不是UserMapper）的路径，比如说我的就要写成namespace=&quot;com.tengyun.bookCloud.user.dao.UserDao&quot;
-&gt; UserMapper.xml中sql语句的id要和UserDao.java接口中的方法名一致
-&gt; UserMapper.xml中的parameterType要和UserDao.java接口中方法的输入参数一致
-&gt; UserMapper.xml中的resultType要和UserDao.java接口中方法的返回值类型一致
-</code></pre><p>参考 <a href="https://blog.csdn.net/eson_15/article/details/51601204" target="_blank" rel="noopener">https://blog.csdn.net/eson_15/article/details/51601204</a> </p>
-<p>2、现在来重点学习一下，不要这个UserMapper.xml了怎么直接在dao接口中用注解开发<br> 1)、基础注解：@Select、@Insert、@Update、@Delete<br>先看个例子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@Repository</span><br><span class="line">public interface UserDao &#123;</span><br><span class="line"> @Select(&quot;select * from bc_user&quot;)</span><br><span class="line"> List&lt;User&gt; list();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>大概就是在每个方法上面用注解表示sql语句，并规定参数类型这些东西。看这个查询语句，没有规定字段映射，那么是如何完成查询结果到实体类User的映射的呢？在数据库（我现在用的是mysql）的设计过程中，命名规范是库、表、字段等名称统一使用小写，单词间用_下划线分隔，例如说bc_user表格中的字段（user_id）,当咱们开启了驼峰式命名映射规则(<code>&lt;setting name=&quot;mapUnderscoreToCamelCase&quot; value=&quot;true&quot;/&gt;</code>)后，user_id（或者userId）会被映射为实体中的userId字段，springboot同样有这样的配置，所以我们不用映射也可以获得数据。如果说，数据库中的字段和实体类中的属性名不能依靠这个规则转换，那么如何映射呢？这个有映射注解来解决</p>
-<p>2)、映射注解： @Results、@Result、@ResultMap<br>用法：<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Results(&#123;</span><br><span class="line">   @Result(property = &quot;userPassword&quot;, column = &quot;user_password&quot;),</span><br><span class="line">   @Result(property = &quot;userMobileNum&quot;, column = &quot;user_phone_number&quot;)</span><br><span class="line"> &#125;)</span><br><span class="line"> @Select(&quot;select * from bc_user&quot;)</span><br><span class="line"> List&lt;User&gt; list();</span><br></pre></td></tr></table></figure></p>
-<p>3）、高级注解@SelectProvider、@InsertProvider、@UpdateProvider、@DeleteProvider<br>就是用一个指定一个工具类的方法返回sql语句的字符串，然后就是用这个sql语句<br>粒子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//type表示使用的工具类，method表示使用的方法名</span><br><span class="line">@Repository</span><br><span class="line">public interface UserMapper &#123;</span><br><span class="line"> @SelectProvider(type = UserSqlProvider.class, method = &quot;list222&quot;)</span><br><span class="line"> List&lt;User&gt; list2();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">工具类代码如下：</span><br><span class="line">public class UserSqlProvider &#123;</span><br><span class="line"> public String list222() &#123;</span><br><span class="line">  return &quot;select * from t_user ;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
-<p>参考自 <a href="http://www.jb51.net/article/127473.htm" target="_blank" rel="noopener">http://www.jb51.net/article/127473.htm</a> </p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/14/mybatis对springboot的支持-注解取代xml/" data-id="cjpryg23w00112ol9c0fer18q" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/15/面向切面编程AOP/" data-id="cjps1fohx002mk8l98odh667r" class="article-share-link">Share</a>
       
       
     </footer>
@@ -647,7 +634,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">archive_a</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">34</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">34</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -658,6 +645,10 @@
     <h3 class="widget-title">recent_posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/12/17/mysql安装教程/">mysql安装教程</a>
+          </li>
         
           <li>
             <a href="/2018/12/12/hello-world/">Hello World</a>
@@ -675,10 +666,6 @@
             <a href="/2018/05/29/Python的赋值/">Python的赋值</a>
           </li>
         
-          <li>
-            <a href="/2018/04/27/GET和POST/">GET和POST</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -692,7 +679,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2018 滕云(Catherine)<br>
-      电话 13920041397 <br>
+      电话 13121597515 <br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
