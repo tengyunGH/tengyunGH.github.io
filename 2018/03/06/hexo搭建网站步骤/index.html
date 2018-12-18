@@ -14,14 +14,14 @@
 <meta property="og:site_name" content="The Marvellous World!">
 <meta property="og:description" content="搭建网站步骤1.注册github https://github.com ，创建相应的仓库2.下载与你电脑匹配的git并安装 下载：https://git-scm.com/download 安装参考：https://www.cnblogs.com/smuxiaolei/p/7484678.html3.将git与github绑定4.安装node.js5.搭建hexo，6.绑定域名7.写文章，推送 注册">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://p3o1rymh9.bkt.clouddn.com/HEXO-domainName1.png">
-<meta property="og:image" content="http://p3o1rymh9.bkt.clouddn.com/HEXO-domainName2.png">
-<meta property="og:image" content="http://p3o1rymh9.bkt.clouddn.com/HEXO-moudle1.png">
-<meta property="og:updated_time" content="2018-03-12T12:09:56.653Z">
+<meta property="og:image" content="http://pjvesyg1s.bkt.clouddn.com/HEXO-domainName1.png">
+<meta property="og:image" content="http://pjvesyg1s.bkt.clouddn.com/HEXO-domainName2.png">
+<meta property="og:image" content="http://pjvesyg1s.bkt.clouddn.com/HEXO-moudle1.png">
+<meta property="og:updated_time" content="2018-12-17T09:43:18.375Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo搭建网站步骤">
 <meta name="twitter:description" content="搭建网站步骤1.注册github https://github.com ，创建相应的仓库2.下载与你电脑匹配的git并安装 下载：https://git-scm.com/download 安装参考：https://www.cnblogs.com/smuxiaolei/p/7484678.html3.将git与github绑定4.安装node.js5.搭建hexo，6.绑定域名7.写文章，推送 注册">
-<meta name="twitter:image" content="http://p3o1rymh9.bkt.clouddn.com/HEXO-domainName1.png">
+<meta name="twitter:image" content="http://pjvesyg1s.bkt.clouddn.com/HEXO-domainName1.png">
   
     <link rel="alternate" href="/atom.xml" title="The Marvellous World!" type="application/atom+xml">
   
@@ -112,7 +112,7 @@
 <p>修改后保存，这个命令是让hexo知道我们要把项目如何部署，部署在哪个位置<br>然后我们要安装git部署插件，在命令窗口中输入<br><code>npm install hexo-deployer-git --save</code></p>
 <p>安装完成后，我们分别输入三条命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure></p>
 <p>解释一下：clean就是将电脑上的已生成的文件清理掉；g就是generate的缩写，表示根据我们编写的文章生成网站内容；d就是deploy的缩写，表示把生成的网站内容按配置部署到相应的位置。<br>完成后，打开浏览器，在地址栏输入你放置的个人网站的仓库路径，也就是<code>你的github用户名.github,io</code>，你会看见你自己的个人网站了，噢耶</p>
-<h3 id="绑定域名"><a href="#绑定域名" class="headerlink" title="绑定域名"></a>绑定域名</h3><p>1、首先购买一个域名，可以去腾讯云或者其他地方购买一个你喜欢的域名<br>2、然后解析你的域名，例如我的解析成这个样子<br><img width="600px" height="400px" src="http://p3o1rymh9.bkt.clouddn.com/HEXO-domainName1.png"><br>注意：这里面记录类型选CNAME，记录值是<code>你的github用户名.github.io</code><br>3、在刚才的source文件夹里新建CNAME文件（没有后缀），在这里面写上你的域名<br>4、登录你的github，进入你刚才创建的仓库，点击settings，设置Custom Domain<br><img width="600px" height="400px" src="http://p3o1rymh9.bkt.clouddn.com/HEXO-domainName2.png"><br>好了，域名设置完成，试试你自己的域名吧</p>
+<h3 id="绑定域名"><a href="#绑定域名" class="headerlink" title="绑定域名"></a>绑定域名</h3><p>1、首先购买一个域名，可以去腾讯云或者其他地方购买一个你喜欢的域名<br>2、然后解析你的域名，例如我的解析成这个样子<br><img width="600px" height="400px" src="http://pjvesyg1s.bkt.clouddn.com/HEXO-domainName1.png"><br>注意：这里面记录类型选CNAME，记录值是<code>你的github用户名.github.io</code><br>3、在刚才的source文件夹里新建CNAME文件（没有后缀），在这里面写上你的域名<br>4、登录你的github，进入你刚才创建的仓库，点击settings，设置Custom Domain<br><img width="600px" height="400px" src="http://pjvesyg1s.bkt.clouddn.com/HEXO-domainName2.png"><br>好了，域名设置完成，试试你自己的域名吧</p>
 <h3 id="写文章"><a href="#写文章" class="headerlink" title="写文章"></a>写文章</h3><p>这里面，写网站的文章用的是MD语法，很容易入门，这里就不详细解释了，可以参看<a href="http://tengyun9521.cn/2018/03/05/MD%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/" target="_blank" rel="noopener">我总结的MD语法</a></p>
 <p>在命令行窗口输入命令<code>hexo new &quot;first&quot;</code>然后可以发现source文件夹里的_posts文件夹里多了first.md这个文件，这就是刚才new的一片文章，在这里就可以用MD语法来编辑你想写的任何东西了</p>
 <h3 id="landscape主题"><a href="#landscape主题" class="headerlink" title="landscape主题"></a>landscape主题</h3><p>首先说下这里面的文件的作用</p>
@@ -123,7 +123,7 @@
 <p>整个网站用layout.ejs模板构建，这个模板的组成代表着网站页面的组成，也就是我每点击一个链接，页面的布局都按照layout.ejs来布局</p>
 <p><strong>明确一下：一个网页由head和body来组成，head一般是网页的一些属性，我们在浏览器上是看不见的，而渲染在浏览器上的是网页的body部分</strong></p>
 <p>1、head部分：第一行，引用head.ejs模板，这个是网站页面的html的<code>&lt;head&gt;&lt;/head&gt;</code>标签部分，可以在这个里面规划网站的标题、要引入的css文件等等</p>
-<p>2、body部分：body部分由三部分组成（也就是我们看见的网页组成部分）：头-身-尾。<br>  (1)<strong>头部</strong>：用了header.ejs模板渲染；<br>  (2)<strong>身体</strong>：由一个section和一个sidebar.ejs模板渲染的工具栏部分（位置可以在主题配置文件中更改），section中的&lt;%- body %&gt;，这个里面的内容可以由archive、category、index、page、post、tag这六种<strong>模板布局</strong>来创建<br><img width="600px" height="400px" src="http://p3o1rymh9.bkt.clouddn.com/HEXO-moudle1.png"><br>我们在用hexo new [layout] “name”的时候，其实是在创建一个显示在网页body中的身体部位除了sidebar以外的部分，命令中layout可以省略，表示用默认布局，这个可以设置，在站点配置文件中有<strong>default_layout: post</strong>,这样表示默认布局文件是post，可以更改，改成其他五种，那么来说说这六类模板是干什么的</p>
+<p>2、body部分：body部分由三部分组成（也就是我们看见的网页组成部分）：头-身-尾。<br>  (1)<strong>头部</strong>：用了header.ejs模板渲染；<br>  (2)<strong>身体</strong>：由一个section和一个sidebar.ejs模板渲染的工具栏部分（位置可以在主题配置文件中更改），section中的&lt;%- body %&gt;，这个里面的内容可以由archive、category、index、page、post、tag这六种<strong>模板布局</strong>来创建<br><img width="600px" height="400px" src="http://pjvesyg1s.bkt.clouddn.com/HEXO-moudle1.png"><br>我们在用hexo new [layout] “name”的时候，其实是在创建一个显示在网页body中的身体部位除了sidebar以外的部分，命令中layout可以省略，表示用默认布局，这个可以设置，在站点配置文件中有<strong>default_layout: post</strong>,这样表示默认布局文件是post，可以更改，改成其他五种，那么来说说这六类模板是干什么的</p>
 <p><em>archive模板</em>：对应archive.ejs文件，表示归档模板，与主题配置文件中的menu中的/archives链接相匹配，当点击这个链接时，网页body的身体中的section部分就由archive.ejs模板来布局</p>
 <p><em>category模板</em>：对应category.ejs文件，表示分类模板，我们hexo new category “某个东西”之后，这个东西就是一个category，所有这个东西的链接转至的网页，网页身体中的section部分就由category.ejs模板来布局</p>
 <p><em>index模板</em>：对应index.ejs文件，表示首页模板，与主题配置文件中的menu中的/链接相匹配，也和我们自己在hexo new index “name”的时候创建的东西对应的链接相匹配，当点击这类链接的时候，会转到网站的起始页面，当访问这个页面时，网页的body的身体中的section就由index.ejs来渲染</p>
@@ -138,7 +138,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/06/hexo搭建网站步骤/" data-id="cjps1foks006ak8l9nq080ve3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/06/hexo搭建网站步骤/" data-id="cjpthjs26006bgkl9ny8gzb8y" class="article-share-link">Share</a>
       
       
     </footer>

@@ -14,12 +14,12 @@
 <meta property="og:site_name" content="The Marvellous World!">
 <meta property="og:description" content="Linux下的文件系统什么是文件系统？来理解一下文件系统是基于被划分的存储设备上的一种文件的命名、存储、组织及读取的方法。 Linux文件系统的工作原理文件系统通过为每个文件分配文件块的方式把数据存储在硬盘中。所以要维护每个文件的所有文件块的分配信息，这些信息也都存储在硬盘上。不同的文件系统，它的分配方式和读取文件块的方式是不一样的。文件的块结构信息也称为meta-data（元信息），包括文件的权">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://p3o1rymh9.bkt.clouddn.com/Linux-Subregion4.png">
-<meta property="og:updated_time" content="2018-03-21T15:06:25.130Z">
+<meta property="og:image" content="http://pjvesyg1s.bkt.clouddn.com/Linux-Subregion4.png">
+<meta property="og:updated_time" content="2018-12-17T09:47:01.020Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux的文件系统">
 <meta name="twitter:description" content="Linux下的文件系统什么是文件系统？来理解一下文件系统是基于被划分的存储设备上的一种文件的命名、存储、组织及读取的方法。 Linux文件系统的工作原理文件系统通过为每个文件分配文件块的方式把数据存储在硬盘中。所以要维护每个文件的所有文件块的分配信息，这些信息也都存储在硬盘上。不同的文件系统，它的分配方式和读取文件块的方式是不一样的。文件的块结构信息也称为meta-data（元信息），包括文件的权">
-<meta name="twitter:image" content="http://p3o1rymh9.bkt.clouddn.com/Linux-Subregion4.png">
+<meta name="twitter:image" content="http://pjvesyg1s.bkt.clouddn.com/Linux-Subregion4.png">
   
     <link rel="alternate" href="/atom.xml" title="The Marvellous World!" type="application/atom+xml">
   
@@ -97,7 +97,7 @@
 <p>分配策略有块分配和扩展分配<br>1、块分配<br>    磁盘上的文件块根据需要分配给文件<br>    优点：可以避免存储空间的浪费<br>    缺点：当一个文件不断扩充的时候，可能会造成文件中文件块不连续，从而导致过多的磁盘寻道时间。读写文件时，可能要采用随机读写，而不能用顺序读取的方式，这样效率也会降低。<br>2、扩展分配<br>    当文件被创建时，很多文件块同时被分配，当文件扩展时，也一次性分配很多块。文件的块结构信息meta-data在文件创建时写入，只要文件没有再分配文件块都不需要再写。当文件需要再次分配文件块的时候，再写入这个。<br>    优点：文件会比较连续，若采用顺序存取的方式，读取的效率会很高<br>    缺点：若一次性分配的块多了会浪费，若采用随机存取的方式，效率类似块分配</p>
 <p>Linux的所有文件和目录以一个<strong>树状</strong>的结构组织构成文件系统。在硬盘上分区之后，还要在分区上创建文件系统，Linux常用的文件系统类型有：ext2/3/4、HFS、XFS、JFS、NFS、NTFS、FAT32等。Linux内核采用了<strong>虚拟文件系统</strong>(Virtual File System,VFS)的技术，因此Linux可以支持多种不同的文件系统类型。<br>我觉得就是，文件系统是一种规则，我们要按照这种规则来对硬盘访问、读写。</p>
 <h5 id="Linux中有哪些种类的文件"><a href="#Linux中有哪些种类的文件" class="headerlink" title="Linux中有哪些种类的文件"></a>Linux中有哪些种类的文件</h5><p>1、普通文件<br>2、目录文件<br>3、设备文件<br>4、链接文件<br>5、管道文件<br>6、套接口文件</p>
-<p>来看一下Linux中的树状目录结构(既然这个目录结构已经确定，为什么还会有多种不同的文件系统呢？)<br>我觉得这个目录结构是Linux的标准，所有Linux支持的文件系统通过不同的方式来实现这个目录结构<br><img width="800px" height="800px" src="http://p3o1rymh9.bkt.clouddn.com/Linux-Subregion4.png"><br>/            -&gt;        根分区<br>/boot        -&gt;        存放Linux系统启动文件，/boot/vmlinuz为linux的内核文件<br>/bin        -&gt;        可执行二进制文件的目录</p>
+<p>来看一下Linux中的树状目录结构(既然这个目录结构已经确定，为什么还会有多种不同的文件系统呢？)<br>我觉得这个目录结构是Linux的标准，所有Linux支持的文件系统通过不同的方式来实现这个目录结构<br><img width="800px" height="800px" src="http://pjvesyg1s.bkt.clouddn.com/Linux-Subregion4.png"><br>/            -&gt;        根分区<br>/boot        -&gt;        存放Linux系统启动文件，/boot/vmlinuz为linux的内核文件<br>/bin        -&gt;        可执行二进制文件的目录</p>
 <p>/home        -&gt;        系统默认的用户目录，新增的用户宿主目录的父目录，比如用户user的主目录就是/home/user，可以用~user表示<br>/root        -&gt;        系统管理员root的主目录，系统第一个启动的分区是根目录/，所以最好将/root和根目录/放在同一个分区</p>
 <p>/dev        -&gt;        存放设备文件，访问这个目录下的某个文件，相当于访问某个设备<br>/etc        -&gt;        系统管理和配置文件<br>/etc/rc.d    -&gt;        启动的配置文件和脚本</p>
 <p>/lib        -&gt;        函数库保存位置，标准程序设计库，又叫动态链接共享库，作用类似windows里的.dll文件<br>/sbin        -&gt;        放置系统管理员root的可执行命令，一般用户只能查看<br>/tmp        -&gt;        公用的临时文件存储点，任何人都可访问，就不要在这里放重要的数据了</p>
@@ -115,7 +115,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/21/Linux的文件系统/" data-id="cjps1fof20005k8l9sek2pd1x" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/21/Linux的文件系统/" data-id="cjpthjryh000cgkl9ahto7r1t" class="article-share-link">Share</a>
       
       
     </footer>

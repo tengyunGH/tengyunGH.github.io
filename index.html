@@ -101,7 +101,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/12/17/mysql安装教程/" data-id="cjps1fogi0012k8l9c6xkuz01" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/12/17/mysql安装教程/" data-id="cjpthjrzu0022gkl9qvunwea4" class="article-share-link">Share</a>
       
       
     </footer>
@@ -150,7 +150,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/12/12/hello-world/" data-id="cjps1fog1000mk8l9gy0l9hej" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/12/12/hello-world/" data-id="cjpthjryr000ogkl99algr577" class="article-share-link">Share</a>
       
       
     </footer>
@@ -201,7 +201,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/06/01/Number的一些函数/" data-id="cjps1fofo000dk8l9mycy91ey" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/06/01/Number的一些函数/" data-id="cjpthjryj000fgkl9s6hipwzs" class="article-share-link">Share</a>
       
       
     </footer>
@@ -257,12 +257,12 @@
 <h3 id="七、成员运算符-是否在某个容器中"><a href="#七、成员运算符-是否在某个容器中" class="headerlink" title="七、成员运算符 是否在某个容器中"></a>七、成员运算符 是否在某个容器中</h3><p>1、当用==比较后有一个元素成立，那就是in。记住双等号成立的：String、Tuple、List要求元素值和顺序完全一样，Set和Dictionary要求元素值一样就OK！<br>2、判断Dictionary里面的时候，是在判断Dictionary里面的key是否有一个，而Key的取值只能是不变类型：<strong>Number、String、Tuple</strong>，所以只能判断Number、String、Tuple这些的对象是否在Dictionary对象的Key里面。虽然Set也是元素不可变，但是感觉他的顺序没有固定。</p>
 <p>1、in<br>2、not in</p>
 <h3 id="八、身份运算符-判断两个变量所指向的对象是不是同一个"><a href="#八、身份运算符-判断两个变量所指向的对象是不是同一个" class="headerlink" title="八、身份运算符 判断两个变量所指向的对象是不是同一个"></a>八、身份运算符 判断两个变量所指向的对象是不是同一个</h3><p>说白了就是看两个变量关联的地址是否一样<br>1、is<br>2、is not</p>
-<h3 id="九、运算符优先级"><a href="#九、运算符优先级" class="headerlink" title="九、运算符优先级"></a>九、运算符优先级</h3><p><img width="600px" height="400px" src="http://p3o1rymh9.bkt.clouddn.com/Python-youxianji.png"></p>
+<h3 id="九、运算符优先级"><a href="#九、运算符优先级" class="headerlink" title="九、运算符优先级"></a>九、运算符优先级</h3><p><img width="600px" height="400px" src="http://pjvesyg1s.bkt.clouddn.com/Python-youxianji.png"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/30/Python的运算符/" data-id="cjps1fohz002ok8l981agvd8k" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/05/30/Python的运算符/" data-id="cjpthjryu000pgkl95libzs6h" class="article-share-link">Share</a>
       
       
     </footer>
@@ -303,17 +303,17 @@
     <div class="article-entry" itemprop="articleBody">
       
           <h4 id="首先要牢记，六类数据，分成两种，一种是原子型，Number和String，String又可以分解为字符。一种是容器型Set、Tuple、List、Dictionary。在赋值过程当中："><a href="#首先要牢记，六类数据，分成两种，一种是原子型，Number和String，String又可以分解为字符。一种是容器型Set、Tuple、List、Dictionary。在赋值过程当中：" class="headerlink" title="首先要牢记，六类数据，分成两种，一种是原子型，Number和String，String又可以分解为字符。一种是容器型Set、Tuple、List、Dictionary。在赋值过程当中："></a>首先要牢记，六类数据，分成两种，一种是原子型，Number和String，String又可以分解为字符。一种是容器型Set、Tuple、List、Dictionary。在赋值过程当中：</h4><p>1、当值是原子型的，会先在内存中寻找是否有这个值，有的话就将这个值的地址直接赋给变量，没有的话，就开辟一个内存空间，将值放进去，再把地址赋给变量。甚至是单个字符也是这么做的。<br>2、通过多组实验，我认为，String、Set、Tuple、List、DIctionary，这些对象，每个对象会存储除了数据还有一些以外的东西，例如String对象的地址，和String里面每个元素的地址都是不一样，并且杂乱无章。</p>
-<p><img width="600px" height="400px" src="http://p3o1rymh9.bkt.clouddn.com/Python-fuzhi1.png"><br>字符串一样的，首地址一样，字符一样的，地址是一样。字符串首地址和第一个字符地址不一样。字符串的字符地址杂乱无章。首地址应该是这个字符串对象的地址，这个对象存储了一些东西。</p>
-<p><img width="600px" height="400px" src="http://p3o1rymh9.bkt.clouddn.com/Python-fuzhi2.png"><br>对于Tuple，如果内部仅包含Number、String、Tuple并且完全一样，那么Tuple的首地址是一样的（指向相同的对象），而且，内部每个元素地址也都一样，但是要是包含Set、List、Dictionary，那么首地址不一样.</p>
-<p><img width="600px" height="400px" src="http://p3o1rymh9.bkt.clouddn.com/Python-fuzhi5.png"><br>。。。。。。重大发现，我要是在命令行窗口敲代码，两个tuple即使都是Number，他们的首地址也不会一样，是两个不一样的tuple对象，但是各个元素的地址还是一样的。。。。。。。。。好奇怪啊</p>
-<p><img width="600px" height="400px" src="http://p3o1rymh9.bkt.clouddn.com/Python-fuzhi3.png"><br>对于Set，即使内部元素完全相同，首地址也不一样，说明是两个完全不同的对象。要记得，Set的元素只能是Number、String、Tuple这三种类型的对象</p>
-<p><img width="600px" height="400px" src="http://p3o1rymh9.bkt.clouddn.com/Python-fuzhi4.png"><br>对于List，无论怎样，都会重新开辟内存分配空间创建新对象，但是对象内部的值的创建，还是和前面发现的一样。并且，当我改变一个元素的时候，系统会按照相应的原则去分配空间。例如这里面，系统就分配空间，值为9，在将地址给list2[0]，注意，地址改变了！以前的那个元素就找不到了！</p>
+<p><img width="600px" height="400px" src="http://pjvesyg1s.bkt.clouddn.com/Python-fuzhi1.png"><br>字符串一样的，首地址一样，字符一样的，地址是一样。字符串首地址和第一个字符地址不一样。字符串的字符地址杂乱无章。首地址应该是这个字符串对象的地址，这个对象存储了一些东西。</p>
+<p><img width="600px" height="400px" src="http://pjvesyg1s.bkt.clouddn.com/Python-fuzhi2.png"><br>对于Tuple，如果内部仅包含Number、String、Tuple并且完全一样，那么Tuple的首地址是一样的（指向相同的对象），而且，内部每个元素地址也都一样，但是要是包含Set、List、Dictionary，那么首地址不一样.</p>
+<p><img width="600px" height="400px" src="http://pjvesyg1s.bkt.clouddn.com/Python-fuzhi5.png"><br>。。。。。。重大发现，我要是在命令行窗口敲代码，两个tuple即使都是Number，他们的首地址也不会一样，是两个不一样的tuple对象，但是各个元素的地址还是一样的。。。。。。。。。好奇怪啊</p>
+<p><img width="600px" height="400px" src="http://pjvesyg1s.bkt.clouddn.com/Python-fuzhi3.png"><br>对于Set，即使内部元素完全相同，首地址也不一样，说明是两个完全不同的对象。要记得，Set的元素只能是Number、String、Tuple这三种类型的对象</p>
+<p><img width="600px" height="400px" src="http://pjvesyg1s.bkt.clouddn.com/Python-fuzhi4.png"><br>对于List，无论怎样，都会重新开辟内存分配空间创建新对象，但是对象内部的值的创建，还是和前面发现的一样。并且，当我改变一个元素的时候，系统会按照相应的原则去分配空间。例如这里面，系统就分配空间，值为9，在将地址给list2[0]，注意，地址改变了！以前的那个元素就找不到了！</p>
 <p>同样的对于Dictionary来说，可以指定没有的key来增加键值对，当为存在的key指定值的时候，会遵循前面那些规律来分配！</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/29/Python的赋值/" data-id="cjps1fofq000fk8l90ru5508w" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/05/29/Python的赋值/" data-id="cjpthjryd0009gkl9uk3i7osp" class="article-share-link">Share</a>
       
       
     </footer>
@@ -353,7 +353,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/27/GET和POST/" data-id="cjps1foeh0000k8l932f8jde6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/27/GET和POST/" data-id="cjpthjry10002gkl9iigcndoo" class="article-share-link">Share</a>
       
       
     </footer>
@@ -415,7 +415,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/25/前端模块化/" data-id="cjps1fogp001bk8l9n3a1nias" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/25/前端模块化/" data-id="cjpthjrz60013gkl9uq0dcvsk" class="article-share-link">Share</a>
       
       
     </footer>
@@ -471,7 +471,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/23/数据交互/" data-id="cjps1fogy001ok8l9lw27p6i6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/23/数据交互/" data-id="cjpthjrzh001lgkl9qw50f1cd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/json/">json</a></li></ul>
@@ -513,8 +513,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-          <h3 id="手机发送验证码"><a href="#手机发送验证码" class="headerlink" title="手机发送验证码"></a>手机发送验证码</h3><p>使用了阿里大鱼的短信接口<br>先看一个第一次成功的<br><img width="400px" height="200px" src="http://p3o1rymh9.bkt.clouddn.com/Project-PhoneMessage1.png"><br>1、首先，让maven引入依赖<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--阿里大鱼短信依赖--&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;com.aliyun&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;aliyun-java-sdk-core&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;3.3.1&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;com.aliyun&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;aliyun-java-sdk-dysmsapi&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;1.0.0&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
-<p>2、然后要去阿里大鱼的短信控制平台注册，然后设置<strong>短信签名</strong>和<strong>短信模板</strong>，短信签名，用于标识我，就是发送者，短信模板，定义了我发送的短信的内容，这两个都是要审批的，大概一个小时不到就可以通过。<br>短信模板：<br><img width="1400px" height="400px" src="http://p3o1rymh9.bkt.clouddn.com/Project-PhoneMessage2.png"><br>短信签名：<br><img width="1400px" height="400px" src="http://p3o1rymh9.bkt.clouddn.com/Project-PhoneMessage3.png"></p>
+          <h3 id="手机发送验证码"><a href="#手机发送验证码" class="headerlink" title="手机发送验证码"></a>手机发送验证码</h3><p>使用了阿里大鱼的短信接口<br>先看一个第一次成功的<br><img width="400px" height="200px" src="http://pjvesyg1s.bkt.clouddn.com/Project-PhoneMessage1.png"><br>1、首先，让maven引入依赖<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--阿里大鱼短信依赖--&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;com.aliyun&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;aliyun-java-sdk-core&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;3.3.1&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;com.aliyun&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;aliyun-java-sdk-dysmsapi&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;1.0.0&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
+<p>2、然后要去阿里大鱼的短信控制平台注册，然后设置<strong>短信签名</strong>和<strong>短信模板</strong>，短信签名，用于标识我，就是发送者，短信模板，定义了我发送的短信的内容，这两个都是要审批的，大概一个小时不到就可以通过。<br>短信模板：<br><img width="1400px" height="400px" src="http://pjvesyg1s.bkt.clouddn.com/Project-PhoneMessage2.png"><br>短信签名：<br><img width="1400px" height="400px" src="http://pjvesyg1s.bkt.clouddn.com/Project-PhoneMessage3.png"></p>
 <p>3、业务逻辑<br>阿里大鱼提供了多种语言的接口，这里就以java为例了 参考官方文档：<a href="https://help.aliyun.com/document_detail/55284.html?spm=5176.10629532.106.1.31ea1cbedA7Fju" target="_blank" rel="noopener">https://help.aliyun.com/document_detail/55284.html?spm=5176.10629532.106.1.31ea1cbedA7Fju</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">  * 给某个手机号发送验证码</span><br><span class="line">  * @param phone</span><br><span class="line">  * @param verifyCode</span><br><span class="line">  * @return</span><br><span class="line">  */</span><br><span class="line"> public Boolean phoneSendVerifyCode(String phone, String verifyCode) throws ClientException &#123;</span><br><span class="line">     //给这个手机号发送验证码</span><br><span class="line">     //设置超时时间-可自行调整</span><br><span class="line">     System.setProperty(&quot;sun.net.client.defaultConnectTimeout&quot;, &quot;10000&quot;);    // 连接主机时间</span><br><span class="line">     System.setProperty(&quot;sun.net.client.defaultReadTimeout&quot;, &quot;10000&quot;);   //从服务器读取响应的超时时间</span><br><span class="line"></span><br><span class="line">     //初始化ascClient需要的几个参数</span><br><span class="line">     final String product = &quot;Dysmsapi&quot;;//短信API产品名称（短信产品名固定，无需修改）</span><br><span class="line">     final String domain = &quot;dysmsapi.aliyuncs.com&quot;;//短信API产品域名（接口地址固定，无需修改）</span><br><span class="line"></span><br><span class="line">     //替换成你的AK</span><br><span class="line">     final String accessKeyId = &quot;LTAI3zaPkBNomYWI&quot;;//你的accessKeyId,参考本文档步骤2</span><br><span class="line">     final String accessKeySecret = &quot;rAKv7NBtmzQOJSelI9HsVq7gSE1iKx&quot;;//你的accessKeySecret，参考本文档步骤2</span><br><span class="line"></span><br><span class="line">     //初始化ascClient,暂时不支持多region（请勿修改）</span><br><span class="line">     IClientProfile profile = DefaultProfile.getProfile(&quot;cn-hangzhou&quot;, accessKeyId, accessKeySecret);</span><br><span class="line">     DefaultProfile.addEndpoint(&quot;cn-hangzhou&quot;, &quot;cn-hangzhou&quot;, product, domain);</span><br><span class="line">     IAcsClient acsClient = new DefaultAcsClient(profile);</span><br><span class="line"></span><br><span class="line">     //组装请求对象</span><br><span class="line">     SendSmsRequest request = new SendSmsRequest();</span><br><span class="line">     //使用post提交</span><br><span class="line">     request.setMethod(MethodType.POST);</span><br><span class="line">     //必填:待发送手机号。支持以逗号分隔的形式进行批量调用，批量上限为1000个手机号码,批量调用相对于单条调用及时性稍有延迟,验证码类型的短信推荐使用单条调用的方式</span><br><span class="line">     request.setPhoneNumbers(phone);</span><br><span class="line">     //必填:短信签名-可在短信控制台中找到</span><br><span class="line">     request.setSignName(&quot;bookcloud滕云&quot;);</span><br><span class="line">     //必填:短信模板-可在短信控制台中找到</span><br><span class="line">     request.setTemplateCode(&quot;SMS_132395896&quot;);</span><br><span class="line">     //可选:模板中的变量替换JSON串,如模板内容为&quot;亲爱的$&#123;name&#125;,您的验证码为$&#123;code&#125;&quot;时,此处的值为</span><br><span class="line">     //友情提示:如果JSON中需要带换行符,请参照标准的JSON协议对换行符的要求,比如短信内容中包含\r\n的情况在JSON中需要表示成\\r\\n,否则会导致JSON在服务端解析失败</span><br><span class="line">     request.setTemplateParam(&quot;&#123;\&quot;code\&quot;:&quot; + verifyCode + &quot;&#125;&quot;);</span><br><span class="line">     //可选-上行短信扩展码(扩展码字段控制在7位或以下，无特殊需求用户请忽略此字段)</span><br><span class="line">     //request.setSmsUpExtendCode(&quot;90997&quot;);</span><br><span class="line">     //可选:outId为提供给业务方扩展字段,最终在短信回执消息中将此值带回给调用者</span><br><span class="line">     //request.setOutId(&quot;myOutId&quot;);</span><br><span class="line"></span><br><span class="line">     //请求失败这里会抛ClientException异常</span><br><span class="line">     SendSmsResponse sendSmsResponse = acsClient.getAcsResponse(request);</span><br><span class="line">     if (sendSmsResponse.getCode() != null &amp;&amp; sendSmsResponse.getCode().equals(&quot;OK&quot;)) &#123;</span><br><span class="line">         return true;</span><br><span class="line">     &#125; else &#123;</span><br><span class="line">         return false;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
 <h3 id="邮件发送验证码"><a href="#邮件发送验证码" class="headerlink" title="邮件发送验证码"></a>邮件发送验证码</h3><p>1、先选一个发送邮件的邮箱号码，比如我用qq邮箱发送的，那么就去开通qq邮箱的smtp服务，获取授权码，这个授权码，就是第三方登录你的qq邮箱要用的。</p>
 <p>2、引入发送邮件要用的依赖<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--发送邮件的依赖--&gt;</span><br><span class="line">      &lt;dependency&gt;</span><br><span class="line">          &lt;groupId&gt;javax.mail&lt;/groupId&gt;</span><br><span class="line">          &lt;artifactId&gt;javax.mail-api&lt;/artifactId&gt;</span><br><span class="line">          &lt;version&gt;1.5.2&lt;/version&gt;</span><br><span class="line">          &lt;type&gt;jar&lt;/type&gt;</span><br><span class="line">          &lt;scope&gt;compile&lt;/scope&gt;</span><br><span class="line">      &lt;/dependency&gt;</span><br><span class="line">      &lt;dependency&gt; </span><br><span class="line">          &lt;groupId&gt;com.sun.mail&lt;/groupId&gt;</span><br><span class="line">          &lt;artifactId&gt;javax.mail&lt;/artifactId&gt;</span><br><span class="line">          &lt;version&gt;1.5.2&lt;/version&gt;</span><br><span class="line">      &lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
@@ -531,7 +531,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/20/手机邮箱接口调用发送验证码/" data-id="cjps1fokz006hk8l967pff2y1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/20/手机邮箱接口调用发送验证码/" data-id="cjpthjs2b006igkl92aizknbe" class="article-share-link">Share</a>
       
       
     </footer>
@@ -576,7 +576,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/15/面向切面编程AOP/" data-id="cjps1fohx002mk8l98odh667r" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/15/面向切面编程AOP/" data-id="cjpthjs07002mgkl9yf8g2ah8" class="article-share-link">Share</a>
       
       
     </footer>

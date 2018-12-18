@@ -14,14 +14,14 @@
 <meta property="og:site_name" content="The Marvellous World!">
 <meta property="og:description" content="今天突然想起面试官问过二进制和十进制之间的小数部分转换，那时候，只记得整数部分是除二取余，小数部分好像是要乘二的，面试官还问，计算机在对小数操作的时候，有时候是不准确的，我说的是因为计算机是二进制的，操作位有限，但是没有说到点子上，为什么不准确，是因为有些数在十进制中是有限位，但是在二进制中是无限的，比如0.1的十进制在二进制中是无限循环的。在Java中，操作浮点数，要用BigDecimal类，这">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://p3o1rymh9.bkt.clouddn.com/Computer-BinaryAndDecimal1.png">
-<meta property="og:image" content="http://p3o1rymh9.bkt.clouddn.com/Computer-BinaryAndDecimal2.png">
-<meta property="og:image" content="http://p3o1rymh9.bkt.clouddn.com/Computer-BinaryAndDecimal3.png">
-<meta property="og:updated_time" content="2018-04-09T14:51:47.828Z">
+<meta property="og:image" content="http://pjvesyg1s.bkt.clouddn.com/Computer-BinaryAndDecimal1.png">
+<meta property="og:image" content="http://pjvesyg1s.bkt.clouddn.com/Computer-BinaryAndDecimal2.png">
+<meta property="og:image" content="http://pjvesyg1s.bkt.clouddn.com/Computer-BinaryAndDecimal3.png">
+<meta property="og:updated_time" content="2018-12-18T08:17:25.968Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="二进制和十进制之间的转换">
 <meta name="twitter:description" content="今天突然想起面试官问过二进制和十进制之间的小数部分转换，那时候，只记得整数部分是除二取余，小数部分好像是要乘二的，面试官还问，计算机在对小数操作的时候，有时候是不准确的，我说的是因为计算机是二进制的，操作位有限，但是没有说到点子上，为什么不准确，是因为有些数在十进制中是有限位，但是在二进制中是无限的，比如0.1的十进制在二进制中是无限循环的。在Java中，操作浮点数，要用BigDecimal类，这">
-<meta name="twitter:image" content="http://p3o1rymh9.bkt.clouddn.com/Computer-BinaryAndDecimal1.png">
+<meta name="twitter:image" content="http://pjvesyg1s.bkt.clouddn.com/Computer-BinaryAndDecimal1.png">
   
     <link rel="alternate" href="/atom.xml" title="The Marvellous World!" type="application/atom+xml">
   
@@ -94,11 +94,11 @@
     <div class="article-entry" itemprop="articleBody">
       
           <p>今天突然想起面试官问过二进制和十进制之间的小数部分转换，那时候，只记得整数部分是除二取余，小数部分好像是要乘二的，面试官还问，计算机在对小数操作的时候，有时候是不准确的，我说的是因为计算机是二进制的，操作位有限，但是没有说到点子上，为什么不准确，是因为有些数在十进制中是有限位，但是在二进制中是无限的，比如0.1的十进制在二进制中是无限循环的。在Java中，操作浮点数，要用BigDecimal类，这个是猛哥在讲Java基础的时候就说过的，但是我好像都没有用过。<br><a id="more"></a></p>
-<h3 id="整数部分"><a href="#整数部分" class="headerlink" title="整数部分"></a>整数部分</h3><p>  1、十进制转二进制  除二取余方法<br>      23 -&gt; 11101<br><img width="200px" height="260px" src="http://p3o1rymh9.bkt.clouddn.com/Computer-BinaryAndDecimal1.png"></p>
+<h3 id="整数部分"><a href="#整数部分" class="headerlink" title="整数部分"></a>整数部分</h3><p>  1、十进制转二进制  除二取余方法<br>      23 -&gt; 11101<br><img width="200px" height="260px" src="http://pjvesyg1s.bkt.clouddn.com/Computer-BinaryAndDecimal1.png"></p>
 <p>  2、二进制转十进制<br>      101011 -&gt; 1*2^5 + 0*2^4 + 1*2^3 + 0*2^2 + 1*2^1 + 1*2^0 = 43</p>
 <h3 id="小数部分"><a href="#小数部分" class="headerlink" title="小数部分"></a>小数部分</h3><pre><code>1、十进制转为二进制  乘二取整法
 0.25 -&gt; 
-</code></pre><p><img width="320px" height="160px" src="http://p3o1rymh9.bkt.clouddn.com/Computer-BinaryAndDecimal2.png"><br>来看一个无限循环的<br><img width="400px" height="350px" src="http://p3o1rymh9.bkt.clouddn.com/Computer-BinaryAndDecimal3.png"></p>
+</code></pre><p><img width="320px" height="160px" src="http://pjvesyg1s.bkt.clouddn.com/Computer-BinaryAndDecimal2.png"><br>来看一个无限循环的<br><img width="400px" height="350px" src="http://pjvesyg1s.bkt.clouddn.com/Computer-BinaryAndDecimal3.png"></p>
 <pre><code>2、二进制转为十进制
 0.1011 -&gt; 1\*1/2 + 0\*1/4 + 1\*1/8 + 1\*1/16 = 0.6825
 </code></pre><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>十进制转二进制，整数和小数部分的除二和乘二的结果都是从上往下读</p>
@@ -108,7 +108,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/08/二进制和十进制之间的转换/" data-id="cjps1fogl0015k8l9odyb40v3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/08/二进制和十进制之间的转换/" data-id="cjpthjrz0000vgkl9fphaspv5" class="article-share-link">Share</a>
       
       
     </footer>

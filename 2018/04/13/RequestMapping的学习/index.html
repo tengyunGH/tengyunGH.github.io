@@ -14,12 +14,12 @@
 <meta property="og:site_name" content="The Marvellous World!">
 <meta property="og:description" content="首先我们要明白一个，这个标签作用于处理器上，是一个匹配请求和设置返回值的一个规则，请求是浏览器发出的。我是这么理解的。 一、@RequestMapping作用的地方1、可以作用于类上，表示访问这个类的规则2、作用于方法上，表示访问这个方法的规则 二、@RequestMapping有哪些参数有六个参数 value、method、consumes、produces、params、headers1、va">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://p3o1rymh9.bkt.clouddn.com/标签-RequestMapping1.png">
-<meta property="og:updated_time" content="2018-04-13T12:23:02.818Z">
+<meta property="og:image" content="http://pjvesyg1s.bkt.clouddn.com/标签-RequestMapping1.png">
+<meta property="og:updated_time" content="2018-12-17T09:50:05.895Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="content-type的学习">
 <meta name="twitter:description" content="首先我们要明白一个，这个标签作用于处理器上，是一个匹配请求和设置返回值的一个规则，请求是浏览器发出的。我是这么理解的。 一、@RequestMapping作用的地方1、可以作用于类上，表示访问这个类的规则2、作用于方法上，表示访问这个方法的规则 二、@RequestMapping有哪些参数有六个参数 value、method、consumes、produces、params、headers1、va">
-<meta name="twitter:image" content="http://p3o1rymh9.bkt.clouddn.com/标签-RequestMapping1.png">
+<meta name="twitter:image" content="http://pjvesyg1s.bkt.clouddn.com/标签-RequestMapping1.png">
   
     <link rel="alternate" href="/atom.xml" title="The Marvellous World!" type="application/atom+xml">
   
@@ -96,7 +96,7 @@
 <h4 id="二、-RequestMapping有哪些参数"><a href="#二、-RequestMapping有哪些参数" class="headerlink" title="二、@RequestMapping有哪些参数"></a>二、@RequestMapping有哪些参数</h4><p>有六个参数 value、method、consumes、produces、params、headers<br>1、value：表示路径<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(value=&quot;/test&quot;)</span><br></pre></td></tr></table></figure></p>
 <p>2、method：表示浏览器请求的method类型，可以是POST、GET等等。如果你的表单请求是POST，那么你想访问的这里也要是POST才能匹配上。你在浏览器的一个a标签里请求一个方法，a标签的href默认是GET请求，那么请求的方法的这里只有设置为GET才能匹配成功，才能访问。</p>
 <p>3、consumes：表示浏览器这次的请求提交的数据的内容类型（content-type），就是说我这个方法我接受的数据的内容类型，可以是application/json、text/html，比如说在页面中提交一个表单，content-type会默认为application/x-www-form-urlencoded，那么你在这边的方法中要是说你只接受<code>@RequestMapping(consumes=&quot;application/json&quot;)</code>，那就会出现415错误（由于媒介类型不被支持，服务器不会接受请求）。</p>
-<p>4、produces：表示这个方法返回给浏览器的数据是以什么格式返回的，也就是告诉浏览器以这种格式去解析数据。只有当请求头（request header）中的accept包含这个类型时才能返回<br><img width="500px" height="200px" src="http://p3o1rymh9.bkt.clouddn.com/标签-RequestMapping1.png"><br>再比如说这个请求头的accept： text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8<br>这里面*/*;q=0.8，表明可以接收任何类型的，权重系数0.8表明如果前面几种类型不能正常接收，则使用该项进行自动分析。application/json 几种主流浏览器都可以自动解析。</p>
+<p>4、produces：表示这个方法返回给浏览器的数据是以什么格式返回的，也就是告诉浏览器以这种格式去解析数据。只有当请求头（request header）中的accept包含这个类型时才能返回<br><img width="500px" height="200px" src="http://pjvesyg1s.bkt.clouddn.com/标签-RequestMapping1.png"><br>再比如说这个请求头的accept： text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8<br>这里面*/*;q=0.8，表明可以接收任何类型的，权重系数0.8表明如果前面几种类型不能正常接收，则使用该项进行自动分析。application/json 几种主流浏览器都可以自动解析。</p>
 <p>5、params：表示这个请求中一定要包含的参数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(value = &quot;testParamsAndHeaders&quot;, params = &#123; &quot;username&quot;,&quot;age!=10&quot; &#125;)</span><br></pre></td></tr></table></figure></p>
 <p>这样的话，就表明，请求过来的必须要有username和age这两个参数，并且age不能为10</p>
 <p>6、headers：表示请求中一定要包含指定的header值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(value = &quot;testParamsAndHeaders&quot;, headers = &#123; &quot;Accept-Language=US,zh;q=0.8&quot; &#125;)</span><br></pre></td></tr></table></figure></p>
@@ -107,7 +107,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/13/RequestMapping的学习/" data-id="cjps1fofs000gk8l9t08w3opy" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/13/RequestMapping的学习/" data-id="cjpthjrym000ggkl9wlrggnrm" class="article-share-link">Share</a>
       
       
     </footer>
@@ -116,19 +116,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/04/13/content-type的学习/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/04/14/mybatis对springboot的支持-注解取代xml/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          RequestMapping的学习
+          mybatis对springboot的支持-注解取代xml
         
       </div>
     </a>
   
   
-    <a href="/2018/04/09/浮点数在Java和JavaScript中的处理/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/04/13/content-type的学习/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">浮点数在Java和JavaScript中的处理</div>
+      <div class="article-nav-title">RequestMapping的学习</div>
     </a>
   
 </nav>

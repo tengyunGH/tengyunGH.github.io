@@ -14,12 +14,12 @@
 <meta property="og:site_name" content="The Marvellous World!">
 <meta property="og:description" content="什么是字符编码？计算机的世界是二进制的，8bit也就是我们常说的一个字节，一般用两位十六进制数表示。那么计算机如何存储从键盘或者从文件等其他地方读取的字符呢，字符编码就是解决这个问题。我们将字符编码，字符一一映射为一个数值，然后计算机将值存储，当要显示在屏幕时按规则映射为对应的字符。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://p3o1rymh9.bkt.clouddn.com/Computer-Encoded1.png">
-<meta property="og:updated_time" content="2018-06-05T09:10:48.323Z">
+<meta property="og:image" content="http://pjvesyg1s.bkt.clouddn.com/Computer-Encoded1.png">
+<meta property="og:updated_time" content="2018-12-18T08:26:24.382Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="字符编码规则的学习">
 <meta name="twitter:description" content="什么是字符编码？计算机的世界是二进制的，8bit也就是我们常说的一个字节，一般用两位十六进制数表示。那么计算机如何存储从键盘或者从文件等其他地方读取的字符呢，字符编码就是解决这个问题。我们将字符编码，字符一一映射为一个数值，然后计算机将值存储，当要显示在屏幕时按规则映射为对应的字符。">
-<meta name="twitter:image" content="http://p3o1rymh9.bkt.clouddn.com/Computer-Encoded1.png">
+<meta name="twitter:image" content="http://pjvesyg1s.bkt.clouddn.com/Computer-Encoded1.png">
   
     <link rel="alternate" href="/atom.xml" title="The Marvellous World!" type="application/atom+xml">
   
@@ -98,7 +98,7 @@
 <h4 id="2、EASCII码"><a href="#2、EASCII码" class="headerlink" title="2、EASCII码"></a>2、EASCII码</h4><p>由ASCII码扩充而来，最高位也加入表示行列，扩充出来的编码用来表示表格符号、计算符号、希腊字母等等，但是还是无法显示中文等一些语言。目前这种编码很少使用了。</p>
 <h4 id="3、ISO-IEC-8859-编码"><a href="#3、ISO-IEC-8859-编码" class="headerlink" title="3、ISO/IEC 8859 编码"></a>3、ISO/IEC 8859 编码</h4><p>也是由ASCII码扩充而来，这种编码，是将字符集分组，一共有15组，这样表示：ISO/IEC 8859-n 这里面n的取值是从1到16除掉12，所以一共是15组，例如ISO/IEC 8859-1 ISO/IEC 8859-2,其实可以理解为有15种编码规则了，所以一共可以表示128*15这么多个字符，但是在实际写一个东西的时候，只能运用一组规则，也就是说，不能同时支持多个组里面的字符编码。同时，这种字符集没有考虑亚洲文字。</p>
 <h4 id="4、Unicode码-统一码"><a href="#4、Unicode码-统一码" class="headerlink" title="4、Unicode码(统一码)"></a>4、Unicode码(统一码)</h4><p>还有种编码叫 ISO 10646编码标准，Unicode和ISO 10646是两个独立的尝试创立单一字符集的组织各自开发的两种编码规则，一个是International Standard Organization(ISO)，一个是多语言软件制造商组成的统一码联盟。两者独立存在，却为创立一个单一编码表而协同工作。所以从大体上说，Unicode = ISO 10646。<br>世界上的所有字符数，大概有几万个。ISO 10646标准所定义的字符集称作为通用字符集Universal Character Set(UCS)。UCS-2表示用2个字节表示一个字符，UCS-4表示用4个字节表示一个字符。</p>
-<p>Unicode编码规则只是定义了每个字符他的编码是多少，但是却没有定义字符对应的编码应该怎样存储在计算机中。如果Unicode统一规定，每个字符要用三或四个字节表示，但是常用的很多字符都是一字节就可以搞定的，那么对于存储来说，是极大的浪费，这样呢，也就形成了Unicode码的多种存储方式。<br>这种存储方式在互联网上有UTF-8、UTF-16、UTF-32，其中UTF-8是互联网上使用最广泛的Unicode编码的存储实现方式。注意，这里，UTF-8只是Unicode码存储的一种方式。<br>Unicode码的大小和存储的数据的大小(UTF-8)的对应关系：<br><img width="600px" height="400px" src="http://p3o1rymh9.bkt.clouddn.com/Computer-Encoded1.png"><br>比如说，某个字符的Unicode码表示为15678(1 0101 0110 0111 1000)，大小在上图的第四行，那么转换为UTF-8的存储数据之后，就是(11110<strong>000</strong> 10<strong>010101</strong> 10<strong>011001</strong> 10<strong>111000</strong>),就是按照数据的大小根据UTF-8的规则将二进制逐位补充进去，Unicode编码最多是能表示21bit的字符。</p>
+<p>Unicode编码规则只是定义了每个字符他的编码是多少，但是却没有定义字符对应的编码应该怎样存储在计算机中。如果Unicode统一规定，每个字符要用三或四个字节表示，但是常用的很多字符都是一字节就可以搞定的，那么对于存储来说，是极大的浪费，这样呢，也就形成了Unicode码的多种存储方式。<br>这种存储方式在互联网上有UTF-8、UTF-16、UTF-32，其中UTF-8是互联网上使用最广泛的Unicode编码的存储实现方式。注意，这里，UTF-8只是Unicode码存储的一种方式。<br>Unicode码的大小和存储的数据的大小(UTF-8)的对应关系：<br><img width="600px" height="400px" src="http://pjvesyg1s.bkt.clouddn.com/Computer-Encoded1.png"><br>比如说，某个字符的Unicode码表示为15678(1 0101 0110 0111 1000)，大小在上图的第四行，那么转换为UTF-8的存储数据之后，就是(11110<strong>000</strong> 10<strong>010101</strong> 10<strong>011001</strong> 10<strong>111000</strong>),就是按照数据的大小根据UTF-8的规则将二进制逐位补充进去，Unicode编码最多是能表示21bit的字符。</p>
 <p>UTF-8编码有一个额外的好处，就是ASCII编码实际上可以被看成是UTF-8编码的一部分，所以，大量只支持ASCII编码的历史遗留软件可以在UTF-8编码下继续工作</p>
 <p>我们常见的编码选项：<br>1、ANSI，对英文文件是ASCII编码，对简体中文是GB2312编码，繁体中文是Big5码<br>2、Unicode编码，是UCS-2编码方式，指直接用两个字节存入字符的Unicode码<br>3、UTF-8等等</p>
 <p>在计算机内存中，统一使用Unicode编码，当需要保存到硬盘或者需要传输的时候，就转换为了UTF-8编码。从文件中读取到内存的时候，就会将UTF-8转换会Unicode编码。</p>
@@ -110,7 +110,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/17/字符编码规则的学习/" data-id="cjps1fogq001ck8l9r9asehtc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/17/字符编码规则的学习/" data-id="cjpthjrz90017gkl90swo50f2" class="article-share-link">Share</a>
       
       
     </footer>

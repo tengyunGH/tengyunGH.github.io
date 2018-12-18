@@ -113,63 +113,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/14/mybatis对springboot的支持-注解取代xml/" data-id="cjps1fogh0011k8l9xj30l0z8" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-
-    
-    
-<article id="post-content-type的学习" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/13/content-type的学习/" class="article-date">
-  <time datetime="2018-04-13T09:46:15.000Z" itemprop="datePublished">2018-04-13</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/SpringMvc/">SpringMvc</a>►<a class="article-category-link" href="/categories/SpringMvc/标签/">标签</a>►<a class="article-category-link" href="/categories/SpringMvc/标签/RequestMapping/">RequestMapping</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/13/content-type的学习/">RequestMapping的学习</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          <p>首先我们要明白一个，这个标签作用于处理器上，是一个匹配请求和设置返回值的一个规则，请求是浏览器发出的。我是这么理解的。</p>
-<h4 id="一、-RequestMapping作用的地方"><a href="#一、-RequestMapping作用的地方" class="headerlink" title="一、@RequestMapping作用的地方"></a>一、@RequestMapping作用的地方</h4><p>1、可以作用于类上，表示访问这个类的规则<br>2、作用于方法上，表示访问这个方法的规则</p>
-<h4 id="二、-RequestMapping有哪些参数"><a href="#二、-RequestMapping有哪些参数" class="headerlink" title="二、@RequestMapping有哪些参数"></a>二、@RequestMapping有哪些参数</h4><p>有六个参数 value、method、consumes、produces、params、headers<br>1、value：表示路径<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(value=&quot;/test&quot;)</span><br></pre></td></tr></table></figure></p>
-<p>2、method：表示浏览器请求的method类型，可以是POST、GET等等。如果你的表单请求是POST，那么你想访问的这里也要是POST才能匹配上。你在浏览器的一个a标签里请求一个方法，a标签的href默认是GET请求，那么请求的方法的这里只有设置为GET才能匹配成功，才能访问。</p>
-<p>3、consumes：表示浏览器这次的请求提交的数据的内容类型（content-type），就是说我这个方法我接受的数据的内容类型，可以是application/json、text/html，比如说在页面中提交一个表单，content-type会默认为application/x-www-form-urlencoded，那么你在这边的方法中要是说你只接受<code>@RequestMapping(consumes=&quot;application/json&quot;)</code>，那就会出现415错误（由于媒介类型不被支持，服务器不会接受请求）。</p>
-<p>4、produces：表示这个方法返回给浏览器的数据是以什么格式返回的，也就是告诉浏览器以这种格式去解析数据。只有当请求头（request header）中的accept包含这个类型时才能返回<br><img width="500px" height="200px" src="http://p3o1rymh9.bkt.clouddn.com/标签-RequestMapping1.png"><br>再比如说这个请求头的accept： text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8<br>这里面*/*;q=0.8，表明可以接收任何类型的，权重系数0.8表明如果前面几种类型不能正常接收，则使用该项进行自动分析。application/json 几种主流浏览器都可以自动解析。</p>
-<p>5、params：表示这个请求中一定要包含的参数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(value = &quot;testParamsAndHeaders&quot;, params = &#123; &quot;username&quot;,&quot;age!=10&quot; &#125;)</span><br></pre></td></tr></table></figure></p>
-<p>这样的话，就表明，请求过来的必须要有username和age这两个参数，并且age不能为10</p>
-<p>6、headers：表示请求中一定要包含指定的header值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(value = &quot;testParamsAndHeaders&quot;, headers = &#123; &quot;Accept-Language=US,zh;q=0.8&quot; &#125;)</span><br></pre></td></tr></table></figure></p>
-<p>这个就是说，你的请求头中的accept-language这个参数的第一语言是US（这里有点没转过弯来）。</p>
-<p>请求会先根据url找路径，这时就会根据请求头做出一系列的判断，匹配不通过，也就是找不到，就会返回404.找到了若果不能正常处理就会返回5XX的错误。</p>
-<p>参考自 <a href="https://blog.csdn.net/J080624/article/details/55193269" target="_blank" rel="noopener">https://blog.csdn.net/J080624/article/details/55193269</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/13/content-type的学习/" data-id="cjps1fofv000ik8l96ax7sexf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/14/mybatis对springboot的支持-注解取代xml/" data-id="cjpthjrzk001pgkl96szmwm1m" class="article-share-link">Share</a>
       
       
     </footer>
@@ -214,7 +158,7 @@
 <h4 id="二、-RequestMapping有哪些参数"><a href="#二、-RequestMapping有哪些参数" class="headerlink" title="二、@RequestMapping有哪些参数"></a>二、@RequestMapping有哪些参数</h4><p>有六个参数 value、method、consumes、produces、params、headers<br>1、value：表示路径<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(value=&quot;/test&quot;)</span><br></pre></td></tr></table></figure></p>
 <p>2、method：表示浏览器请求的method类型，可以是POST、GET等等。如果你的表单请求是POST，那么你想访问的这里也要是POST才能匹配上。你在浏览器的一个a标签里请求一个方法，a标签的href默认是GET请求，那么请求的方法的这里只有设置为GET才能匹配成功，才能访问。</p>
 <p>3、consumes：表示浏览器这次的请求提交的数据的内容类型（content-type），就是说我这个方法我接受的数据的内容类型，可以是application/json、text/html，比如说在页面中提交一个表单，content-type会默认为application/x-www-form-urlencoded，那么你在这边的方法中要是说你只接受<code>@RequestMapping(consumes=&quot;application/json&quot;)</code>，那就会出现415错误（由于媒介类型不被支持，服务器不会接受请求）。</p>
-<p>4、produces：表示这个方法返回给浏览器的数据是以什么格式返回的，也就是告诉浏览器以这种格式去解析数据。只有当请求头（request header）中的accept包含这个类型时才能返回<br><img width="500px" height="200px" src="http://p3o1rymh9.bkt.clouddn.com/标签-RequestMapping1.png"><br>再比如说这个请求头的accept： text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8<br>这里面*/*;q=0.8，表明可以接收任何类型的，权重系数0.8表明如果前面几种类型不能正常接收，则使用该项进行自动分析。application/json 几种主流浏览器都可以自动解析。</p>
+<p>4、produces：表示这个方法返回给浏览器的数据是以什么格式返回的，也就是告诉浏览器以这种格式去解析数据。只有当请求头（request header）中的accept包含这个类型时才能返回<br><img width="500px" height="200px" src="http://pjvesyg1s.bkt.clouddn.com/标签-RequestMapping1.png"><br>再比如说这个请求头的accept： text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8<br>这里面*/*;q=0.8，表明可以接收任何类型的，权重系数0.8表明如果前面几种类型不能正常接收，则使用该项进行自动分析。application/json 几种主流浏览器都可以自动解析。</p>
 <p>5、params：表示这个请求中一定要包含的参数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(value = &quot;testParamsAndHeaders&quot;, params = &#123; &quot;username&quot;,&quot;age!=10&quot; &#125;)</span><br></pre></td></tr></table></figure></p>
 <p>这样的话，就表明，请求过来的必须要有username和age这两个参数，并且age不能为10</p>
 <p>6、headers：表示请求中一定要包含指定的header值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(value = &quot;testParamsAndHeaders&quot;, headers = &#123; &quot;Accept-Language=US,zh;q=0.8&quot; &#125;)</span><br></pre></td></tr></table></figure></p>
@@ -225,7 +169,63 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/13/RequestMapping的学习/" data-id="cjps1fofs000gk8l9t08w3opy" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/13/RequestMapping的学习/" data-id="cjpthjrym000ggkl9wlrggnrm" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+    
+    
+<article id="post-content-type的学习" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/13/content-type的学习/" class="article-date">
+  <time datetime="2018-04-13T09:46:15.000Z" itemprop="datePublished">2018-04-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/SpringMvc/">SpringMvc</a>►<a class="article-category-link" href="/categories/SpringMvc/标签/">标签</a>►<a class="article-category-link" href="/categories/SpringMvc/标签/RequestMapping/">RequestMapping</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/13/content-type的学习/">RequestMapping的学习</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          <p>首先我们要明白一个，这个标签作用于处理器上，是一个匹配请求和设置返回值的一个规则，请求是浏览器发出的。我是这么理解的。</p>
+<h4 id="一、-RequestMapping作用的地方"><a href="#一、-RequestMapping作用的地方" class="headerlink" title="一、@RequestMapping作用的地方"></a>一、@RequestMapping作用的地方</h4><p>1、可以作用于类上，表示访问这个类的规则<br>2、作用于方法上，表示访问这个方法的规则</p>
+<h4 id="二、-RequestMapping有哪些参数"><a href="#二、-RequestMapping有哪些参数" class="headerlink" title="二、@RequestMapping有哪些参数"></a>二、@RequestMapping有哪些参数</h4><p>有六个参数 value、method、consumes、produces、params、headers<br>1、value：表示路径<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(value=&quot;/test&quot;)</span><br></pre></td></tr></table></figure></p>
+<p>2、method：表示浏览器请求的method类型，可以是POST、GET等等。如果你的表单请求是POST，那么你想访问的这里也要是POST才能匹配上。你在浏览器的一个a标签里请求一个方法，a标签的href默认是GET请求，那么请求的方法的这里只有设置为GET才能匹配成功，才能访问。</p>
+<p>3、consumes：表示浏览器这次的请求提交的数据的内容类型（content-type），就是说我这个方法我接受的数据的内容类型，可以是application/json、text/html，比如说在页面中提交一个表单，content-type会默认为application/x-www-form-urlencoded，那么你在这边的方法中要是说你只接受<code>@RequestMapping(consumes=&quot;application/json&quot;)</code>，那就会出现415错误（由于媒介类型不被支持，服务器不会接受请求）。</p>
+<p>4、produces：表示这个方法返回给浏览器的数据是以什么格式返回的，也就是告诉浏览器以这种格式去解析数据。只有当请求头（request header）中的accept包含这个类型时才能返回<br><img width="500px" height="200px" src="http://pjvesyg1s.bkt.clouddn.com/标签-RequestMapping1.png"><br>再比如说这个请求头的accept： text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8<br>这里面*/*;q=0.8，表明可以接收任何类型的，权重系数0.8表明如果前面几种类型不能正常接收，则使用该项进行自动分析。application/json 几种主流浏览器都可以自动解析。</p>
+<p>5、params：表示这个请求中一定要包含的参数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(value = &quot;testParamsAndHeaders&quot;, params = &#123; &quot;username&quot;,&quot;age!=10&quot; &#125;)</span><br></pre></td></tr></table></figure></p>
+<p>这样的话，就表明，请求过来的必须要有username和age这两个参数，并且age不能为10</p>
+<p>6、headers：表示请求中一定要包含指定的header值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(value = &quot;testParamsAndHeaders&quot;, headers = &#123; &quot;Accept-Language=US,zh;q=0.8&quot; &#125;)</span><br></pre></td></tr></table></figure></p>
+<p>这个就是说，你的请求头中的accept-language这个参数的第一语言是US（这里有点没转过弯来）。</p>
+<p>请求会先根据url找路径，这时就会根据请求头做出一系列的判断，匹配不通过，也就是找不到，就会返回404.找到了若果不能正常处理就会返回5XX的错误。</p>
+<p>参考自 <a href="https://blog.csdn.net/J080624/article/details/55193269" target="_blank" rel="noopener">https://blog.csdn.net/J080624/article/details/55193269</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/04/13/content-type的学习/" data-id="cjpthjryq000mgkl9cntn6gz8" class="article-share-link">Share</a>
       
       
     </footer>
@@ -276,7 +276,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/09/浮点数在Java和JavaScript中的处理/" data-id="cjps1foh8001wk8l9rpokxo7r" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/09/浮点数在Java和JavaScript中的处理/" data-id="cjpthjs09002pgkl9jtm3f48j" class="article-share-link">Share</a>
       
       
     </footer>
@@ -325,7 +325,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/08/二进制和十进制之间的转换/" data-id="cjps1fogl0015k8l9odyb40v3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/08/二进制和十进制之间的转换/" data-id="cjpthjrz0000vgkl9fphaspv5" class="article-share-link">Share</a>
       
       
     </footer>
@@ -369,7 +369,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/08/HttpServletRequest和HttpServletResponse的学习/" data-id="cjps1foes0002k8l97ozjd405" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/08/HttpServletRequest和HttpServletResponse的学习/" data-id="cjpthjrxl0000gkl9ad3yjxrl" class="article-share-link">Share</a>
       
       
     </footer>
@@ -419,7 +419,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/07/log4j的学习/" data-id="cjps1foge000yk8l9he5e5nja" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/07/log4j的学习/" data-id="cjpthjrze001fgkl9d4pdpanl" class="article-share-link">Share</a>
       
       
     </footer>
@@ -480,7 +480,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/04/Springboot的学习/" data-id="cjps1fokr0069k8l9sjijvmgn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/04/Springboot的学习/" data-id="cjpthjs25006agkl9ke5cn201" class="article-share-link">Share</a>
       
       
     </footer>
@@ -529,7 +529,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/02/Mysql命名规范/" data-id="cjps1fofm000ck8l975plwfvi" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/02/Mysql命名规范/" data-id="cjpthjryo000jgkl9kys2prfg" class="article-share-link">Share</a>
       
       
     </footer>
@@ -580,7 +580,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/02/Sql中的truncate、drop和delete/" data-id="cjps1fofy000jk8l9ts49bmnk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/02/Sql中的truncate、drop和delete/" data-id="cjpthjryn000igkl9jgvpbtxt" class="article-share-link">Share</a>
       
       
     </footer>
